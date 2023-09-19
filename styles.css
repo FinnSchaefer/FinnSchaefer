@@ -47,6 +47,8 @@ body {
     padding: 60px 0;
     text-align: center;
     transition: margin-top 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .about.show-bio {
@@ -58,6 +60,8 @@ body {
     padding: 60px 0;
     text-align: center;
     transition: margin-top 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .projects.show-projects {
