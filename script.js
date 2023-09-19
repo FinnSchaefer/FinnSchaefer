@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Fetch your GitHub projects using the GitHub API (replace with your GitHub username)
-    const githubUsername = 'your-github-username';
+    const githubUsername = 'FinnSchaefer';
     const apiUrl = `https://api.github.com/users/${githubUsername}/repos`;
 
     fetch(apiUrl)
