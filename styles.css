@@ -3,70 +3,85 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Light grey background color */
-    color: #333; /* Text color */
+    background-color: #a6a5a5; /* Light grey background color */
 }
 
-/* Initial styling for "Who am I?" header */
-.header-full {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 100px 0;
-    position: relative;
-    z-index: 2;
-}
-
-.header-full h1 {
-    font-size: 48px;
-    margin: 0;
-}
-
-/* Styling for "Who am I?" header after scrolling */
-.header-scroll {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
+/* Header styles */
+.header {
+    background-color: #fff;
+    color: #333; /* Dark text color for header */
     padding: 20px 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
+    width: 100%;
+    z-index: 100;
+    transition: background-color 0.3s ease;
 }
 
-.header-scroll h1 {
-    font-size: 24px;
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header h1 {
+    font-size: 36px;
     margin: 0;
+    transition: color 0.3s ease;
 }
 
-/* Styling for "Who am I?" header after scrolling */
+.header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.header nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.header nav a:hover {
+    color: #ffc107;
+}
+
+/* About section styles */
 .about {
-    background-color: #f4f4f4;
+    background-color: #fff;
+    color: #333; /* Dark text color for sections */
     padding: 60px 0;
     text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    margin-top: 80px; /* Increased spacing from header */
 }
 
-.about.show-bio {
-    margin-top: 20px;
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
+.about h2 {
+    font-size: 28px;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+/* Projects section styles */
 .projects {
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Light grey background color */
+    color: #333;
     padding: 60px 0;
     text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.projects.show-projects {
-    margin-top: 20px;
+.projects h2 {
+    font-size: 28px;
+    margin: 0;
+    padding-bottom: 20px;
 }
 
 /* Footer styles */

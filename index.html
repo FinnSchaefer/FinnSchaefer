@@ -8,14 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-pzjw8f+uaq+0kuy9a9vep6cu6cby6p8fe1c3r5urq+qzmk5t9dvio58jxy9k+w2" crossorigin="anonymous">
 </head>
 <body>
-    <header class="header-full">
-        <h1>Finn Schaefer</h1>
+    <header class="header">
+        <div class="header-content">
+            <h1>Finn Schaefer</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">Who am I?</a></li>
+                    <li><a href="#projects">Current Projects</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="content">
         <section id="about" class="about">
-            <h2>Who am I?</h2>
-            <div class="bio">
+            <div class="about-content">
+                <h2>Who am I?</h2>
                 <p>
                     Hello! I am Finn, a passionate progammer with an emphasis on security. I enjoy working on my own projects when I have the time
                     and learning new technologies. On this site you can view a few of those projects to get to know me a bit better.
@@ -24,7 +32,7 @@
         </section>
 
         <section id="projects" class="projects">
-            <h2>Projects</h2>
+            <h2>Current Projects</h2>
             <div id="github-projects">
                 <!-- GitHub projects will be dynamically loaded here using JavaScript -->
             </div>
