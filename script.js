@@ -18,13 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to toggle the "show" class for elements when in viewport
     function toggleElementVisibility() {
-
-        if (isElementInViewport(headerFull)) {
-            headerFull.classList.add('show');
-        } else {
-            headerFull.classList.remove('show');
-        }
-
         if (isElementInViewport(headerScroll)) {
             headerScroll.classList.add('show');
         } else {
@@ -32,15 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (isElementInViewport(about)) {
-            about.classList.add('show');
+            about.classList.add('show-bio');
         } else {
-            about.classList.remove('show');
+            about.classList.remove('show-bio');
         }
 
         if (isElementInViewport(projects)) {
-            projects.classList.add('show');
+            projects.classList.add('show-projects');
         } else {
-            projects.classList.remove('show');
+            projects.classList.remove('show-projects');
         }
     }
 
