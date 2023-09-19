@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', function () {
     const headerFull = document.querySelector('.header-full');
     const headerScroll = document.querySelector('.header-scroll');
@@ -19,35 +17,22 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     }
 
-    // Toggle the "show-bio" class for bio reveal
-    function toggleBio() {
-        const scrollY = window.scrollY;
-        if (scrollY >= headerFull.offsetHeight) {
-            headerScroll.style.transform = 'translateY(0)';
-            about.classList.add('show-bio');
+    // Function to toggle the "show" class for elements when in viewport
+    function toggleElementVisibility(element) {
+        if (isElementInViewport(element)) {
+            element.classList.add('show');
         } else {
-            headerScroll.style.transform = 'translateY(-100%)';
-            about.classList.remove('show-bio');
-        }
-    }
-
-    // Toggle the "show-projects" class for projects reveal
-    function toggleProjects() {
-        const scrollY = window.scrollY;
-        if (scrollY >= about.offsetTop + about.offsetHeight) {
-            projects.classList.add('show-projects');
-        } else {
-            projects.classList.remove('show-projects');
+            element.classList.remove('show');
         }
     }
 
     // Attach the scroll event listener
     window.addEventListener('scroll', function () {
-        toggleBio();
-        toggleProjects();
+        toggleElementVisibility(headerScroll);
+        toggleElementVisibility(about);
+        toggleElementVisibility(projects);
     });
 
-    // Fetch your GitHub projects using the GitHub API (replace with your GitHub username)
     const githubUsername = 'FinnSchaefer';
     const apiUrl = `https://api.github.com/users/${githubUsername}/repos`;
 
