@@ -46,9 +46,9 @@ body {
     background-color: #6d6d6d;
     padding: 60px 0;
     text-align: center;
-    transition: margin-top 0.3s ease;
     opacity: 0;
     transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .about.show-bio {
@@ -59,9 +59,9 @@ body {
     background-color: #6d6d6d;
     padding: 60px 0;
     text-align: center;
-    transition: margin-top 0.3s ease;
     opacity: 0;
     transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .projects.show-projects {
@@ -130,7 +130,7 @@ body {
 }
 
 /* Apply animation when sections come into view */
-.scroll-in-view {
+.about.show, .projects.show {
     opacity: 1;
     transform: translateY(0);
 }
