@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const headerScroll = document.querySelector('.header-scroll');
     const about = document.querySelector('.about');
     const projects = document.querySelector('.projects');
-    const bio = document.querySelector('.bio');
     const githubProjectsContainer = document.getElementById('github-projects');
 
     // Function to check if an element is in the viewport
@@ -19,6 +18,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to toggle the "show" class for elements when in viewport
     function toggleElementVisibility() {
+
+        if (isElementInViewport(headerFull)) {
+            headerFull.classList.add('show');
+        } else {
+            headerFull.classList.remove('show');
+        }
+
         if (isElementInViewport(headerScroll)) {
             headerScroll.classList.add('show');
         } else {
