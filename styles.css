@@ -7,7 +7,7 @@ body {
 }
 
 .header {
-    background-color: #111;
+    background-color: #403f3f;
     padding: 20px;
     text-align: center;
     font-family: 'Helsinki', sans-serif; /* Use Helsinki font here */
@@ -23,7 +23,7 @@ body {
 }
 
 .footer {
-    background-color: #111;
+    background-color: #403f3f;
     padding: 10px;
     text-align: center;
     position: fixed;
