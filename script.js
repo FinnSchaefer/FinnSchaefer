@@ -18,20 +18,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to toggle the "show" class for elements when in viewport
-    function toggleElementVisibility(element) {
-        if (isElementInViewport(element)) {
-            element.classList.add('show');
+    function toggleElementVisibility() {
+        if (isElementInViewport(headerScroll)) {
+            headerScroll.classList.add('show');
         } else {
-            element.classList.remove('show');
+            headerScroll.classList.remove('show');
+        }
+
+        if (isElementInViewport(about)) {
+            about.classList.add('show');
+        } else {
+            about.classList.remove('show');
+        }
+
+        if (isElementInViewport(projects)) {
+            projects.classList.add('show');
+        } else {
+            projects.classList.remove('show');
         }
     }
 
     // Attach the scroll event listener
-    window.addEventListener('scroll', function () {
-        toggleElementVisibility(headerScroll);
-        toggleElementVisibility(about);
-        toggleElementVisibility(projects);
-    });
+    window.addEventListener('scroll', toggleElementVisibility);
 
     const githubUsername = 'FinnSchaefer';
     const apiUrl = `https://api.github.com/users/${githubUsername}/repos`;
