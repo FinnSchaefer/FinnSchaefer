@@ -3,14 +3,19 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #a6a5a5; /* Light grey background color */
 }
 
 /* Header styles */
 .header {
-    background-color: #333;
-    color: #fff;
+    background-color: #fff;
+    color: #333; /* Dark text color for header */
     padding: 20px 0;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    transition: background-color 0.3s ease;
 }
 
 .header-content {
@@ -25,6 +30,7 @@ body {
 .header h1 {
     font-size: 36px;
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .header nav ul {
@@ -35,7 +41,7 @@ body {
 
 .header nav a {
     text-decoration: none;
-    color: #fff;
+    color: #333;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -46,10 +52,11 @@ body {
 
 /* About section styles */
 .about {
-    background-color: #222;
-    color: #fff;
-    padding: 40px 0;
+    background-color: #fff;
+    color: #333; /* Dark text color for sections */
+    padding: 60px 0;
     text-align: center;
+    margin-top: 80px; /* Increased spacing from header */
 }
 
 .about-content {
@@ -58,31 +65,33 @@ body {
 }
 
 .about h2 {
-    font-size: 24px;
+    font-size: 28px;
     margin: 0;
     padding-bottom: 20px;
 }
 
 /* Projects section styles */
 .projects {
-    background-color: #111;
-    color: #fff;
-    padding: 40px 0;
+    background-color: #f4f4f4; /* Light grey background color */
+    color: #333;
+    padding: 60px 0;
     text-align: center;
 }
 
 .projects h2 {
-    font-size: 24px;
+    font-size: 28px;
     margin: 0;
     padding-bottom: 20px;
 }
 
 /* Footer styles */
 .footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #fff;
+    color: #333;
     padding: 20px 0;
     text-align: center;
+    position: relative;
+    z-index: 1; /* Ensures footer appears above content */
 }
 
 .footer-content {
@@ -99,15 +108,20 @@ body {
 }
 
 .social-icons a {
-    color: #fff;
+    color: #333;
     font-size: 24px;
     text-decoration: none;
     margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ffc107;
 }
 
 /* Additional CSS for GitHub project cards (customize as needed) */
 .project-card {
-    background-color: #222;
+    background-color: #fff;
     padding: 20px;
     margin: 20px;
     border-radius: 5px;
@@ -121,5 +135,18 @@ body {
 }
 
 .project-card p {
-    color: #ccc;
+    color: #333;
+}
+
+/* Dynamic scrolling effects */
+#about, #projects {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Apply animation when sections come into view */
+.scroll-in-view {
+    opacity: 1;
+    transform: translateY(0);
 }
