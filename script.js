@@ -1,6 +1,5 @@
 const githubProjectsContainer = document.getElementById('github-projects');
-
-// Fetch GitHub projects using the GitHub API (replace with your GitHub username)
+// Fetch  GitHub projects using the GitHub API
 const githubUsername = 'your-github-username';
 const apiUrl = `https://api.github.com/users/${githubUsername}/repos`;
 
@@ -14,13 +13,15 @@ fetch(apiUrl)
             const projectCard = document.createElement('div');
             projectCard.classList.add('project-card');
 
-            const projectName = document.createElement('h3');
-            projectName.textContent = project.name;
+            const projectNameLink = document.createElement('a'); // Create an anchor tag
+            projectNameLink.textContent = project.name;
+            projectNameLink.href = project.html_url; // Set the href to the GitHub repository URL
+            projectNameLink.target = '_blank'; // Open the link in a new tab
 
             const projectDescription = document.createElement('p');
             projectDescription.textContent = project.description || 'No description available.';
 
-            projectCard.appendChild(projectName);
+            projectCard.appendChild(projectNameLink); // Add the anchor tag
             projectCard.appendChild(projectDescription);
 
             githubProjectsContainer.appendChild(projectCard);
@@ -29,6 +30,7 @@ fetch(apiUrl)
     .catch(error => {
         console.error('Error fetching GitHub projects:', error);
     });
+
 
 // Function to check if an element is in the viewport
 function isElementInViewport(element) {
