@@ -1,16 +1,25 @@
+/* Reset and global styles */
 body {
-    background-color: #333;
-    color: #fff;
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
+/* Header styles */
 .header {
-    background-color: #403f3f;
-    padding: 20px;
-    text-align: center;
-    font-family: 'Helsinki', sans-serif; /* Use Helsinki font here */
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .header h1 {
@@ -18,50 +27,99 @@ body {
     margin: 0;
 }
 
-.content {
-    padding: 20px;
+.header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
-.footer {
-    background-color: #403f3f;
-    padding: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-.about, .projects {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #403f3f;
-}
-
-.about h2, .projects h2 {
-    font-size: 24px;
+.header nav a {
+    text-decoration: none;
     color: #fff;
-    margin-top: 0;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-.about p {
-    color: #ccc;
+.header nav a:hover {
+    color: #ffc107;
+}
+
+/* About section styles */
+.about {
+    background-color: #222;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about h2 {
+    font-size: 24px;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+/* Projects section styles */
+.projects {
+    background-color: #111;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.projects h2 {
+    font-size: 24px;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    margin-right: 10px;
 }
 
 /* Additional CSS for GitHub project cards (customize as needed) */
 .project-card {
     background-color: #222;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 20px;
+    margin: 20px;
     border-radius: 5px;
-    border: 1px solid #333;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
 .project-card h3 {
     font-size: 18px;
-    margin-top: 0;
+    margin: 0;
+    padding-bottom: 10px;
 }
 
 .project-card p {
     color: #ccc;
 }
-
