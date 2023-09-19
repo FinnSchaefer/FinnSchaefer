@@ -30,3 +30,38 @@ body {
     bottom: 0;
     width: 100%;
 }
+
+.about, .projects {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #403f3f;
+}
+
+.about h2, .projects h2 {
+    font-size: 24px;
+    color: #fff;
+    margin-top: 0;
+}
+
+.about p {
+    color: #ccc;
+}
+
+/* Additional CSS for GitHub project cards (customize as needed) */
+.project-card {
+    background-color: #222;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+}
+
+.project-card h3 {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.project-card p {
+    color: #ccc;
+}
+
