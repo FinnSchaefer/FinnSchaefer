@@ -3,12 +3,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #a6a5a5; /* Light grey background color */
+    background-color: #929090; /* Light grey background color */
 }
 
 /* Header styles */
 .header {
-    background-color: #fff;
+    background-color: #929090;
     color: #333; /* Dark text color for header */
     padding: 20px 0;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -52,7 +52,7 @@ body {
 
 /* About section styles */
 .about {
-    background-color: #fff;
+    background-color: #929090;
     color: #333; /* Dark text color for sections */
     padding: 60px 0;
     text-align: center;
@@ -72,7 +72,7 @@ body {
 
 /* Projects section styles */
 .projects {
-    background-color: #f4f4f4; /* Light grey background color */
+    background-color: #929090; /* Light grey background color */
     color: #333;
     padding: 60px 0;
     text-align: center;
@@ -121,7 +121,7 @@ body {
 
 /* Additional CSS for GitHub project cards (customize as needed) */
 .project-card {
-    background-color: #979797;
+    background-color: #929090;
     padding: 20px;
     margin: 20px;
     border-radius: 5px;
