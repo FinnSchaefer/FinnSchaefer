@@ -80,7 +80,10 @@
             flex-direction: column;
             align-items: center;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            animation-name: scroll;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards; /* Add this line */
         }
         
         .project-card h2 {
