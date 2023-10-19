@@ -108,7 +108,9 @@
             left: 50%;
             transform: translateX(-50%);
             opacity: 1; /* Add this line */
-            animation: scroll 2s ease-in-out infinite;
+            animation: scroll 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite; /* Add this line */
         }
         
         /* Set button styles */
@@ -137,7 +139,7 @@
                 justify-content: space-between;
             }
         }
-        
+
     </style>
 </head>
 <body>
