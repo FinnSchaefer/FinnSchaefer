@@ -202,21 +202,6 @@
             .catch(error => {
                 console.error(error);
             });
-
-        // Fade in project cards when scrolled to
-        const projectCards = document.querySelectorAll('.project-card');
-        const scroll = document.querySelector('.scroll');
-
-        window.addEventListener('scroll', () => {
-            projectCards.forEach(card => {
-                const cardTop = card.getBoundingClientRect().top;
-                const cardBottom = card.getBoundingClientRect().bottom;
-
-                if (cardTop < window.innerHeight && cardBottom > 0) {
-                    card.style.opacity = 1;
-                }
-            });
-        });
     </script>
 </body>            
 </html>
