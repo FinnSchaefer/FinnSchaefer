@@ -173,8 +173,9 @@
                 const githubProjects = document.getElementById('github-projects');
 
                 // Create project cards with fetched data
+                const repositoryList = document.createElement('ul'); // Define the repositoryList element
                 projects.forEach(project => {
-                    const card = document.createElement('div');
+                    const card = document.createElement('li'); // Create a list item element for each project
                     card.classList.add('project-card');
 
                     const title = document.createElement('h2');
@@ -194,8 +195,10 @@
                     button.textContent = 'View on GitHub';
                     link.appendChild(button);
 
-                    githubProjects.appendChild(card);
+                    repositoryList.appendChild(card); // Append the card element to the repositoryList element
                 });
+
+                githubProjects.appendChild(repositoryList); // Append the repositoryList element to the githubProjects element
             })
             .catch(error => {
                 console.error(error);
