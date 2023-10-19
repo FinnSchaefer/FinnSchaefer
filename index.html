@@ -131,51 +131,52 @@
                 <a href="#about">About Me</a>
             </nav>
         </header>
-        <main>
-            <section id="about">
-                <h1>About Me</h1>
-                <p class="Who Am I">I am a Cyber Security Engineer Student at George Mason with </p>
-            </section>
-            <section id="projects">
-                <h1>My Projects</h1>
-                <div id="github-projects" class="project-card"></div>
-            </section>
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script>
-                // Fetch GitHub projects data
-                axios.get('https://api.github.com/users/FinnSchaefer/repos')
-                    .then(response => {
-                        const projects = response.data;
-                        const githubProjects = document.getElementById('github-projects');
+                <main>
+                    <section id="about">
+                        <h1>About Me</h1>
+                        <p class="Who Am I">I am a Cyber Security Engineer Student at George Mason with </p>
+                    </section>
+                    <section id="projects">
+                        <h1>My Projects</h1>
+                        <div id="github-projects" class="project-card"></div>
+                    </section>
+                    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                    <script>
+                        // Fetch GitHub projects data
+                        axios.get('https://api.github.com/users/FinnSchaefer/repos')
+                            .then(response => {
+                                const projects = response.data;
+                                const githubProjects = document.getElementById('github-projects');
 
-                        // Create project cards with fetched data
-                        projects.forEach(project => {
-                            const card = document.createElement('div');
-                            card.classList.add('project-card');
+                                // Create project cards with fetched data
+                                projects.forEach(project => {
+                                    const card = document.createElement('div');
+                                    card.classList.add('project-card');
 
-                            const title = document.createElement('h2');
-                            title.textContent = project.name;
-                            card.appendChild(title);
+                                    const title = document.createElement('h2');
+                                    title.textContent = project.name;
+                                    card.appendChild(title);
 
-                            const description = document.createElement('p');
-                            description.textContent = project.description;
-                            card.appendChild(description);
+                                    const description = document.createElement('p');
+                                    description.textContent = project.description;
+                                    card.appendChild(description);
 
-                            const link = document.createElement('a');
-                            link.href = project.html_url;
-                            const button = document.createElement('button');
-                            button.classList.add('button');
-                            button.textContent = 'View on GitHub';
-                            link.appendChild(button);
+                                    const link = document.createElement('a');
+                                    link.href = project.html_url;
+                                    link.textContent = 'View on GitHub'; // Add text content to the <a> element
+                                    const button = document.createElement('button');
+                                    button.classList.add('button');
+                                    button.textContent = 'View on GitHub';
+                                    link.appendChild(button);
 
-                            githubProjects.appendChild(card);
-                        });
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            </script>
-        </main>
-    </div>
-</body>
-</html>
+                                    githubProjects.appendChild(card);
+                                });
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    </script>
+                </main>
+            </div>
+        </body>       
+     </html>
