@@ -1,61 +1,38 @@
-const githubProjectsContainer = document.getElementById('github-projects');
-// Fetch  GitHub projects using the GitHub API
-const githubUsername = 'FinnSchaefer';
-const apiUrl = `https://api.github.com/users/${githubUsername}/repos`;
+// Replace YOUR_USERNAME with your GitHub username
+const username = 'FinnSchaefer';
 
-fetch(apiUrl)
+// Replace REPO_COUNT with the number of repositories you want to display
+const repoCount = 3;
+// Replace YOUR_WEBSITE_ID with the ID of the HTML element where you want to display your repositories
+const websiteId = 'projects';
+
+// Fetch your repositories from the GitHub API
+fetch(`https://api.github.com/users/${username}/repos?per_page=${repoCount}`)
     .then(response => response.json())
-    .then(data => {
-        // Filter out the "FinnSchaefer" repo
-        const filteredProjects = data.filter(project => project.name !== 'FinnSchaefer');
+    .then(repositories => {
+        // Get the HTML element where you want to display your repositories
+        const websiteElement = document.getElementById(websiteId);
 
-        filteredProjects.forEach(project => {
-            const projectCard = document.createElement('div');
-            projectCard.classList.add('project-card');
+        // Create an unordered list to display your repositories
+        const repositoryList = document.createElement('ul');
 
-            const projectNameLink = document.createElement('a'); // Create an anchor tag
-            projectNameLink.textContent = project.name;
-            projectNameLink.href = project.html_url; // Set the href to the GitHub repository URL
-            projectNameLink.target = '_blank'; // Open the link in a new tab
+        // Loop through your repositories and create a list item for each one
+        repositories.forEach(repository => {
+            const repositoryItem = document.createElement('li');
 
-            const projectDescription = document.createElement('p');
-            projectDescription.textContent = project.description || 'No description available.';
+            // Create a link to your repository
+            const repositoryLink = document.createElement('a');
+            repositoryLink.href = repository.html_url;
+            repositoryLink.textContent = repository.name;
 
-            projectCard.appendChild(projectNameLink); // Add the anchor tag
-            projectCard.appendChild(projectDescription);
+            // Add the link to the list item
+            repositoryItem.appendChild(repositoryLink);
 
-            githubProjectsContainer.appendChild(projectCard);
+            // Add the list item to the unordered list
+            repositoryList.appendChild(repositoryItem);
         });
+
+        // Add the unordered list to your website
+        websiteElement.appendChild(repositoryList);
     })
-    .catch(error => {
-        console.error('Error fetching GitHub projects:', error);
-    });
-
-
-// Function to check if an element is in the viewport
-function isElementInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-// Function to handle the scrolling effect
-function handleScroll() {
-    const aboutSection = document.getElementById('about');
-    const projectsSection = document.getElementById('projects');
-
-    if (isElementInViewport(aboutSection)) {
-        aboutSection.classList.add('scroll-in-view');
-    }
-
-    if (isElementInViewport(projectsSection)) {
-        projectsSection.classList.add('scroll-in-view');
-    }
-}
-
-// Attach the scroll event listener
-window.addEventListener('scroll', handleScroll);
+    .catch(error => console.error(error));
