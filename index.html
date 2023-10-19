@@ -2,54 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finn's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-pzjw8f+uaq+0kuy9a9vep6cu6cby6p8fe1c3r5urq+qzmk5t9dvio58jxy9k+w2" crossorigin="anonymous">
+    <title>Finn Schaefer</title>
+    <style>
+        /* Set background color and font color */
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Set container width and center it */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Set header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Set logo styles */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* Set navigation styles */
+        nav {
+            display: flex;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        
+        /* Set main content styles */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Set section styles */
+        section {
+            margin-bottom: 40px;
+        }
+        
+        /* Set project card styles */
+        .project-card {
+            background-color: #2b2b2b;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .project-card h2 {
+            margin-top: 0;
+        }
+        
+        .project-card p {
+            margin-bottom: 0;
+        }
+        
+        /* Set about me styles */
+        .about-me {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Set scroll animation styles */
+        .scroll {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s ease-in-out infinite;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <h1>Finn Schaefer</h1>
+    <div class="container">
+        <header>
+            <div class="logo">Finn Schaefer</div>
             <nav>
-                <ul>
-                    <li><a href="#about">Who am I?</a></li>
-                    <li><a href="#projects">Current Projects</a></li>
-                </ul>
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
             </nav>
-        </div>
-    </header>
-
-    <main class="content">
-        <section id="about" class="about">
-            <div class="about-content">
-                <h2>Who am I?</h2>
-                <p>
-                    Hello! I am Finn, a passionate progammer with an emphasis on security. I enjoy working on my own projects when I have the time
-                    and learning new technologies. On this site you can view a few of those projects to get to know me a bit better.
-                </p>
-            </div>
-        </section>
-
-        <section id="projects" class="projects">
-            <h2>Current Projects</h2>
-            <div id="github-projects">
-                <!-- GitHub projects will be dynamically loaded here using JavaScript -->
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2023 Finn Schaefer</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+        </header>
+        <main>
+            <section id="projects">
+                <h1>My Projects</h1>
+                <div id="github-projects"></div>
+            </section>
+            <section id="about">
+                <h1>About Me</h1>
+                <p class="about-me">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, sapien vel bibendum bibendum, nunc sapien bibendum sapien, vel bibendum sapien sapien vel bibendum bibendum, nunc sapien bibendum sapien, vel bibendum sapien.</p>
+                <div class="scroll">Scroll down</div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
