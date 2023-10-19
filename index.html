@@ -164,6 +164,8 @@
                                     const link = document.createElement('a');
                                     link.href = project.html_url;
                                     link.textContent = 'View on GitHub'; // Add text content to the <a> element
+                                    card.appendChild(link); // Append the link element to the card element
+
                                     const button = document.createElement('button');
                                     button.classList.add('button');
                                     button.textContent = 'View on GitHub';
@@ -177,6 +179,6 @@
                             });
                     </script>
                 </main>
-            </div>
+                </div>
         </body>       
      </html>
