@@ -1,249 +1,230 @@
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Finn Schaefer</title>
-            <style>
-                /* Set global styles */
-                * {
-                    box-sizing: border-box;
-                    margin: 0;
-                    padding: 0;
-                }
-                
-                body {
-                    font-family: Arial, sans-serif;
-                    background-color: #1f1f1f;
-                    color: #fff;
-                    line-height: 1.5;
-                }
-                
-                /* Set container styles */
-                .container {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 0 20px;
-                }
-                
-                /* Set header styles */
-                header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 50px;
-                }
-                
-                /* Set logo styles */
-                .logo {
-                    font-size: 24px;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                }
-                
-                /* Set navigation styles */
-                nav {
-                    display: flex;
-                }
-                
-                nav a {
-                    color: #fff;
-                    text-decoration: none;
-                    margin-left: 20px;
-                }
-                
-                /* Set main content styles */
-                main {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-                
-                /* Set section styles */
-                section {
-                    margin-bottom: 50px;
-                }
-                
-                /* Set project card styles */
-                .project-card {
-                    background-color: #2b2b2b;
-                    padding: 20px;
-                    border-radius: 5px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-                    margin-bottom: 20px;
-                    width: calc(50% - 20px);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    opacity: 0;
-                    transition: opacity 1s ease-in-out;
-                }
-                
-                .project-card h2 {
-                    margin-top: 20;
-                }
-                
-                .project-card p {
-                    margin-bottom: 0;
-                }
-                
-                /* Set about me styles */
-                .Who-Am-I {
-                    font-size: 24px;
-                    text-align: center;
-                    margin-bottom: 150px;
-                }
-                
-                /* Set scroll animation styles */
-                .scroll {
-                    position: absolute;
-                    bottom: 20px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    animation: scroll 2s ease-in-out infinite;
-                }
-                
-                /* Set button styles */
-                .button {
-                    background-color: #4CAF50;
-                    border: none;
-                    color: white;
-                    padding: 15px 32px;
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 16px;
-                    margin: 4px 2px;
-                    cursor: pointer;
-                    border-radius: 5px;
-                }
-                
-                /* Set 2x2 grid for project cards */
-                @media (min-width: 768px) {
-                    .project-card {
-                        width: calc(50% - 20px);
-                    }
-                    #projects {
-                        display: flex;
-                        flex-wrap: wrap;
-                        justify-content: space-between;
-                    }
-                }
-                
-                @keyframes scroll {
-                    0% {
-                        transform: translateX(-50%) translateY(0);
-                    }
-                    50% {
-                        transform: translateX(-50%) translateY(10px);
-                    }
-                    100% {
-                        transform: translateX(-50%) translateY(0);
-                    }
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <header>
-                    <div class="logo">Finn Schaefer</div>
-                    <nav>
-                        <a href="#projects">My Projects</a>
-                        <a href="#about">About Me</a>
-                    </nav>
-                </header>
-                <main>
-                    <section id="about">
-                        <h1>About Me</h1>
-                        <p class="Who Am I">I am a Cyber Security Engineer Student at George Mason with </p>
-                    </section>
-                    <section id="projects">
-                        <h1>My Projects</h1>
-                        <div id="github-projects"></div>
-                    </section>
-                </main>
-            </div>
-            <div class="scroll"></div>
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script>
-                // Fetch GitHub projects data
-                axios.get('https://api.github.com/users/FinnSchaefer/repos')
-                    .then(response => {
-                        const projects = response.data;
-                        const githubProjects = document.getElementById('github-projects');
-
-                        // Create project cards with fetched data
-                        projects.forEach(project => {
-                            const card = document.createElement('div');
-                            card.classList.add('project-card');
-
-                            const title = document.createElement('h2');
-                            title.textContent = project.name;
-                            card.appendChild(title);
-
-                            const description = document.createElement('p');
-                            description.textContent = project.description;
-                            card.appendChild(description);
-
-                            const link = document.createElement('a');
-                            link.href = project.html_url;
-                            card.appendChild(link); // Append the link element to the card element
-
-                            const button = document.createElement('button');
-                            button.classList.add('button');
-                            button.textContent = 'View on GitHub';
-                            link.appendChild(button);
-
-                            githubProjects.appendChild(card);
-                        });
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-
-                // Fade in project cards when scrolled to
-                const projectCards = document.querySelectorAll('.project-card');
-                const scroll = document.querySelector('.scroll');
-
-                window.addEventListener('scroll', () => {
-                    projectCards.forEach(card => {
-                        const cardTop = card.getBoundingClientRect().top;
-                        const cardBottom = card.getBoundingClientRect().bottom;
-
-                        if (cardTop < window.innerHeight && cardBottom > 0) {
-                            card.style.opacity = 1;
-                        }
-                    });
-
-                    // Fade in scroll animation when scrolled to projects section
-                    const projectsSection = document.getElementById('projects');
-                    const projectsTop = projectsSection.getBoundingClientRect().top;
-
-                    if (projectsTop < window.innerHeight) {
-                        scroll.style.opacity = 1;
-                    } else {
-                        scroll.style.opacity = 0;
-                    }
-                });
-            </script>
-        </body>            
-    </html>    <style>
-        #projects {
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finn Schaefer</title>
+    <style>
+        /* Set global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            color: #fff;
+            line-height: 1.5;
+        }
+        
+        /* Set container styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Set header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        
+        /* Set logo styles */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* Set navigation styles */
+        nav {
+            display: flex;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        
+        /* Set main content styles */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Set section styles */
+        section {
+            margin-bottom: 50px;
+        }
+        
+        /* Set project card styles */
+        .project-card {
+            background-color: #2b2b2b;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            width: calc(50% - 20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
+        
+        .project-card h2 {
+            margin-top: 20;
+        }
+        
+        .project-card p {
+            margin-bottom: 0;
+        }
+        
+        /* Set about me styles */
+        .Who-Am-I {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 150px;
+        }
+        
+        /* Set scroll animation styles */
+        .scroll {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s ease-in-out infinite;
+        }
+        
+        /* Set button styles */
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        /* Set 2x2 grid for project cards */
+        @media (min-width: 768px) {
+            .project-card {
+                width: calc(50% - 20px);
+            }
+            #projects {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+        }
     </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Finn Schaefer</div>
+            <nav>
+                <a href="#projects">My Projects</a>
+                <a href="#about">About Me</a>
+            </nav>
+        </header>
+        <main>
+            <section id="about">
+                <h1>About Me</h1>
+                <p class="Who Am I">I am a Cyber Security Engineer Student at George Mason with </p>
+            </section>
+            <section id="projects">
+                <h1>My Projects</h1>
+                <div id="github-projects"></div>
+            </section>
+        </main>
+    </div>
+    <div class="scroll"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        window.addEventListener('scroll', () => {
-            const aboutSection = document.getElementById('about');
-            const aboutBottom = aboutSection.getBoundingClientRect().bottom;
-            const windowHeight = window.innerHeight;
-            const projectsSection = document.getElementById('projects');
+        // Fetch GitHub projects data
+        axios.get('https://api.github.com/users/FinnSchaefer/repos')
+            .then(response => {
+                const projects = response.data;
+                const githubProjects = document.getElementById('github-projects');
 
-            if (aboutBottom < windowHeight * 0.7) {
-                projectsSection.style.opacity = 1;
+                // Create project cards with fetched data
+                projects.forEach(project => {
+                    const card = document.createElement('div');
+                    card.classList.add('project-card');
+
+                    const title = document.createElement('h2');
+                    title.textContent = project.name;
+                    card.appendChild(title);
+
+                    const description = document.createElement('p');
+                    description.textContent = project.description;
+                    card.appendChild(description);
+
+                    const link = document.createElement('a');
+                    link.href = project.html_url;
+                    card.appendChild(link); // Append the link element to the card element
+
+                    const button = document.createElement('button');
+                    button.classList.add('button');
+                    button.textContent = 'View on GitHub';
+                    link.appendChild(button);
+
+                    githubProjects.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        // Fade in project cards when scrolled to
+        const projectCards = document.querySelectorAll('.project-card');
+        const scroll = document.querySelector('.scroll');
+
+        window.addEventListener('scroll', () => {
+            projectCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardBottom = card.getBoundingClientRect().bottom;
+
+                if (cardTop < window.innerHeight && cardBottom > 0) {
+                    card.style.opacity = 1;
+                }
+            });
+
+            // Fade in scroll animation when scrolled to projects section
+            const projectsSection = document.getElementById('projects');
+            const projectsTop = projectsSection.getBoundingClientRect().top;
+
+            if (projectsTop < window.innerHeight) {
+                scroll.style.opacity = 1;
             } else {
-                projectsSection.style.opacity = 0;
+                scroll.style.opacity = 0;
             }
         });
     </script>
+</body>            
+</html>
