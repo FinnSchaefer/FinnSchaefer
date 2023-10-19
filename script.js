@@ -4,7 +4,7 @@ const username = 'FinnSchaefer';
 // Replace REPO_COUNT with the number of repositories you want to display
 const repoCount = 3;
 // Replace YOUR_WEBSITE_ID with the ID of the HTML element where you want to display your repositories
-const websiteId = 'github-projects';
+const websiteId = 'projects';
 
 // Fetch your repositories from the GitHub API
 fetch(`https://api.github.com/users/${username}/repos?per_page=${repoCount}`)
