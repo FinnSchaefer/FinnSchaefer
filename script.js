@@ -1,62 +1,62 @@
 const updates = [
   {
-    date: "March 25, 2026",
-    title: "Rebuilt the site into a publishing home",
+    date: "2026",
+    title: "Senior capstone research accepted to IEEE HOST Symposium 2026",
     summary:
-      "Shifted the homepage from a static portfolio into a place for updates, essays, and work-in-progress notes.",
+      "Research on vulnerabilities in ROS2-based SLAM systems, including how LiDAR perception can be manipulated while remaining statistically and temporally consistent.",
   },
   {
-    date: "March 18, 2026",
-    title: "Tightening the automation layer",
+    date: "2025",
+    title: "First place in the National Transportation Cybersecurity Competition",
     summary:
-      "Working on smaller security automations that are easier to debug, easier to document, and less fragile in practice.",
+      "Won George Mason's top finish in a national transportation cybersecurity competition that covered challenges such as anomaly detection, application security, and traffic-system exploitation.",
   },
   {
-    date: "March 03, 2026",
-    title: "Turning lab work into reusable writing",
+    date: "Now",
+    title: "Rebuilding finnsec.dev into a cleaner publishing space",
     summary:
-      "Refining a workflow where experiments become notes quickly, before the useful details disappear.",
+      "The site is being shaped into a quieter home for updates, essays, and project notes without the clutter of a typical portfolio layout.",
   },
 ];
 
 const posts = [
   {
-    slug: "publish-the-messy-middle",
-    meta: "Field note • March 25, 2026",
-    title: "Publishing the messy middle of security work",
+    slug: "perception-is-an-attack-surface",
+    meta: "Research • IEEE HOST 2026",
+    title: "Perception is an attack surface",
     excerpt:
-      "Most useful work happens before the polished writeup. I want this site to capture that middle layer.",
-    tags: ["Writing", "Workflow", "Research"],
+      "My recent research focuses on how ROS2-based SLAM systems can be influenced through LiDAR manipulation that stays consistent with expected sensor behavior.",
+    tags: ["ROS2", "SLAM", "LiDAR"],
     body: [
-      "A lot of security work dies in private notes because it never feels complete enough to publish. That is a bad filter. The rough edge is often where the useful information lives: what assumptions failed, what tool did not scale, what part took too long to debug.",
-      "This site is structured around that problem. Short updates handle momentum, while longer posts turn patterns into something reusable. That makes the archive more honest and more valuable than a portfolio that only shows finished snapshots.",
-      "The standard I care about is not polish for its own sake. It is clarity. If a note makes the next experiment faster, it has earned its place.",
+      "My senior capstone research examines security vulnerabilities in ROS2-based SLAM systems. The work explores how LiDAR data can be manipulated in ways that remain both statistically and temporally consistent, which makes the attack surface more subtle than a simple disruption or denial approach.",
+      "What matters here is not only the sensor itself, but the broader lesson. If an attacker can bias perception while staying close to normal operating expectations, that effect can propagate into estimation, mapping, and navigation in ways that are difficult to detect early.",
+      "That has clear implications for autonomous and cyber-physical systems. In real environments, an adversary does not always need to break a platform outright. Introducing structured, believable perception error can be enough to misguide the system without obvious alarms.",
     ],
   },
   {
-    slug: "small-tools-over-big-systems",
-    meta: "Essay • March 12, 2026",
-    title: "Why small defensive tools keep winning",
+    slug: "winning-by-working-clearly",
+    meta: "Competition • George Mason",
+    title: "Winning by working clearly under constraints",
     excerpt:
-      "The best internal tools are often narrow, boring, and resilient. That is usually a feature, not a limitation.",
-    tags: ["Automation", "Defense", "Engineering"],
+      "The NTCC result reinforced something I care about: strong security work comes from clear reasoning, disciplined workflow, and the ability to execute under time pressure.",
+    tags: ["Competition", "Transportation", "Detection"],
     body: [
-      "Big platforms promise coverage. Small tools usually deliver leverage. In defensive engineering, a script that removes one painful manual step every day can be more valuable than a heavier system that takes months to operationalize.",
-      "That does not mean the tooling should be disposable. It means the surface area should be intentional. Inputs need to be obvious, outputs need to be inspectable, and failure modes need to be legible enough that someone can fix them under pressure.",
-      "I keep coming back to the same question: if this breaks at the wrong time, will the operator understand why? If not, the design is not done.",
+      "George Mason's transportation cybersecurity competition work highlighted the value of practical problem solving over polished theory. The challenges demanded a mix of offensive awareness, defensive reasoning, and enough composure to keep moving when the path was not obvious.",
+      "One part that stood out was vehicle trajectory anomaly detection. It aligned well with my interest in machine learning because it gave the models a concrete operational purpose instead of treating them as an abstract exercise.",
+      "That kind of work is a good fit for how I like to build: take the technical idea, pressure-test it against a real scenario, and only keep the parts that remain useful after contact with constraints.",
     ],
   },
   {
-    slug: "documenting-labs-like-product",
-    meta: "Process • February 27, 2026",
-    title: "Documenting lab work like it is product work",
+    slug: "why-this-site-got-quieter",
+    meta: "Design • Personal site",
+    title: "Why this site got quieter",
     excerpt:
-      "If a research setup cannot be handed off, repeated, or revisited later, the documentation is not good enough.",
-    tags: ["Labs", "Notes", "Systems"],
+      "I wanted the site to feel closer to a product page than a developer collage: more whitespace, fewer competing boxes, and copy that earns its place.",
+    tags: ["Design", "Writing", "Workflow"],
     body: [
-      "Lab environments are where many good ideas start, but they become hard to reuse because the setup lives only in memory. I try to treat every worthwhile lab as if someone else will need to reproduce it from scratch.",
-      "That changes how I document. I care less about telling the whole story and more about preserving the decision points: the constraints, the topology, the assumptions, and the pieces that were most likely to fail.",
-      "Good notes do not need to be long. They need to remove ambiguity. That is the standard I want this site to support.",
+      "Most personal sites become crowded because every section tries to prove something at once. That is usually a design problem and a writing problem. Too much chrome ends up obscuring the actual work.",
+      "This version is deliberately quieter. The layout gives the writing room to breathe, the palette stays restrained, and the motion is present without becoming the point of the page.",
+      "A site like this should feel like a calm operating surface. The goal is to make the work legible, not decorate it into noise.",
     ],
   },
 ];
@@ -64,30 +64,30 @@ const posts = [
 const projects = [
   {
     meta: "Research",
-    title: "Threat Detection Labs",
+    title: "ROS2 SLAM Security Research",
     description:
-      "Practical detection experiments, writeups, and testable ideas for understanding attacker behavior and response paths.",
-    tags: ["Detection", "Labs", "Writeups"],
-    href: "https://github.com/FinnSchaefer",
-    linkLabel: "See source",
+      "Senior capstone work on LiDAR and perception manipulation in ROS2-based SLAM systems, with direct relevance to autonomous and cyber-physical platforms.",
+    tags: ["Cyber-Physical", "Autonomy", "Sensors"],
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/",
+    linkLabel: "Research announcement",
   },
   {
-    meta: "Tooling",
-    title: "Security Automation Toolkit",
+    meta: "Recognition",
+    title: "National Transportation Cybersecurity Competition",
     description:
-      "Small utilities that reduce repetitive security work without hiding the underlying mechanics or outputs.",
-    tags: ["Automation", "Python", "Ops"],
-    href: "https://github.com/FinnSchaefer",
-    linkLabel: "Explore repos",
+      "First-place finish at George Mason's top showing in the national competition, built around practical transportation and anomaly-detection challenges.",
+    tags: ["NTCC", "GMU", "Machine Learning"],
+    href: "https://www.gmu.edu/news/2025-03/cyber-sweep-george-mason-students-take-top-three-spots-national-transportation",
+    linkLabel: "GMU coverage",
   },
   {
-    meta: "Hardening",
-    title: "Operational Playbooks",
+    meta: "Platform",
+    title: "FinnSec.dev",
     description:
-      "System hardening notes, environment checklists, and reusable patterns for making defensive changes stick.",
-    tags: ["Hardening", "Guides", "Baselines"],
-    href: "https://github.com/FinnSchaefer",
-    linkLabel: "Browse work",
+      "A personal publishing surface for updates, essays, and research notes with a calmer visual language and a tighter editorial focus.",
+    tags: ["Design", "Frontend", "Publishing"],
+    href: "https://github.com/FinnSchaefer/FinnSchaefer",
+    linkLabel: "Source code",
   },
 ];
 
@@ -102,13 +102,19 @@ const dialogTitle = document.querySelector("#dialog-title");
 const dialogBody = document.querySelector("#dialog-body");
 
 function renderUpdates() {
+  if (!updatesList) {
+    return;
+  }
+
   updatesList.innerHTML = updates
     .map(
       (update) => `
-        <article data-reveal>
+        <article class="update-item" data-reveal>
           <p class="update-date">${update.date}</p>
-          <h3>${update.title}</h3>
-          <p>${update.summary}</p>
+          <div class="update-copy">
+            <h3>${update.title}</h3>
+            <p>${update.summary}</p>
+          </div>
         </article>
       `
     )
@@ -116,16 +122,20 @@ function renderUpdates() {
 }
 
 function renderPosts() {
+  if (!postsList) {
+    return;
+  }
+
   postsList.innerHTML = posts
     .map(
       (post) => `
-        <article data-reveal>
+        <article class="post-card" data-reveal>
           <div>
             <p class="post-meta">${post.meta}</p>
             <h3>${post.title}</h3>
             <p>${post.excerpt}</p>
           </div>
-          <div>
+          <div class="post-footer">
             <div class="post-tags">
               ${post.tags.map((tag) => `<span>${tag}</span>`).join("")}
             </div>
@@ -138,16 +148,20 @@ function renderPosts() {
 }
 
 function renderProjects() {
+  if (!projectsList) {
+    return;
+  }
+
   projectsList.innerHTML = projects
     .map(
       (project) => `
-        <article data-reveal>
+        <article class="project-card" data-reveal>
           <div>
             <p class="project-meta">${project.meta}</p>
             <h3>${project.title}</h3>
             <p>${project.description}</p>
           </div>
-          <div>
+          <div class="project-footer">
             <div class="project-tags">
               ${project.tags.map((tag) => `<span>${tag}</span>`).join("")}
             </div>
@@ -164,7 +178,7 @@ function renderProjects() {
 function openPost(slug) {
   const post = posts.find((entry) => entry.slug === slug);
 
-  if (!post || !dialog) {
+  if (!post || !dialog || !dialogMeta || !dialogTitle || !dialogBody) {
     return;
   }
 
@@ -175,7 +189,7 @@ function openPost(slug) {
 }
 
 function setupDialog() {
-  if (!dialog) {
+  if (!dialog || !postsList) {
     return;
   }
 
@@ -231,8 +245,8 @@ function setupReveal() {
       });
     },
     {
-      threshold: 0.16,
-      rootMargin: "0px 0px -24px 0px",
+      threshold: 0.14,
+      rootMargin: "0px 0px -32px 0px",
     }
   );
 

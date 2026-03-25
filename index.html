@@ -5,27 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
     name="description"
-    content="Finn Schaefer writes about security research, defensive tooling, automation, and projects in progress."
+    content="Finn Schaefer writes about security research, automation, updates, and work shipped in public."
   >
-  <meta name="theme-color" content="#080b0d">
+  <meta name="theme-color" content="#050608">
   <title>Finn Schaefer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap"
     rel="stylesheet"
   >
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
   <div class="site-shell">
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Finn Schaefer home">
-        <svg class="brand-mark" viewBox="0 0 16 16" aria-hidden="true">
-          <circle cx="8" cy="8" r="6"></circle>
-        </svg>
-        <span>Finn Schaefer</span>
-      </a>
+      <a class="brand" href="#top" aria-label="Finn Schaefer home">Finn Schaefer</a>
       <nav class="site-nav" aria-label="Primary">
         <a href="#updates">Updates</a>
         <a href="#writing">Writing</a>
@@ -36,137 +34,106 @@
     </header>
 
     <main id="top">
-      <section class="hero panel" data-reveal>
-        <div class="hero-copy">
-          <p class="eyebrow">Security engineer • researcher • builder</p>
-          <h1>Defensive systems, field notes, and projects shipped in public.</h1>
-          <p class="lede">
-            I build security tooling, document experiments, and publish the useful parts:
-            what I am testing, what broke, and what is worth carrying forward.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#writing">Read latest writing</a>
-            <a
-              class="button button-secondary"
-              href="https://github.com/FinnSchaefer"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Explore GitHub
-            </a>
-          </div>
-        </div>
-
-        <aside class="hero-panel">
-          <p class="eyebrow">Current signal</p>
-          <div class="hero-stack">
-            <article>
-              <span class="signal-label">Focus</span>
-              <strong>Security automation that survives real-world messiness</strong>
-            </article>
-            <article>
-              <span class="signal-label">Publishing cadence</span>
-              <strong>Short updates, deeper writeups, working notes</strong>
-            </article>
-            <article>
-              <span class="signal-label">Theme</span>
-              <strong>Dark, fast, and built to age well on GitHub Pages</strong>
-            </article>
-          </div>
-        </aside>
-      </section>
-
-      <section class="section-heading" id="updates" data-reveal>
-        <div>
-          <p class="eyebrow">Dispatches</p>
-          <h2>Recent updates</h2>
-        </div>
-        <p class="section-copy">
-          Short status notes for what I am building, testing, or rethinking right now.
+      <section class="hero" data-reveal>
+        <p class="eyebrow">Security engineer • researcher • builder</p>
+        <h1>Quiet design. Clear writing. Real security work.</h1>
+        <p class="lede">
+          I am a Cyber Security Engineering student at George Mason University focused on security
+          research, cyber-physical systems, automation, and the infrastructure behind resilient tools.
         </p>
-      </section>
-      <section class="updates-grid" id="updates-list" aria-live="polite"></section>
-
-      <section class="section-heading" id="writing" data-reveal>
-        <div>
-          <p class="eyebrow">Writing</p>
-          <h2>Blog posts and field notes</h2>
-        </div>
-        <p class="section-copy">
-          Longer entries on research workflow, defensive tooling, and the operating habits behind them.
-        </p>
-      </section>
-      <section class="posts-grid" id="posts-list"></section>
-
-      <section class="spotlight panel" data-reveal>
-        <div>
-          <p class="eyebrow">Why this site exists</p>
-          <h2>A personal site should be a working surface, not a dead brochure.</h2>
-        </div>
-        <p>
-          This space is built for momentum: fast publishing, clear archives, and enough personality
-          that it does not look like another default developer landing page.
-        </p>
-      </section>
-
-      <section class="section-heading" id="projects" data-reveal>
-        <div>
-          <p class="eyebrow">Projects</p>
-          <h2>Things I am building</h2>
-        </div>
-        <p class="section-copy">
-          Selected work across research, automation, and defensive engineering.
-        </p>
-      </section>
-      <section class="projects-grid" id="projects-list"></section>
-
-      <section class="about-grid" id="about">
-        <article class="panel" data-reveal>
-          <p class="eyebrow">About</p>
-          <h2>Security work with a builder's bias.</h2>
-          <p>
-            I am focused on security research, automation, and defensive tooling. I care about systems
-            that are practical to operate, documentable after the fact, and honest about tradeoffs.
-          </p>
-          <p>
-            The goal is straightforward: ship useful work, publish what matters, and keep improving the
-            quality of both the engineering and the thinking behind it.
-          </p>
-        </article>
-
-        <article class="panel principles-panel" data-reveal>
-          <p class="eyebrow">Operating principles</p>
-          <ul class="principles-list">
-            <li>Document experiments before they become folklore.</li>
-            <li>Prefer small reliable tools over oversized frameworks.</li>
-            <li>Write clearly enough that future me can reuse the work.</li>
-            <li>Treat visual design with the same care as implementation.</li>
-          </ul>
-        </article>
-      </section>
-
-      <section class="contact panel" id="contact" data-reveal>
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Open lines</h2>
-        </div>
-        <p>
-          Best place to follow the work is GitHub for now. This site is set up to become the long-form home
-          for updates, project notes, and essays.
-        </p>
-        <div class="contact-actions">
+        <div class="hero-actions">
+          <a class="button button-primary" href="#writing">Read latest writing</a>
           <a
-            class="button button-primary"
+            class="button button-secondary"
             href="https://github.com/FinnSchaefer"
             target="_blank"
             rel="noreferrer"
           >
-            GitHub Profile
-          </a>
-          <a class="button button-secondary" href="https://www.finnis.me" target="_blank" rel="noreferrer">
-            Visit Domain
+            GitHub
           </a>
         </div>
+        <div class="hero-note">
+          <span class="hero-note-label">Currently</span>
+          <p>Publishing recent work around autonomous-system security, research notes, and a cleaner personal archive for the projects worth keeping.</p>
+        </div>
+      </section>
+
+      <section class="section-block" id="updates" data-reveal>
+        <div class="section-intro">
+          <p class="eyebrow">Updates</p>
+          <h2>Recent dispatches</h2>
+          <p class="section-copy">
+            Short notes on what I am building, testing, or reworking right now.
+          </p>
+        </div>
+        <div class="updates-list" id="updates-list" aria-live="polite"></div>
+      </section>
+
+      <section class="section-block" id="writing" data-reveal>
+        <div class="section-intro">
+          <p class="eyebrow">Writing</p>
+          <h2>Longer posts and field notes</h2>
+          <p class="section-copy">
+            Essays on workflow, automation, and practical defensive engineering.
+          </p>
+        </div>
+        <div class="posts-grid" id="posts-list"></div>
+      </section>
+
+      <section class="section-block" id="projects" data-reveal>
+        <div class="section-intro">
+          <p class="eyebrow">Projects</p>
+          <h2>Selected work</h2>
+          <p class="section-copy">
+            Focused projects across research, tooling, and hardening.
+          </p>
+        </div>
+        <div class="projects-grid" id="projects-list"></div>
+      </section>
+
+      <section class="profile-card" id="about" data-reveal>
+        <div class="profile-copy">
+          <p class="eyebrow">About</p>
+          <h2>I care about systems that are useful, clear, and built to last.</h2>
+          <p>
+            My work centers on security research, automation, and defensive tooling, with a growing
+            focus on cyber-physical systems and autonomous platforms.
+          </p>
+          <p>
+            This site is where that work gets documented properly: updates when something ships,
+            essays when an idea deserves more depth, and project notes when the details matter.
+          </p>
+        </div>
+
+        <aside class="profile-panel" id="contact">
+          <div class="profile-stack">
+            <div>
+              <span class="stack-label">Focus</span>
+              <strong>Cyber-physical security and automation</strong>
+            </div>
+            <div>
+              <span class="stack-label">Research</span>
+              <strong>IEEE HOST 2026, ROS2 SLAM, LiDAR</strong>
+            </div>
+            <div>
+              <span class="stack-label">Base</span>
+              <strong>George Mason University</strong>
+            </div>
+          </div>
+          <div class="contact-actions">
+            <a
+              class="button button-primary"
+              href="https://www.linkedin.com/in/finn-schaefer/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a class="button button-secondary" href="https://github.com/FinnSchaefer" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
+        </aside>
       </section>
     </main>
 
