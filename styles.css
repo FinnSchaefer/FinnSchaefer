@@ -74,23 +74,6 @@ main {
   scroll-margin-top: 88px;
 }
 
-.skip-link {
-  position: absolute;
-  left: 16px;
-  top: -48px;
-  z-index: 40;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: #f4f7ff;
-  color: #06070a;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.skip-link:focus {
-  top: 14px;
-}
-
 .ambient {
   position: fixed;
   z-index: 0;
@@ -121,19 +104,19 @@ main {
   z-index: 1;
   width: min(calc(100% - 32px), var(--max-width));
   margin: 0 auto;
-  padding: 10px 0 36px;
+  padding: 0 0 36px;
 }
 
 .site-header {
   position: sticky;
-  top: 18px;
+  top: 0;
   z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 12px 0 14px;
-  margin-bottom: 8px;
+  padding: 14px 0 10px;
+  margin-bottom: 0;
   backdrop-filter: blur(22px);
 }
 
@@ -170,7 +153,7 @@ main {
 }
 
 .hero {
-  padding: clamp(20px, 5vw, 56px) 0 16px;
+  padding: clamp(4px, 1.8vw, 20px) 0 10px;
 }
 
 .eyebrow,
@@ -194,8 +177,7 @@ main {
 
 .hero h1,
 .section-intro h2,
-.profile-copy h2,
-#dialog-title {
+.profile-copy h2 {
   margin: 0;
   letter-spacing: -0.07em;
   line-height: 0.94;
@@ -203,8 +185,8 @@ main {
 }
 
 .hero h1 {
-  max-width: 10.5ch;
-  font-size: clamp(3.5rem, 9vw, 6.7rem);
+  max-width: 11.5ch;
+  font-size: clamp(2.9rem, 7.4vw, 5.3rem);
 }
 
 .lede,
@@ -222,8 +204,8 @@ main {
 
 .lede {
   max-width: 54ch;
-  margin: 18px 0 0;
-  font-size: 1.06rem;
+  margin: 14px 0 0;
+  font-size: 1rem;
 }
 
 .hero-actions,
@@ -231,7 +213,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .hero-note,
@@ -246,8 +228,8 @@ main {
 
 .hero-note {
   max-width: 680px;
-  margin-top: 28px;
-  padding: 18px 22px;
+  margin-top: 20px;
+  padding: 16px 20px;
   border-radius: 22px;
   backdrop-filter: blur(20px);
 }
@@ -318,9 +300,8 @@ main {
 }
 
 .section-intro h2,
-.profile-copy h2,
-#dialog-title {
-  font-size: clamp(2.5rem, 6vw, 4.8rem);
+.profile-copy h2 {
+  font-size: clamp(2rem, 4.8vw, 3.6rem);
 }
 
 .section-copy {
@@ -457,7 +438,7 @@ main {
 
 .profile-copy p {
   max-width: 58ch;
-  margin: 18px 0 0;
+  margin: 14px 0 0;
 }
 
 .profile-panel {
@@ -484,39 +465,49 @@ main {
 }
 
 .post-dialog {
-  width: min(760px, calc(100% - 24px));
+  width: min(720px, calc(100% - 24px));
+  max-height: min(84vh, 900px);
   padding: 0;
-  background: #0b0d12;
+  background: #0d1117;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 30px;
-  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.58);
+  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.72);
+  overflow: auto;
 }
 
 .post-dialog::backdrop {
-  background: rgba(3, 4, 7, 0.82);
+  background: rgba(3, 4, 7, 0.92);
 }
 
 .dialog-close-row {
   display: flex;
   justify-content: flex-end;
-  padding: 18px 18px 0;
+  padding: 12px 12px 0;
 }
 
 .dialog-article {
-  padding: 8px 30px 30px;
+  padding: 4px 26px 24px;
 }
 
 #dialog-title {
-  max-width: 15ch;
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(1.6rem, 3.1vw, 2.45rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  font-weight: 750;
 }
 
 #dialog-body {
   color: var(--muted-strong);
+  margin-top: 14px;
 }
 
 #dialog-body p {
-  margin: 1rem 0 0;
+  margin: 0.82rem 0 0;
   color: var(--muted-strong);
+  font-size: 1rem;
+  line-height: 1.72;
 }
 
 [data-reveal] {
@@ -555,13 +546,13 @@ main {
 @media (max-width: 720px) {
   .site-shell {
     width: min(calc(100% - 24px), var(--max-width));
-    padding-top: 14px;
+    padding-top: 0;
   }
 
   .site-header {
     display: grid;
     gap: 14px;
-    padding-top: 8px;
+    padding-top: 10px;
   }
 
   .site-nav {
@@ -576,12 +567,12 @@ main {
   }
 
   .hero {
-    padding-top: 12px;
+    padding-top: 0;
   }
 
   .hero h1 {
     max-width: 11ch;
-    font-size: clamp(3rem, 13vw, 5rem);
+    font-size: clamp(2.7rem, 11.5vw, 4.3rem);
   }
 
   .post-card,
@@ -592,7 +583,7 @@ main {
   }
 
   .dialog-article {
-    padding: 8px 22px 24px;
+    padding: 4px 20px 20px;
   }
 }
 

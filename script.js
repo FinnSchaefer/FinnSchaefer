@@ -1,65 +1,52 @@
 const updates = [
   {
     date: "2026",
-    title: "IEEE HOST 2026 accepted my capstone research on ROS2 SLAM security",
+    title: "ROS2 SLAM security research accepted to IEEE HOST 2026",
     summary:
-      "Research on vulnerabilities in ROS2-based SLAM systems, including how LiDAR perception can be manipulated while remaining statistically and temporally consistent.",
+      "My work on vulnerabilities in ROS2-based SLAM systems was accepted to IEEE HOST 2026, centered on LiDAR manipulation that remains statistically and temporally consistent.",
     label: "IEEE HOST 2026",
   },
   {
     date: "2025",
-    title: "First-place finish in the National Transportation Cybersecurity Competition",
+    title: "First place in the National Transportation Cybersecurity Competition",
     summary:
-      "Won George Mason's top finish in a national transportation cybersecurity competition that covered challenges such as anomaly detection, application security, and traffic-system exploitation.",
+      "Finished first in the National Transportation Cybersecurity Competition through work that included anomaly detection, application security, and transportation-system exploitation challenges.",
     label: "NTCC result",
   },
   {
     date: "Focus",
-    title: "Current focus: autonomous-system security and practical defensive tooling",
+    title: "Current focus: autonomous-system security and defensive tooling",
     summary:
-      "Current work centers on cyber-physical security, practical automation, and publishing research notes that stay tied to real technical problems.",
+      "Current work centers on cyber-physical security, practical automation, and publications tied to real technical problems rather than abstract theory.",
     label: "Current direction",
   },
 ];
 
 const posts = [
   {
-    slug: "perception-is-an-attack-surface",
-    meta: "Research • IEEE HOST 2026",
-    title: "When perception becomes the attack surface",
+    slug: "ieee-host-2026-ros2-slam",
+    meta: "Publication • IEEE HOST 2026",
+    title: "IEEE HOST 2026: my ROS2 SLAM security research",
     excerpt:
-      "My recent research focuses on how ROS2-based SLAM systems can be influenced through LiDAR manipulation that stays consistent with expected sensor behavior.",
-    tags: ["ROS2", "SLAM", "LiDAR"],
+      "This publication is built around my work on how ROS2-based SLAM systems can be influenced through LiDAR manipulation that still appears statistically and temporally consistent.",
+    tags: ["IEEE HOST", "ROS2", "LiDAR"],
     body: [
-      "My senior capstone research examines security vulnerabilities in ROS2-based SLAM systems. The work explores how LiDAR data can be manipulated in ways that remain both statistically and temporally consistent, which makes the attack surface more subtle than a simple disruption or denial approach.",
-      "What matters here is not only the sensor itself, but the broader lesson. If an attacker can bias perception while staying close to normal operating expectations, that effect can propagate into estimation, mapping, and navigation in ways that are difficult to detect early.",
-      "That has clear implications for autonomous and cyber-physical systems. In real environments, an adversary does not always need to break a platform outright. Introducing structured, believable perception error can be enough to misguide the system without obvious alarms.",
+      "One of the pieces of work I am most proud of so far is my ROS2 SLAM security research being accepted to IEEE HOST 2026. The publication focuses on vulnerabilities in ROS2-based SLAM systems and examines how LiDAR data can be manipulated in ways that remain statistically and temporally consistent.",
+      "That detail matters. A lot of security discussions around autonomy focus on obvious disruption, but this work is about something quieter: influencing perception while staying close enough to normal operating behavior that the problem is harder to detect early.",
+      "For me, this publication represents the kind of security engineering I want to keep doing, work that is technically rigorous, grounded in real systems, and relevant to how autonomous and cyber-physical platforms actually fail under pressure.",
     ],
   },
   {
-    slug: "winning-by-working-clearly",
-    meta: "Competition • George Mason",
-    title: "Winning under constraints in transportation cybersecurity",
+    slug: "ntcc-first-place",
+    meta: "Publication • NTCC",
+    title: "First place in the National Transportation Cybersecurity Competition",
     excerpt:
-      "The NTCC result reinforced something I care about: strong security work comes from clear reasoning, disciplined workflow, and the ability to execute under time pressure.",
-    tags: ["Competition", "Transportation", "Detection"],
+      "This writeup covers the competition work that led to a first-place finish, including anomaly detection, application security, and transportation-focused problem solving.",
+    tags: ["NTCC", "Transportation", "Anomaly Detection"],
     body: [
-      "George Mason's transportation cybersecurity competition work highlighted the value of practical problem solving over polished theory. The challenges demanded a mix of offensive awareness, defensive reasoning, and enough composure to keep moving when the path was not obvious.",
-      "One part that stood out was vehicle trajectory anomaly detection. It aligned well with my interest in machine learning because it gave the models a concrete operational purpose instead of treating them as an abstract exercise.",
-      "That kind of work is a good fit for how I like to build: take the technical idea, pressure-test it against a real scenario, and only keep the parts that remain useful after contact with constraints.",
-    ],
-  },
-  {
-    slug: "writing-to-make-work-reusable",
-    meta: "Notes • Workflow",
-    title: "Writing technical notes that stay useful",
-    excerpt:
-      "Useful writing should preserve the constraints, decisions, and failure points that make technical work reusable later.",
-    tags: ["Notes", "Writing", "Workflow"],
-    body: [
-      "A lot of technical work becomes hard to reuse because the useful reasoning never gets captured. The outcome is saved, but the assumptions, tradeoffs, and failure points disappear too quickly.",
-      "Good notes make that work portable. They preserve the context around a result so the next experiment starts further ahead instead of from scratch.",
-      "That matters in security especially. Clear documentation turns isolated wins into repeatable systems instead of one-off efforts that have to be rediscovered later.",
+      "Another milestone that shaped this site was finishing first in the National Transportation Cybersecurity Competition. The event covered a wide range of transportation-security problems, including anomaly detection, application security, and exploitation challenges tied to operational systems.",
+      "The part that stood out most to me was vehicle trajectory anomaly detection. It connected security work with machine learning in a way that felt concrete rather than academic, which is exactly the kind of problem space I like working in.",
+      "That result mattered because it reflected more than a single event. It showed that the way I like to approach security engineering, staying technical, practical, and calm under constraints, holds up in competitive environments as well.",
     ],
   },
 ];

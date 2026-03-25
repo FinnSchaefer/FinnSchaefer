@@ -9,9 +9,9 @@ Lately I have been spending time on:
 - vulnerabilities in ROS2-based SLAM systems
 - LiDAR and perception manipulation in autonomous environments
 - security automation that stays understandable under pressure
-- technical writing that makes complex work reusable
+- publications that make complex work reusable
 
-I study Cyber Security Engineering at George Mason University and care a lot about turning good research into useful systems, not just interesting demos.
+I work as a security engineer and care a lot about turning good research into useful systems, not just interesting demos.
 
 Links:
 
