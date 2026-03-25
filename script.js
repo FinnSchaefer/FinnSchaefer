@@ -1,52 +1,60 @@
 const updates = [
   {
     date: "2026",
-    title: "ROS2 SLAM security research accepted to IEEE HOST 2026",
+    title: "PULSER accepted to IEEE HOST 2026",
     summary:
-      "My work on vulnerabilities in ROS2-based SLAM systems was accepted to IEEE HOST 2026, centered on LiDAR manipulation that remains statistically and temporally consistent.",
+      "PULSER was accepted to IEEE HOST 2026. The work examines ROS2 SLAM vulnerabilities through LiDAR manipulation that remains statistically and temporally consistent.",
     label: "IEEE HOST 2026",
   },
   {
     date: "2025",
     title: "First place in the National Transportation Cybersecurity Competition",
     summary:
-      "Finished first in the National Transportation Cybersecurity Competition through work that included anomaly detection, application security, and transportation-system exploitation challenges.",
+      "Placed first in NTCC through work that spanned anomaly detection, application security, and transportation-system exploitation challenges.",
     label: "NTCC result",
   },
   {
     date: "Focus",
-    title: "Current focus: autonomous-system security and defensive tooling",
+    title: "Next direction: perception attacks mapped into IT/OT and ICS",
     summary:
-      "Current work centers on cyber-physical security, practical automation, and publications tied to real technical problems rather than abstract theory.",
+      "I am interested in how lessons from autonomous-system perception attacks translate into operational technology, especially telemetry, trust, and control in electrical-grid environments.",
     label: "Current direction",
   },
 ];
 
 const posts = [
   {
-    slug: "ieee-host-2026-ros2-slam",
+    slug: "pulser-ieee-host-2026",
     meta: "Publication • IEEE HOST 2026",
-    title: "IEEE HOST 2026: my ROS2 SLAM security research",
+    title: "PULSER at IEEE HOST 2026",
     excerpt:
-      "This publication is built around my work on how ROS2-based SLAM systems can be influenced through LiDAR manipulation that still appears statistically and temporally consistent.",
-    tags: ["IEEE HOST", "ROS2", "LiDAR"],
+      "PULSER examines how ROS2-based SLAM systems can be manipulated through LiDAR input that still looks believable in timing and statistical behavior.",
+    tags: ["PULSER", "IEEE HOST", "ROS2"],
+    officialUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/",
+    officialLabel: "Official publication link",
     body: [
-      "One of the pieces of work I am most proud of so far is my ROS2 SLAM security research being accepted to IEEE HOST 2026. The publication focuses on vulnerabilities in ROS2-based SLAM systems and examines how LiDAR data can be manipulated in ways that remain statistically and temporally consistent.",
-      "That detail matters. A lot of security discussions around autonomy focus on obvious disruption, but this work is about something quieter: influencing perception while staying close enough to normal operating behavior that the problem is harder to detect early.",
-      "For me, this publication represents the kind of security engineering I want to keep doing, work that is technically rigorous, grounded in real systems, and relevant to how autonomous and cyber-physical platforms actually fail under pressure.",
+      "PULSER is my IEEE HOST 2026 publication on ROS2-based SLAM security. The core of the work is a simple question with uncomfortable implications: what happens when LiDAR data is manipulated in a way that still looks normal enough to be trusted by the system consuming it.",
+      "The project focuses on keeping the attack statistically and temporally believable rather than obviously disruptive. That makes the problem more realistic. In cyber-physical systems, the most useful attacks are not always the loudest ones. If a target can be pushed off course without immediately triggering suspicion, the downstream effects can be far more meaningful.",
+      "What I like about PULSER is that it sits at the intersection of security engineering and system behavior. It is not just about breaking a sensor. It is about understanding how trust is built into perception pipelines, how that trust can be manipulated, and what that means for autonomous platforms that rely on those inputs for navigation and decision-making.",
+      "It also points toward where I want to keep going. The same ideas behind perception trust in autonomy map cleanly into broader cyber-physical environments. If believable bad input can shape a robot's understanding of the world, similar trust failures can shape how industrial systems interpret telemetry, alarms, and control signals.",
+      "For me, that is what makes this publication more than a conference line on a resume. It is a foundation for thinking about cyber-physical security in a way that is precise, operational, and transferable to harder IT/OT and ICS problems.",
     ],
   },
   {
     slug: "ntcc-first-place",
     meta: "Publication • NTCC",
-    title: "First place in the National Transportation Cybersecurity Competition",
+    title: "First place at NTCC",
     excerpt:
-      "This writeup covers the competition work that led to a first-place finish, including anomaly detection, application security, and transportation-focused problem solving.",
-    tags: ["NTCC", "Transportation", "Anomaly Detection"],
+      "This writeup covers the work behind my first-place NTCC finish, from anomaly detection to application security and transportation-focused exploitation challenges.",
+    tags: ["NTCC", "Transportation", "Security Engineering"],
+    officialUrl: "https://www.gmu.edu/news/2025-03/cyber-sweep-george-mason-students-take-top-three-spots-national-transportation",
+    officialLabel: "Official publication link",
     body: [
-      "Another milestone that shaped this site was finishing first in the National Transportation Cybersecurity Competition. The event covered a wide range of transportation-security problems, including anomaly detection, application security, and exploitation challenges tied to operational systems.",
-      "The part that stood out most to me was vehicle trajectory anomaly detection. It connected security work with machine learning in a way that felt concrete rather than academic, which is exactly the kind of problem space I like working in.",
-      "That result mattered because it reflected more than a single event. It showed that the way I like to approach security engineering, staying technical, practical, and calm under constraints, holds up in competitive environments as well.",
+      "Finishing first at the National Transportation Cybersecurity Competition was one of the clearest validations I have had so far that my approach to security engineering works under pressure. The competition covered a broad range of transportation-security problems and rewarded the ability to stay effective across very different technical contexts.",
+      "The work included anomaly detection, application security, and exploitation challenges tied to operational systems. That range mattered. It forced quick context switching while still demanding solid technical decisions, which is closer to real engineering than a narrow lab exercise.",
+      "The piece that stayed with me most was vehicle trajectory anomaly detection. It was a strong example of the kind of problem I want to keep working on because it connected security, machine learning, and operational systems in a way that felt concrete rather than performative.",
+      "The NTCC result also helped clarify the kind of environments I am best suited for. I do my best work when the systems are real, the constraints are visible, and success depends on making technically sound decisions without unnecessary drama.",
+      "That is why I treat this as more than a competition result. It marks a point where transportation security, anomaly detection, and cyber-physical problem solving all aligned in a way that directly shaped where I want to take my work next.",
     ],
   },
 ];
@@ -90,6 +98,7 @@ const dialogClose = document.querySelector("#dialog-close");
 const dialogMeta = document.querySelector("#dialog-meta");
 const dialogTitle = document.querySelector("#dialog-title");
 const dialogBody = document.querySelector("#dialog-body");
+const dialogActions = document.querySelector("#dialog-actions");
 
 function renderUpdates() {
   if (!updatesList) {
@@ -169,13 +178,16 @@ function renderProjects() {
 function openPost(slug) {
   const post = posts.find((entry) => entry.slug === slug);
 
-  if (!post || !dialog || !dialogMeta || !dialogTitle || !dialogBody) {
+  if (!post || !dialog || !dialogMeta || !dialogTitle || !dialogBody || !dialogActions) {
     return;
   }
 
   dialogMeta.textContent = post.meta;
   dialogTitle.textContent = post.title;
   dialogBody.innerHTML = post.body.map((paragraph) => `<p>${paragraph}</p>`).join("");
+  dialogActions.innerHTML = post.officialUrl
+    ? `<a class="button button-primary dialog-link" href="${post.officialUrl}" target="_blank" rel="noreferrer">${post.officialLabel || "Official publication link"}</a>`
+    : "";
   dialog.showModal();
 }
 

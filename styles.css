@@ -510,6 +510,17 @@ main {
   line-height: 1.72;
 }
 
+.dialog-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+  padding-top: 8px;
+}
+
+.dialog-link {
+  min-width: 220px;
+}
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
@@ -584,6 +595,10 @@ main {
 
   .dialog-article {
     padding: 4px 20px 20px;
+  }
+
+  .dialog-link {
+    width: 100%;
   }
 }
 
