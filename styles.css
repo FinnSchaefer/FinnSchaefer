@@ -109,14 +109,17 @@ main {
 
 .site-header {
   position: sticky;
-  top: 0;
+  top: 10px;
   z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  padding: 14px 0 10px;
+  padding: 14px 18px 10px;
   margin-bottom: 0;
+  background: linear-gradient(180deg, rgba(5, 6, 8, 0.92), rgba(5, 6, 8, 0.72));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 22px;
   backdrop-filter: blur(22px);
 }
 
@@ -338,14 +341,15 @@ main {
 .post-card h3,
 .project-card h3 {
   margin: 0;
-  letter-spacing: -0.045em;
-  line-height: 1.04;
+  letter-spacing: -0.028em;
+  line-height: 1.12;
+  word-spacing: 0.015em;
 }
 
 .update-label {
   display: inline-block;
   margin-bottom: 10px;
-  color: var(--muted-strong);
+  color: var(--text);
   font-size: 0.86rem;
   font-weight: 700;
 }
@@ -557,45 +561,162 @@ main {
     border-top: 1px solid var(--line-soft);
     padding-top: 24px;
   }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 720px) {
   .site-shell {
-    width: min(calc(100% - 24px), var(--max-width));
+    width: min(calc(100% - 20px), var(--max-width));
     padding-top: 0;
   }
 
   .site-header {
     display: grid;
-    gap: 14px;
-    padding-top: 10px;
+    gap: 10px;
+    padding: 10px 14px 8px;
+  }
+
+  .brand {
+    font-size: 0.96rem;
   }
 
   .site-nav {
-    gap: 14px;
+    gap: 10px;
     overflow-x: auto;
-    padding-bottom: 4px;
+    padding: 2px 0 6px;
     scrollbar-width: none;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
   }
 
   .site-nav::-webkit-scrollbar {
     display: none;
   }
 
+  .site-nav a {
+    white-space: nowrap;
+    font-size: 0.84rem;
+    padding: 8px 0;
+  }
+
   .hero {
-    padding-top: 0;
+    padding: 4px 0 6px;
   }
 
   .hero h1 {
-    max-width: 11ch;
-    font-size: clamp(2.7rem, 11.5vw, 4.3rem);
+    max-width: 11.8ch;
+    font-size: clamp(2.45rem, 10.4vw, 3.45rem);
+    line-height: 1.06;
+    word-spacing: 0.02em;
+  }
+
+  .eyebrow,
+  .update-date,
+  .post-meta,
+  .project-meta,
+  .dialog-meta,
+  .stack-label,
+  .hero-note-label,
+  .site-footer {
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+  }
+
+  .lede,
+  .section-copy,
+  .profile-copy p,
+  #dialog-body p,
+  .hero-note p,
+  .update-copy p,
+  .post-card p,
+  .project-card p {
+    font-size: 0.96rem;
+    line-height: 1.72;
+  }
+
+  .hero-actions,
+  .contact-actions {
+    gap: 10px;
+  }
+
+  .hero-actions .button,
+  .contact-actions .button {
+    width: 100%;
+  }
+
+  .section-block {
+    gap: 18px;
+  }
+
+  .section-intro h2,
+  .profile-copy h2 {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    line-height: 1.02;
+  }
+
+  .update-item {
+    gap: 10px;
+    padding: 14px 0;
+  }
+
+  .update-date {
+    padding-top: 0;
+  }
+
+  .update-copy h3 {
+    font-size: 1.28rem;
+    line-height: 1.12;
+  }
+
+  .posts-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .post-card,
+  .project-card {
+    min-height: auto;
   }
 
   .post-card,
   .project-card,
   .profile-card,
   .hero-note {
-    padding: 22px;
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .post-card h3,
+  .project-card h3 {
+    font-size: 1.5rem;
+    line-height: 1.08;
+  }
+
+  .post-footer,
+  .project-footer {
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .post-link,
+  .project-link {
+    width: 100%;
+  }
+
+  .profile-card {
+    gap: 22px;
+  }
+
+  .profile-stack {
+    gap: 16px;
+  }
+
+  .profile-stack strong {
+    font-size: 1rem;
   }
 
   .dialog-article {
@@ -604,6 +725,34 @@ main {
 
   .dialog-link {
     width: 100%;
+  }
+}
+
+@media (max-width: 460px) {
+  .site-shell {
+    width: min(calc(100% - 16px), var(--max-width));
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  .button,
+  .post-link,
+  .project-link,
+  .dialog-close {
+    padding: 12px 16px;
+  }
+
+  .post-tags span,
+  .project-tags span {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  .post-dialog {
+    width: min(100% - 12px, 720px);
+    border-radius: 22px;
   }
 }
 
