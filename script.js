@@ -17,7 +17,7 @@ const updates = [
     date: "Focus",
     title: "Next direction: perception attacks mapped into IT/OT and ICS",
     summary:
-      "I am interested in how lessons from autonomous-system perception attacks translate into operational technology, especially telemetry, trust, and control in electrical-grid environments.",
+      "I want to build on PULSER by taking the same ideas behind believable LiDAR manipulation and applying them to IT/OT and ICS environments, especially telemetry, trust, and control in electrical-grid systems.",
     label: "Current direction",
   },
 ];
@@ -25,36 +25,35 @@ const updates = [
 const posts = [
   {
     slug: "pulser-ieee-host-2026",
-    meta: "Publication • IEEE HOST 2026",
+    meta: "Preprint • IEEE HOST 2026",
     title: "PULSER at IEEE HOST 2026",
     excerpt:
-      "PULSER examines how ROS2-based SLAM systems can be manipulated through LiDAR input that still looks believable in timing and statistical behavior.",
+      "A high-level look at PULSER, my IEEE HOST 2026 preprint on how trusted LiDAR input can quietly shape how robotic systems understand their environment.",
     tags: ["PULSER", "IEEE HOST", "ROS2"],
     officialUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/",
-    officialLabel: "Official publication link",
+    officialLabel: "Research announcement",
     body: [
-      "PULSER is my IEEE HOST 2026 publication on ROS2-based SLAM security. The core of the work is a simple question with uncomfortable implications: what happens when LiDAR data is manipulated in a way that still looks normal enough to be trusted by the system consuming it.",
-      "The project focuses on keeping the attack statistically and temporally believable rather than obviously disruptive. That makes the problem more realistic. In cyber-physical systems, the most useful attacks are not always the loudest ones. If a target can be pushed off course without immediately triggering suspicion, the downstream effects can be far more meaningful.",
-      "What I like about PULSER is that it sits at the intersection of security engineering and system behavior. It is not just about breaking a sensor. It is about understanding how trust is built into perception pipelines, how that trust can be manipulated, and what that means for autonomous platforms that rely on those inputs for navigation and decision-making.",
-      "It also points toward where I want to keep going. The same ideas behind perception trust in autonomy map cleanly into broader cyber-physical environments. If believable bad input can shape a robot's understanding of the world, similar trust failures can shape how industrial systems interpret telemetry, alarms, and control signals.",
-      "For me, that is what makes this publication more than a conference line on a resume. It is a foundation for thinking about cyber-physical security in a way that is precise, operational, and transferable to harder IT/OT and ICS problems.",
+      "PULSER is the clearest example of the kind of work I want to keep doing. At a high level, it is about what happens when a system keeps trusting sensor input that has been subtly manipulated, and how that changes the way the system understands the world around it.",
+      "What matters to me about this work is not just the robotics angle. It highlights a broader security problem: cyber-physical systems often fail through misplaced trust rather than obvious breakage. If the data still looks believable, a bad decision can travel much farther through the stack before anyone notices.",
+      "That is why I think PULSER matters beyond ROS2 and SLAM. It pushes on a question that shows up in many environments: when a platform depends on continuous sensor input, what happens when the trust model around that input is wrong.",
+      "This preprint also shaped where I want to take my work next. I am interested in how the same ideas around believable manipulation, perception, and system trust apply to IT/OT and ICS environments, especially where telemetry feeds directly into monitoring, control, or operator decisions.",
+      "So while I am keeping the technical details at a high level for now, the importance of PULSER is straightforward. It is a research direction that connects autonomy, cyber-physical security, and the kinds of trust failures that matter in real operational systems.",
     ],
   },
   {
     slug: "ntcc-first-place",
-    meta: "Publication • NTCC",
+    meta: "Write-up • NTCC",
     title: "First place at NTCC",
     excerpt:
-      "This writeup covers the work behind my first-place NTCC finish, from anomaly detection to application security and transportation-focused exploitation challenges.",
+      "A short write-up on the work behind my first-place NTCC finish, including anomaly detection, application security, and transportation-focused security problems.",
     tags: ["NTCC", "Transportation", "Security Engineering"],
     officialUrl: "https://www.gmu.edu/news/2025-03/cyber-sweep-george-mason-students-take-top-three-spots-national-transportation",
-    officialLabel: "Official publication link",
+    officialLabel: "Official coverage",
     body: [
-      "Finishing first at the National Transportation Cybersecurity Competition was one of the clearest validations I have had so far that my approach to security engineering works under pressure. The competition covered a broad range of transportation-security problems and rewarded the ability to stay effective across very different technical contexts.",
-      "The work included anomaly detection, application security, and exploitation challenges tied to operational systems. That range mattered. It forced quick context switching while still demanding solid technical decisions, which is closer to real engineering than a narrow lab exercise.",
-      "The piece that stayed with me most was vehicle trajectory anomaly detection. It was a strong example of the kind of problem I want to keep working on because it connected security, machine learning, and operational systems in a way that felt concrete rather than performative.",
-      "The NTCC result also helped clarify the kind of environments I am best suited for. I do my best work when the systems are real, the constraints are visible, and success depends on making technically sound decisions without unnecessary drama.",
-      "That is why I treat this as more than a competition result. It marks a point where transportation security, anomaly detection, and cyber-physical problem solving all aligned in a way that directly shaped where I want to take my work next.",
+      "This write-up covers the competition result that still stands out most for me so far: finishing first at NTCC. The event pulled together several types of security work at once, which made it a good test of how I think through technical problems under time pressure.",
+      "The challenges ranged from anomaly detection to application security and exploitation in transportation-oriented systems. That mix was useful because it reflected the kind of work I am drawn to, systems where security decisions have operational consequences rather than just theoretical ones.",
+      "The anomaly-detection side of the competition was especially important to me. It reinforced my interest in the point where machine learning, telemetry, and cyber-physical security start overlapping in a way that is immediately relevant to real infrastructure.",
+      "What I took away from NTCC was not just the result. It was a clearer sense of fit. The work I enjoy most is technical, system-oriented, and grounded in environments where signals, state, and decision-making all matter at the same time.",
     ],
   },
 ];
@@ -79,13 +78,13 @@ const projects = [
     linkLabel: "GMU coverage",
   },
   {
-    meta: "Tooling",
-    title: "Security automation and defensive tooling",
+    meta: "Direction",
+    title: "ICS and grid-security direction",
     description:
-      "Smaller tools and repeatable workflows built to reduce manual security work while keeping the logic visible and the outputs inspectable.",
-    tags: ["Automation", "Python", "Security"],
-    href: "https://github.com/FinnSchaefer",
-    linkLabel: "Explore work",
+      "Applying ideas from PULSER and perception trust into IT/OT and ICS environments, especially telemetry and control paths in electrical-grid systems.",
+    tags: ["ICS", "IT/OT", "Grid Security"],
+    href: "mailto:finn@hadronsecurity.com",
+    linkLabel: "Get in touch",
   },
 ];
 
