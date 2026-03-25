@@ -1,21 +1,24 @@
 const updates = [
   {
     date: "2026",
-    title: "Senior capstone research accepted to IEEE HOST Symposium 2026",
+    title: "IEEE HOST 2026 accepted my capstone research on ROS2 SLAM security",
     summary:
       "Research on vulnerabilities in ROS2-based SLAM systems, including how LiDAR perception can be manipulated while remaining statistically and temporally consistent.",
+    label: "IEEE HOST 2026",
   },
   {
     date: "2025",
-    title: "First place in the National Transportation Cybersecurity Competition",
+    title: "First-place finish in the National Transportation Cybersecurity Competition",
     summary:
       "Won George Mason's top finish in a national transportation cybersecurity competition that covered challenges such as anomaly detection, application security, and traffic-system exploitation.",
+    label: "NTCC result",
   },
   {
-    date: "Now",
-    title: "Rebuilding finnsec.dev into a cleaner publishing space",
+    date: "Focus",
+    title: "Current focus: autonomous-system security and practical defensive tooling",
     summary:
-      "The site is being shaped into a quieter home for updates, essays, and project notes without the clutter of a typical portfolio layout.",
+      "Current work centers on cyber-physical security, practical automation, and publishing research notes that stay tied to real technical problems.",
+    label: "Current direction",
   },
 ];
 
@@ -23,7 +26,7 @@ const posts = [
   {
     slug: "perception-is-an-attack-surface",
     meta: "Research • IEEE HOST 2026",
-    title: "Perception is an attack surface",
+    title: "When perception becomes the attack surface",
     excerpt:
       "My recent research focuses on how ROS2-based SLAM systems can be influenced through LiDAR manipulation that stays consistent with expected sensor behavior.",
     tags: ["ROS2", "SLAM", "LiDAR"],
@@ -36,7 +39,7 @@ const posts = [
   {
     slug: "winning-by-working-clearly",
     meta: "Competition • George Mason",
-    title: "Winning by working clearly under constraints",
+    title: "Winning under constraints in transportation cybersecurity",
     excerpt:
       "The NTCC result reinforced something I care about: strong security work comes from clear reasoning, disciplined workflow, and the ability to execute under time pressure.",
     tags: ["Competition", "Transportation", "Detection"],
@@ -47,16 +50,16 @@ const posts = [
     ],
   },
   {
-    slug: "why-this-site-got-quieter",
-    meta: "Design • Personal site",
-    title: "Why this site got quieter",
+    slug: "writing-to-make-work-reusable",
+    meta: "Notes • Workflow",
+    title: "Writing technical notes that stay useful",
     excerpt:
-      "I wanted the site to feel closer to a product page than a developer collage: more whitespace, fewer competing boxes, and copy that earns its place.",
-    tags: ["Design", "Writing", "Workflow"],
+      "Useful writing should preserve the constraints, decisions, and failure points that make technical work reusable later.",
+    tags: ["Notes", "Writing", "Workflow"],
     body: [
-      "Most personal sites become crowded because every section tries to prove something at once. That is usually a design problem and a writing problem. Too much chrome ends up obscuring the actual work.",
-      "This version is deliberately quieter. The layout gives the writing room to breathe, the palette stays restrained, and the motion is present without becoming the point of the page.",
-      "A site like this should feel like a calm operating surface. The goal is to make the work legible, not decorate it into noise.",
+      "A lot of technical work becomes hard to reuse because the useful reasoning never gets captured. The outcome is saved, but the assumptions, tradeoffs, and failure points disappear too quickly.",
+      "Good notes make that work portable. They preserve the context around a result so the next experiment starts further ahead instead of from scratch.",
+      "That matters in security especially. Clear documentation turns isolated wins into repeatable systems instead of one-off efforts that have to be rediscovered later.",
     ],
   },
 ];
@@ -64,7 +67,7 @@ const posts = [
 const projects = [
   {
     meta: "Research",
-    title: "ROS2 SLAM Security Research",
+    title: "ROS2 SLAM vulnerability research",
     description:
       "Senior capstone work on LiDAR and perception manipulation in ROS2-based SLAM systems, with direct relevance to autonomous and cyber-physical platforms.",
     tags: ["Cyber-Physical", "Autonomy", "Sensors"],
@@ -81,13 +84,13 @@ const projects = [
     linkLabel: "GMU coverage",
   },
   {
-    meta: "Platform",
-    title: "FinnSec.dev",
+    meta: "Tooling",
+    title: "Security automation and defensive tooling",
     description:
-      "A personal publishing surface for updates, essays, and research notes with a calmer visual language and a tighter editorial focus.",
-    tags: ["Design", "Frontend", "Publishing"],
-    href: "https://github.com/FinnSchaefer/FinnSchaefer",
-    linkLabel: "Source code",
+      "Smaller tools and repeatable workflows built to reduce manual security work while keeping the logic visible and the outputs inspectable.",
+    tags: ["Automation", "Python", "Security"],
+    href: "https://github.com/FinnSchaefer",
+    linkLabel: "Explore work",
   },
 ];
 
@@ -112,6 +115,7 @@ function renderUpdates() {
         <article class="update-item" data-reveal>
           <p class="update-date">${update.date}</p>
           <div class="update-copy">
+            <span class="update-label">${update.label}</span>
             <h3>${update.title}</h3>
             <p>${update.summary}</p>
           </div>
@@ -129,7 +133,7 @@ function renderPosts() {
   postsList.innerHTML = posts
     .map(
       (post) => `
-        <article class="post-card" data-reveal>
+        <article class="post-card" data-post="${post.slug}" tabindex="0" role="button" aria-label="Read article: ${post.title}" data-reveal>
           <div>
             <p class="post-meta">${post.meta}</p>
             <h3>${post.title}</h3>
@@ -155,7 +159,7 @@ function renderProjects() {
   projectsList.innerHTML = projects
     .map(
       (project) => `
-        <article class="project-card" data-reveal>
+        <article class="project-card project-card-link" data-href="${project.href}" tabindex="0" role="link" aria-label="${project.linkLabel}: ${project.title}" data-reveal>
           <div>
             <p class="project-meta">${project.meta}</p>
             <h3>${project.title}</h3>
@@ -209,6 +213,25 @@ function setupDialog() {
     openPost(button.getAttribute("data-post"));
   });
 
+  postsList.addEventListener("keydown", (event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const card = target.closest("[data-post]");
+
+    if (!card) {
+      return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openPost(card.getAttribute("data-post"));
+    }
+  });
+
   dialog.addEventListener("click", (event) => {
     const bounds = dialog.getBoundingClientRect();
     const isOutside =
@@ -224,6 +247,63 @@ function setupDialog() {
 
   dialogClose?.addEventListener("click", () => {
     dialog.close();
+  });
+}
+
+function setupProjectCards() {
+  if (!projectsList) {
+    return;
+  }
+
+  function openProjectLink(target) {
+    const href = target?.getAttribute("data-href");
+
+    if (!href) {
+      return;
+    }
+
+    window.open(href, "_blank", "noopener,noreferrer");
+  }
+
+  projectsList.addEventListener("click", (event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const link = target.closest("a");
+
+    if (link) {
+      return;
+    }
+
+    const card = target.closest("[data-href]");
+
+    if (!card) {
+      return;
+    }
+
+    openProjectLink(card);
+  });
+
+  projectsList.addEventListener("keydown", (event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const card = target.closest("[data-href]");
+
+    if (!card) {
+      return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProjectLink(card);
+    }
   });
 }
 
@@ -257,6 +337,7 @@ renderUpdates();
 renderPosts();
 renderProjects();
 setupDialog();
+setupProjectCards();
 setupReveal();
 
 if (year) {

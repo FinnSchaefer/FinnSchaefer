@@ -1,34 +1,20 @@
-# Finn Schaefer Personal Site
+# Finn Schaefer
 
-Static personal website for `www.finnis.me`, designed for GitHub Pages.
+I am interested in the kinds of systems that are easy to trust until they are not.
 
-## Structure
+That usually puts me somewhere around security research, cyber-physical systems, autonomous platforms, and the strange edge where software decisions start affecting real-world behavior. I like work that is technically sharp, operationally grounded, and still clear enough to explain after the fact.
 
-- `index.html`: page structure and sections
-- `styles.css`: dark theme, layout, motion, and responsive styles
-- `script.js`: content data plus rendering for updates, posts, and projects
-- `CNAME`: custom domain configuration
+Lately I have been spending time on:
 
-## Updating Content
+- vulnerabilities in ROS2-based SLAM systems
+- LiDAR and perception manipulation in autonomous environments
+- security automation that stays understandable under pressure
+- technical writing that makes complex work reusable
 
-Edit the arrays at the top of [`/Users/finn/Desktop/Money-maker/FinnSchaefer/script.js`](/Users/finn/Desktop/Money-maker/FinnSchaefer/script.js):
+I study Cyber Security Engineering at George Mason University and care a lot about turning good research into useful systems, not just interesting demos.
 
-- `updates`: short status notes
-- `posts`: blog posts and field notes
-- `projects`: featured work
+Links:
 
-Each post supports:
-
-- `meta`: small label shown on the card and dialog
-- `title`: headline
-- `excerpt`: preview copy on the homepage
-- `tags`: chip list
-- `body`: array of paragraphs shown in the modal article view
-
-## Local Preview
-
-```bash
-python3 -m http.server
-```
-
-Then open `http://localhost:8000`.
+- [LinkedIn](https://www.linkedin.com/in/finn-schaefer/)
+- [Research update](https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/)
+- [Website](https://www.finnsec.dev)

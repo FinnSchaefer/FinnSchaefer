@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
 
@@ -33,10 +34,10 @@
       </nav>
     </header>
 
-    <main id="top">
+    <main id="top" tabindex="-1">
       <section class="hero" data-reveal>
-        <p class="eyebrow">Security engineer • researcher • builder</p>
-        <h1>Quiet design. Clear writing. Real security work.</h1>
+        <p class="eyebrow">Security engineer • researcher</p>
+        <h1>Security research with clear thinking and practical depth.</h1>
         <p class="lede">
           I am a Cyber Security Engineering student at George Mason University focused on security
           research, cyber-physical systems, automation, and the infrastructure behind resilient tools.
@@ -54,16 +55,16 @@
         </div>
         <div class="hero-note">
           <span class="hero-note-label">Currently</span>
-          <p>Publishing recent work around autonomous-system security, research notes, and a cleaner personal archive for the projects worth keeping.</p>
+          <p>Publishing recent work around autonomous-system security, research notes, and practical defensive systems.</p>
         </div>
       </section>
 
       <section class="section-block" id="updates" data-reveal>
         <div class="section-intro">
           <p class="eyebrow">Updates</p>
-          <h2>Recent dispatches</h2>
+          <h2>Latest work and milestones</h2>
           <p class="section-copy">
-            Short notes on what I am building, testing, or reworking right now.
+            Recent results, active research, and the work currently shaping my direction.
           </p>
         </div>
         <div class="updates-list" id="updates-list" aria-live="polite"></div>
@@ -72,9 +73,9 @@
       <section class="section-block" id="writing" data-reveal>
         <div class="section-intro">
           <p class="eyebrow">Writing</p>
-          <h2>Longer posts and field notes</h2>
+          <h2>Research notes and technical essays</h2>
           <p class="section-copy">
-            Essays on workflow, automation, and practical defensive engineering.
+            Longer writing on cyber-physical security, engineering workflow, and the reasoning behind the work.
           </p>
         </div>
         <div class="posts-grid" id="posts-list"></div>
@@ -83,9 +84,9 @@
       <section class="section-block" id="projects" data-reveal>
         <div class="section-intro">
           <p class="eyebrow">Projects</p>
-          <h2>Selected work</h2>
+          <h2>Selected research and projects</h2>
           <p class="section-copy">
-            Focused projects across research, tooling, and hardening.
+            Work across autonomous systems, security tooling, and focused defensive engineering.
           </p>
         </div>
         <div class="projects-grid" id="projects-list"></div>
@@ -94,7 +95,7 @@
       <section class="profile-card" id="about" data-reveal>
         <div class="profile-copy">
           <p class="eyebrow">About</p>
-          <h2>I care about systems that are useful, clear, and built to last.</h2>
+          <h2>I work on security problems that deserve both rigor and clarity.</h2>
           <p>
             My work centers on security research, automation, and defensive tooling, with a growing
             focus on cyber-physical systems and autonomous platforms.
