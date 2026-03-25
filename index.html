@@ -1,207 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finn Schaefer</title>
-    <style>
-        /* Set global styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1f1f1f;
-            color: #fff;
-            line-height: 1.5;
-        }
-        
-        /* Set container styles */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Set header styles */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-        
-        /* Set logo styles */
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        
-        /* Set navigation styles */
-        nav {
-            display: flex;
-        }
-        
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-        
-        /* Set main content styles */
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        /* Set section styles */
-        section {
-            margin-bottom: 50px;
-        }
-        
-        /* Set project card styles */
-        .project-card {
-            background-color: #2b2b2b;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
-            width: calc(50% - 20px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 1;
-            animation-name: scroll;
-            animation-duration: 1s;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards; /* Add this line */
-        }
-        
-        .project-card h2 {
-            margin-top: 20;
-        }
-        
-        .project-card p {
-            margin-bottom: 0;
-        }
-        
-        /* Set about me styles */
-        .Who-Am-I {
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 150px;
-        }
-        
-        /* Set scroll animation styles */
-        .scroll {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 1; /* Add this line */
-            animation: scroll 2s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite; /* Add this line */
-        }
-        
-        /* Set button styles */
-        .button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        
-        /* Set 2x2 grid for project cards */
-        @media (min-width: 768px) {
-            .project-card {
-                width: calc(50% - 20px);
-            }
-            #projects {
-                display: grid;
-                grid-template-columns: repeat(2, 2fr);
-                grid-gap: 20px;
-            }
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Finn Schaefer writes about security research, defensive tooling, automation, and projects in progress."
+  >
+  <meta name="theme-color" content="#080b0d">
+  <title>Finn Schaefer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">Finn Schaefer</div>
-            <nav>
-                <a href="#projects">My Projects</a>
-                <a href="#about">About Me</a>
-            </nav>
-        </header>
-        <main>
-            <section id="about">
-                <h1>About Me</h1>
-                <p class="Who Am I">I am a Cyber Security Engineer Student at George Mason with </p>
-            </section>
-            <section id="projects">
-                <h1>My Projects</h1>
-                <div id="github-projects"></div>
-            </section>
-        </main>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Finn Schaefer home">
+        <svg class="brand-mark" viewBox="0 0 16 16" aria-hidden="true">
+          <circle cx="8" cy="8" r="6"></circle>
+        </svg>
+        <span>Finn Schaefer</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#updates">Updates</a>
+        <a href="#writing">Writing</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero panel" data-reveal>
+        <div class="hero-copy">
+          <p class="eyebrow">Security engineer • researcher • builder</p>
+          <h1>Defensive systems, field notes, and projects shipped in public.</h1>
+          <p class="lede">
+            I build security tooling, document experiments, and publish the useful parts:
+            what I am testing, what broke, and what is worth carrying forward.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#writing">Read latest writing</a>
+            <a
+              class="button button-secondary"
+              href="https://github.com/FinnSchaefer"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Explore GitHub
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <p class="eyebrow">Current signal</p>
+          <div class="hero-stack">
+            <article>
+              <span class="signal-label">Focus</span>
+              <strong>Security automation that survives real-world messiness</strong>
+            </article>
+            <article>
+              <span class="signal-label">Publishing cadence</span>
+              <strong>Short updates, deeper writeups, working notes</strong>
+            </article>
+            <article>
+              <span class="signal-label">Theme</span>
+              <strong>Dark, fast, and built to age well on GitHub Pages</strong>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section-heading" id="updates" data-reveal>
+        <div>
+          <p class="eyebrow">Dispatches</p>
+          <h2>Recent updates</h2>
+        </div>
+        <p class="section-copy">
+          Short status notes for what I am building, testing, or rethinking right now.
+        </p>
+      </section>
+      <section class="updates-grid" id="updates-list" aria-live="polite"></section>
+
+      <section class="section-heading" id="writing" data-reveal>
+        <div>
+          <p class="eyebrow">Writing</p>
+          <h2>Blog posts and field notes</h2>
+        </div>
+        <p class="section-copy">
+          Longer entries on research workflow, defensive tooling, and the operating habits behind them.
+        </p>
+      </section>
+      <section class="posts-grid" id="posts-list"></section>
+
+      <section class="spotlight panel" data-reveal>
+        <div>
+          <p class="eyebrow">Why this site exists</p>
+          <h2>A personal site should be a working surface, not a dead brochure.</h2>
+        </div>
+        <p>
+          This space is built for momentum: fast publishing, clear archives, and enough personality
+          that it does not look like another default developer landing page.
+        </p>
+      </section>
+
+      <section class="section-heading" id="projects" data-reveal>
+        <div>
+          <p class="eyebrow">Projects</p>
+          <h2>Things I am building</h2>
+        </div>
+        <p class="section-copy">
+          Selected work across research, automation, and defensive engineering.
+        </p>
+      </section>
+      <section class="projects-grid" id="projects-list"></section>
+
+      <section class="about-grid" id="about">
+        <article class="panel" data-reveal>
+          <p class="eyebrow">About</p>
+          <h2>Security work with a builder's bias.</h2>
+          <p>
+            I am focused on security research, automation, and defensive tooling. I care about systems
+            that are practical to operate, documentable after the fact, and honest about tradeoffs.
+          </p>
+          <p>
+            The goal is straightforward: ship useful work, publish what matters, and keep improving the
+            quality of both the engineering and the thinking behind it.
+          </p>
+        </article>
+
+        <article class="panel principles-panel" data-reveal>
+          <p class="eyebrow">Operating principles</p>
+          <ul class="principles-list">
+            <li>Document experiments before they become folklore.</li>
+            <li>Prefer small reliable tools over oversized frameworks.</li>
+            <li>Write clearly enough that future me can reuse the work.</li>
+            <li>Treat visual design with the same care as implementation.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="contact panel" id="contact" data-reveal>
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Open lines</h2>
+        </div>
+        <p>
+          Best place to follow the work is GitHub for now. This site is set up to become the long-form home
+          for updates, project notes, and essays.
+        </p>
+        <div class="contact-actions">
+          <a
+            class="button button-primary"
+            href="https://github.com/FinnSchaefer"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub Profile
+          </a>
+          <a class="button button-secondary" href="https://www.finnis.me" target="_blank" rel="noreferrer">
+            Visit Domain
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Built for GitHub Pages. <span id="year"></span></p>
+    </footer>
+  </div>
+
+  <dialog class="post-dialog" id="post-dialog">
+    <div class="dialog-close-row">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Close article">Close</button>
     </div>
-    <div class="scroll"></div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        // Fetch GitHub projects data
-        axios.get('https://api.github.com/users/FinnSchaefer/repos')
-            .then(response => {
-                const projects = response.data;
-                const githubProjects = document.getElementById('github-projects');
+    <article class="dialog-article">
+      <p class="dialog-meta" id="dialog-meta"></p>
+      <h3 id="dialog-title"></h3>
+      <div id="dialog-body"></div>
+    </article>
+  </dialog>
 
-                // Create project cards with fetched data
-                const repositoryList = document.createElement('ul'); // Define the repositoryList element
-                projects.forEach(project => {
-                    const card = document.createElement('li'); // Create a list item element for each project
-                    card.classList.add('project-card');
-
-                    const title = document.createElement('h2');
-                    title.textContent = project.name;
-                    card.appendChild(title);
-
-                    const description = document.createElement('p');
-                    description.textContent = project.description;
-                    card.appendChild(description);
-
-                    const link = document.createElement('a');
-                    link.href = project.html_url;
-                    card.appendChild(link); // Append the link element to the card element
-
-                    const button = document.createElement('button');
-                    button.classList.add('button');
-                    button.textContent = 'View on GitHub';
-                    link.appendChild(button);
-
-                    repositoryList.appendChild(card); // Append the card element to the repositoryList element
-                });
-
-                githubProjects.appendChild(repositoryList); // Append the repositoryList element to the githubProjects element
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
-</body>            
+  <script src="script.js"></script>
+</body>
 </html>
