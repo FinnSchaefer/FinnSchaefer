@@ -2,7 +2,7 @@
 
 I am interested in the kinds of systems that are easy to trust until they are not.
 
-That usually puts me somewhere around security research, cyber-physical systems, autonomous platforms, and the strange edge where software decisions start affecting real-world behavior. I like work that is technically sharp, operationally grounded, and still clear enough to explain after the fact.
+That usually puts me somewhere around security research, cyber-physical systems, autonomous platforms, and the strange edge where software decisions start affecting real-world behavior.
 
 Lately I have been spending time on:
 
