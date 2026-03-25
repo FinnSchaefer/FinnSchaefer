@@ -3,7 +3,7 @@ const updates = [
     date: "2026",
     title: "PULSER accepted to IEEE HOST 2026",
     summary:
-      "PULSER was accepted to IEEE HOST 2026. The work examines ROS2 SLAM vulnerabilities through LiDAR manipulation that remains statistically and temporally consistent.",
+      "PULSER was accepted to IEEE HOST 2026. The work looks at how trusted LiDAR input can be manipulated in ways that still appear believable to the system consuming it.",
     label: "IEEE HOST 2026",
   },
   {
@@ -17,7 +17,7 @@ const updates = [
     date: "Focus",
     title: "Next direction: perception attacks mapped into IT/OT and ICS",
     summary:
-      "I want to build on PULSER by taking the same ideas behind believable LiDAR manipulation and applying them to IT/OT and ICS environments, especially telemetry, trust, and control in electrical-grid systems.",
+      "I want to build on PULSER by taking the same questions about trust, telemetry, and believable bad input into IT/OT and ICS environments, especially electrical-grid systems.",
     label: "Current direction",
   },
 ];
@@ -28,7 +28,7 @@ const posts = [
     meta: "Publication • IEEE HOST 2026",
     title: "PULSER at IEEE HOST 2026",
     excerpt:
-      "A high-level look at PULSER, my IEEE HOST 2026 preprint on how trusted LiDAR input can quietly shape how robotic systems understand their environment.",
+      "A high-level look at PULSER, my IEEE HOST 2026 paper on how trusted LiDAR input can quietly shape how robotic systems understand their environment.",
     tags: ["PULSER", "IEEE HOST", "ROS2"],
     officialUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/",
     officialLabel: "Research announcement",
@@ -36,7 +36,7 @@ const posts = [
       "PULSER is the clearest example of the kind of work I want to keep doing. At a high level, it is about what happens when a system keeps trusting sensor input that has been subtly manipulated, and how that changes the way the system understands the world around it.",
       "What matters to me about this work is not just the robotics angle. It highlights a broader security problem: cyber-physical systems often fail through misplaced trust rather than obvious breakage. If the data still looks believable, a bad decision can travel much farther through the stack before anyone notices.",
       "That is why I think PULSER matters beyond ROS2 and SLAM. It pushes on a question that shows up in many environments: when a platform depends on continuous sensor input, what happens when the trust model around that input is wrong.",
-      "This preprint also shaped where I want to take my work next. I am interested in how the same ideas around believable manipulation, perception, and system trust apply to IT/OT and ICS environments, especially where telemetry feeds directly into monitoring, control, or operator decisions.",
+      "This paper also shaped where I want to take my work next. I am interested in how the same ideas around believable manipulation, perception, and system trust apply to IT/OT and ICS environments, especially where telemetry feeds directly into monitoring, control, or operator decisions.",
       "So while I am keeping the technical details at a high level for now, the importance of PULSER is straightforward. It is a research direction that connects autonomy, cyber-physical security, and the kinds of trust failures that matter in real operational systems.",
     ],
   },
@@ -60,20 +60,20 @@ const posts = [
 
 const projects = [
   {
-    meta: "Research",
+    meta: "Publication",
     title: "PULSER at IEEE HOST 2026",
     description:
-      "Research on trust, LiDAR manipulation, and ROS2-based SLAM systems, with clear relevance to autonomous and cyber-physical platforms.",
+      "Accepted work on trust, LiDAR manipulation, and ROS2-based SLAM systems, with broader relevance to autonomous and cyber-physical platforms.",
     tags: ["PULSER", "Autonomy", "LiDAR"],
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/",
     linkLabel: "Publication link",
   },
   {
-    meta: "Recognition",
-    title: "National Transportation Cybersecurity Competition",
+    meta: "Write-up",
+    title: "NTCC first-place finish",
     description:
-      "First-place finish at George Mason's top showing in the national competition, built around practical transportation and anomaly-detection challenges.",
-    tags: ["NTCC", "GMU", "Machine Learning"],
+      "A write-up on the work behind my first-place NTCC finish, including anomaly detection, application security, and transportation-focused system challenges.",
+    tags: ["NTCC", "Transportation", "Machine Learning"],
     href: "https://www.gmu.edu/news/2025-03/cyber-sweep-george-mason-students-take-top-three-spots-national-transportation",
     linkLabel: "GMU coverage",
   },
