@@ -25,7 +25,7 @@ const updates = [
 const posts = [
   {
     slug: "pulser-ieee-host-2026",
-    meta: "Preprint • IEEE HOST 2026",
+    meta: "Publication • IEEE HOST 2026",
     title: "PULSER at IEEE HOST 2026",
     excerpt:
       "A high-level look at PULSER, my IEEE HOST 2026 preprint on how trusted LiDAR input can quietly shape how robotic systems understand their environment.",
@@ -61,12 +61,12 @@ const posts = [
 const projects = [
   {
     meta: "Research",
-    title: "ROS2 SLAM vulnerability research",
+    title: "PULSER at IEEE HOST 2026",
     description:
-      "Senior capstone work on LiDAR and perception manipulation in ROS2-based SLAM systems, with direct relevance to autonomous and cyber-physical platforms.",
-    tags: ["Cyber-Physical", "Autonomy", "Sensors"],
+      "Research on trust, LiDAR manipulation, and ROS2-based SLAM systems, with clear relevance to autonomous and cyber-physical platforms.",
+    tags: ["PULSER", "Autonomy", "LiDAR"],
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/",
-    linkLabel: "Research announcement",
+    linkLabel: "Publication link",
   },
   {
     meta: "Recognition",
