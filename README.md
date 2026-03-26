@@ -9,7 +9,6 @@ Lately I have been spending time on:
 - vulnerabilities in ROS2-based SLAM systems
 - LiDAR and perception manipulation in autonomous environments
 - security automation that stays understandable under pressure
-- publications that make complex work reusable
 
 I work as a security engineer and care a lot about turning good research into useful systems, not just interesting demos.
 
