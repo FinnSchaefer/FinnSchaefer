@@ -14,11 +14,11 @@ const updates = [
     label: "NTCC result",
   },
   {
-    date: "Focus",
-    title: "Next direction: perception attacks mapped into IT/OT and ICS",
+    date: "2026",
+    title: "New article: your curve has an expiration date",
     summary:
-      "I want to build on PULSER by taking the same questions about trust, telemetry, and believable bad input into IT/OT and ICS environments, especially electrical-grid systems.",
-    label: "Current direction",
+      "A new write-up on why quantum breaks ECC and ECDSA, why that does not kill public-key cryptography, and why the real challenge is migration.",
+    label: "Post-quantum",
   },
 ];
 
@@ -53,21 +53,12 @@ const projects = [
     linkLabel: "Open page",
   },
   {
-    meta: "Coverage",
-    title: "George Mason coverage",
+    meta: "Article",
+    title: "Your curve has an expiration date",
     description:
-      "A page on the George Mason article covering the NTCC result, why the recognition mattered, and how it fits into the rest of my work.",
-    tags: ["GMU", "Recognition", "NTCC"],
-    href: "work/gmu-coverage.html",
-    linkLabel: "Open page",
-  },
-  {
-    meta: "Direction",
-    title: "ICS and grid-security direction",
-    description:
-      "Applying ideas from PULSER and perception trust into IT/OT and ICS environments, especially telemetry and control paths in electrical-grid systems.",
-    tags: ["ICS", "IT/OT", "Grid Security"],
-    href: "work/ics-grid-direction.html",
+      "A longer article on why quantum threats to ECC and ECDSA are real, why the sky is not falling, and what the actual migration path looks like.",
+    tags: ["Post-Quantum", "ECC", "ECDSA"],
+    href: "work/your-curve-has-an-expiration-date.html",
     linkLabel: "Open page",
   },
 ];

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Finn Schaefer on why quantum breaks ECC and ECDSA, why that is serious, and why migration matters more than panic."
+  >
+  <meta name="theme-color" content="#050608">
+  <title>Your Curve Has an Expiration Date | Finn Schaefer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="../styles.css">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css"
+    crossorigin="anonymous"
+  >
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/contrib/auto-render.min.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body class="article-page">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Finn Schaefer home">Finn Schaefer</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html#updates">Updates</a>
+        <a href="../index.html#publications">Publications</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="article-shell">
+      <article class="article-panel">
+        <p class="eyebrow">Work</p>
+        <p class="dialog-meta article-kicker">Article • Post-quantum</p>
+        <h1 class="article-title">Your curve has an expiration date</h1>
+        <p class="article-lede">
+          Quantum threats to ECC and ECDSA are serious. They are just not the end of public-key cryptography.
+          The real problem is migration: understanding what breaks, what replaces it, and how long defenders
+          really have to stop pretending elliptic curves are forever.
+        </p>
+        <div class="article-body">
+          <h2>The short version</h2>
+          <p>
+            The loud version of this story is that quantum computing kills modern cryptography. That is sloppy.
+            A cryptographically relevant quantum computer would break the discrete-logarithm assumptions behind
+            elliptic-curve systems, which means ECC, ECDH, and ECDSA are not long-term answers. But that does
+            not mean signatures disappear or key establishment becomes impossible. It means one mathematical
+            family ages out, and the systems depending on it have to move.
+          </p>
+
+          <h2>Why ECC and ECDSA really fail</h2>
+          <p>
+            Elliptic-curve systems work because scalar multiplication is easy while recovering the private scalar
+            is assumed hard. In the simplest form, the public key is tied to the private key through
+          </p>
+          <div class="article-equation">
+            \[
+              Q = [d]G
+            \]
+          </div>
+          <p>
+            and the security of the scheme depends on treating that inversion problem as infeasible.
+          </p>
+          <p>
+            ECDSA then turns that same structure into a signature equation. At a high level, the signer computes
+          </p>
+          <div class="article-equation">
+            \[
+              r = x_R \bmod n, \qquad
+              s = k^{-1}(e + rd) \bmod n
+            \]
+          </div>
+          <p>
+            and the verifier checks that the recovered point is consistent with the public key. In the classical
+            setting that asymmetry is useful. In the quantum setting it is the problem. Shor gives an efficient
+            path through the exact algebra these schemes rely on. That is why this is not a parameter-tuning
+            issue. No one is going to save ECDSA by picking a slightly more aggressive curve.
+          </p>
+
+          <h2>This is a migration problem, not an extinction event</h2>
+          <p>
+            The part people skip is that replacements already exist. NIST has standardized ML-KEM for
+            key establishment, ML-DSA for general-purpose signatures, and SLH-DSA for a hash-based signature
+            path. The hard part is not whether alternatives exist. The hard part is discovering where legacy
+            elliptic-curve trust is buried across real systems, certificates, firmware, update channels, and
+            long-lived secrets.
+          </p>
+          <ul>
+            <li><strong>ML-KEM</strong> replaces elliptic-curve key exchange with a post-quantum key-encapsulation model.</li>
+            <li><strong>ML-DSA</strong> is the direct general-purpose signature replacement most people should actually learn.</li>
+            <li><strong>SLH-DSA</strong> is the conservative hash-based option when you want to get farther away from fragile algebraic structure.</li>
+          </ul>
+
+          <h2>Why the math shifts</h2>
+          <p>
+            The cleanest intuition is that ECC hides a secret inside an exact group equation, while the main
+            post-quantum lattice schemes hide a secret inside noisy high-dimensional relations. A toy example
+            looks like
+          </p>
+          <div class="article-equation">
+            \[
+              b = As + e \pmod q
+            \]
+          </div>
+          <p>
+            where \(e\) is small but nonzero. If that error term disappears, the system collapses into ordinary
+            linear algebra. With the noise present, the attacker has to recover structure from approximate
+            relations instead of exact ones. That difference is why the post-quantum conversation is really about
+            moving into different hardness assumptions rather than hoping the old ones somehow survive contact with
+            quantum algorithms.
+          </p>
+
+          <h2>What matters operationally</h2>
+          <p>
+            This matters now because migration work takes longer than people want to admit. Discovery is ugly.
+            Compatibility is uglier. Some systems only need to protect the next few years. Others are already
+            exposed to harvest-now-decrypt-later risk or long-lived signature trust. The organizations that treat
+            post-quantum planning as a future procurement problem are going to find out it is actually a current
+            inventory problem.
+          </p>
+          <p>
+            So the conclusion is less dramatic than the headlines and more annoying than the hype cycle. Quantum
+            does not end digital trust. It ends the idea that elliptic curves get to carry that trust forever.
+          </p>
+
+          <section class="article-notes">
+            <h2>References</h2>
+            <ul>
+              <li><a href="https://doi.org/10.1137/S0097539795293172" target="_blank" rel="noreferrer">Shor, Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.FIPS.186-5" target="_blank" rel="noreferrer">NIST FIPS 186-5, Digital Signature Standard</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.FIPS.203" target="_blank" rel="noreferrer">NIST FIPS 203, ML-KEM</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.FIPS.204" target="_blank" rel="noreferrer">NIST FIPS 204, ML-DSA</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.FIPS.205" target="_blank" rel="noreferrer">NIST FIPS 205, SLH-DSA</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.IR.8547.ipd" target="_blank" rel="noreferrer">NIST IR 8547, Transition to Post-Quantum Cryptography Standards</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.SP.800-227" target="_blank" rel="noreferrer">NIST SP 800-227, Recommendations for Key-Encapsulation Mechanisms</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.SP.800-208" target="_blank" rel="noreferrer">NIST SP 800-208, Recommendation for Stateful Hash-Based Signature Schemes</a></li>
+            </ul>
+          </section>
+        </div>
+        <div class="article-actions">
+          <a class="button button-primary" href="../index.html#work">Back to work</a>
+          <a class="button button-secondary" href="mailto:finn@hadronsecurity.com">Email</a>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(document.querySelector(".article-body"), {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>
