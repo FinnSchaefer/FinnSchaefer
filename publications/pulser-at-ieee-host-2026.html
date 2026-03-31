@@ -39,36 +39,30 @@
         <p class="dialog-meta article-kicker">Publication • IEEE HOST 2026</p>
         <h1 class="article-title">PULSER at IEEE HOST 2026</h1>
         <p class="article-lede">
-          PULSER is probably the clearest example of the kind of work I want to keep doing. At its core, it
-          looks at what happens when a system keeps trusting sensor input that is subtly manipulated, and how
-          that shifts the system's understanding of its environment over time.
+          PULSER was accepted to IEEE HOST 2026. The work focuses on a simple problem: what happens when a
+          system keeps trusting sensor data that has been manipulated, but still looks valid.
         </p>
         <div class="article-body">
           <p>
-            What matters to me is not just the robotics side. It points to a broader issue. A lot of
-            cyber-physical systems do not fail because something obviously breaks. They fail because they trust
-            the wrong data. If the input still looks reasonable, bad decisions can propagate much further before
-            anything raises a flag.
+            The target here is LiDAR. Not breaking it outright, but shifting it just enough that the system
+            continues to accept it. The result is a change in how the system perceives its environment without
+            triggering obvious faults.
           </p>
           <p>
-            That is why I think PULSER matters beyond ROS2 or SLAM. It pushes on a more general question that
-            shows up everywhere: what happens when a system depends on continuous sensor input, but the trust
-            model around that input is wrong? This is about understanding and exploiting trust failures in
-            systems that rely on continuous, believable data.
+            What matters is not the specific sensor. It is the trust model. These systems assume that if the
+            data looks consistent, it is safe to use. That assumption holds until it does not.
           </p>
-          <h2>Why I keep pointing back to it</h2>
           <p>
-            This paper is important to me because it ties together the parts of security work I care about
-            most: cyber-physical systems, perception trust, and failures subtle enough to survive ordinary
-            assumptions. It also sharpened how I want to frame future work, not just whether a system can be
-            attacked, but how trusted data gets turned into decisions the system is willing to act on.
+            PULSER stays in that gap. The manipulation is subtle. The data remains believable. But the
+            downstream effect is that the system builds the wrong understanding of the world and acts on it.
           </p>
-          <h2>How it fits the rest of the site</h2>
           <p>
-            PULSER sits at the center of the site because it connects the research side and the engineering
-            side cleanly. It is a publication, but it also sets the logic for the rest of the work here:
-            understand the trust boundary, understand what the system assumes, and then ask what happens when
-            those assumptions stop being true.
+            This is not a failure mode that shows up as a crash or a clear error. It propagates. Decisions are
+            made on top of bad state, and the system has no reason to question it.
+          </p>
+          <p>
+            That is the point of the work. Not just that the input can be manipulated, but that it can be
+            manipulated in a way that survives validation and moves through the rest of the stack.
           </p>
         </div>
         <div class="article-actions">

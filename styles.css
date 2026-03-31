@@ -397,7 +397,7 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 24px;
-  align-items: end;
+  align-items: center;
   padding: 22px 0;
   border-top: 1px solid var(--line-soft);
   color: inherit;
@@ -595,11 +595,13 @@ main {
 
 .article-shell {
   display: grid;
+  justify-items: center;
   gap: 28px;
   padding-top: 16px;
 }
 
 .article-panel {
+  width: min(100%, 1040px);
   padding: clamp(24px, 4vw, 42px);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
