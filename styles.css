@@ -188,6 +188,7 @@ main {
   letter-spacing: -0.07em;
   line-height: 0.94;
   font-weight: 800;
+  text-wrap: balance;
 }
 
 .hero h1 {
@@ -340,11 +341,14 @@ main {
 
 .update-copy h3,
 .post-card h3,
-.project-card h3 {
+.project-card h3,
+.publication-copy h3,
+.article-title {
   margin: 0;
   letter-spacing: -0.028em;
   line-height: 1.12;
   word-spacing: 0.015em;
+  text-wrap: balance;
 }
 
 .update-label {
@@ -747,28 +751,41 @@ main {
 }
 
 @media (max-width: 720px) {
+  section,
+  aside,
+  main {
+    scroll-margin-top: 28px;
+  }
+
   .site-shell {
-    width: min(calc(100% - 20px), var(--max-width));
+    width: min(calc(100% - 16px), var(--max-width));
     padding-top: 0;
+    padding-bottom: 24px;
   }
 
   .site-header {
     position: relative;
-    top: 0;
+    top: auto;
     display: grid;
-    gap: 10px;
-    padding: 10px 14px 8px;
+    gap: 6px;
+    padding: 8px 12px 8px;
     margin-bottom: 12px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(7, 10, 18, 0.42), rgba(7, 10, 18, 0.24));
+    box-shadow: none;
   }
 
   .brand {
-    font-size: 0.96rem;
+    font-size: 0.94rem;
+    line-height: 1.1;
   }
 
   .site-nav {
-    gap: 10px;
+    gap: 18px;
     overflow-x: auto;
-    padding: 2px 0 6px;
+    padding: 8px 2px 4px 0;
+    border-top: 1px solid var(--line-soft);
+    scroll-padding-inline: 8px;
     scrollbar-width: none;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -780,19 +797,24 @@ main {
 
   .site-nav a {
     white-space: nowrap;
-    font-size: 0.84rem;
-    padding: 8px 0;
+    font-size: 0.83rem;
+    padding: 4px 0;
+  }
+
+  main {
+    gap: 48px;
   }
 
   .hero {
-    padding: 10px 0 6px;
+    padding: 6px 0 2px;
   }
 
   .hero h1 {
-    max-width: 11.8ch;
-    font-size: clamp(2.45rem, 10.4vw, 3.45rem);
-    line-height: 1.06;
-    word-spacing: 0.02em;
+    max-width: 10.6ch;
+    font-size: clamp(2.25rem, 10vw, 3.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    word-spacing: 0.03em;
   }
 
   .eyebrow,
@@ -814,9 +836,19 @@ main {
   .hero-note p,
   .update-copy p,
   .post-card p,
-  .project-card p {
+  .project-card p,
+  .publication-copy p,
+  .article-body p,
+  .article-body li {
     font-size: 0.96rem;
     line-height: 1.72;
+  }
+
+  .lede,
+  .section-copy,
+  .profile-copy p,
+  .hero-note p {
+    max-width: 100%;
   }
 
   .hero-actions,
@@ -830,30 +862,34 @@ main {
   }
 
   .section-block {
-    gap: 18px;
+    gap: 16px;
   }
 
   .section-intro h2,
   .profile-copy h2 {
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
-    line-height: 1.02;
+    font-size: clamp(1.65rem, 7.6vw, 2.35rem);
+    line-height: 1.04;
   }
 
   .update-item {
-    gap: 10px;
-    padding: 14px 0;
+    gap: 8px;
+    padding: 16px 0 18px;
   }
 
   .update-date {
     padding-top: 0;
   }
 
-  .update-copy h3 {
-    font-size: 1.28rem;
-    line-height: 1.12;
+  .update-label {
+    margin-bottom: 8px;
+    font-size: 0.8rem;
   }
 
-  .posts-grid,
+  .update-copy h3 {
+    font-size: 1.22rem;
+    line-height: 1.08;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -861,23 +897,19 @@ main {
 
   .publication-item {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
     align-items: start;
-    padding: 16px 0;
+    padding: 18px 0;
   }
 
   .publication-copy h3 {
-    font-size: 1.4rem;
-    line-height: 1.1;
-  }
-
-  .publication-copy p {
-    font-size: 0.96rem;
-    line-height: 1.72;
+    font-size: 1.32rem;
+    line-height: 1.08;
   }
 
   .publication-open {
     width: 100%;
+    min-width: 0;
   }
 
   .post-card,
@@ -885,33 +917,57 @@ main {
     min-height: auto;
   }
 
+  .project-card p {
+    max-width: 100%;
+  }
+
   .article-shell {
-    padding-top: 10px;
+    gap: 18px;
+    padding-top: 8px;
   }
 
   .article-title {
-    max-width: 100%;
-    font-size: clamp(2rem, 8vw, 3rem);
-    line-height: 1.04;
+    max-width: 11.5ch;
+    font-size: clamp(1.9rem, 8vw, 2.7rem);
+    line-height: 1.02;
   }
 
   .article-lede {
-    font-size: 1rem;
-    line-height: 1.68;
+    max-width: 100%;
+    font-size: 0.98rem;
+    line-height: 1.7;
   }
 
   .article-body {
-    gap: 16px;
-    margin-top: 22px;
+    gap: 14px;
+    margin-top: 20px;
   }
 
   .article-body h2 {
-    font-size: 1.24rem;
+    max-width: 100%;
+    font-size: 1.18rem;
+    line-height: 1.08;
   }
 
   .article-equation {
-    padding: 14px 16px;
+    max-width: 100%;
+    padding: 12px 14px;
     border-radius: 18px;
+  }
+
+  .article-equation .katex {
+    font-size: 1rem;
+  }
+
+  .article-notes,
+  .article-body ul,
+  .article-body p {
+    max-width: 100%;
+  }
+
+  .article-actions {
+    gap: 10px;
+    margin-top: 26px;
   }
 
   .article-actions .button {
@@ -924,12 +980,12 @@ main {
   .hero-note,
   .article-panel {
     padding: 18px;
-    border-radius: 24px;
+    border-radius: 22px;
   }
 
   .post-card h3,
   .project-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.38rem;
     line-height: 1.08;
   }
 
@@ -945,23 +1001,16 @@ main {
   }
 
   .profile-card {
-    gap: 22px;
+    gap: 18px;
   }
 
   .profile-stack {
-    gap: 16px;
+    gap: 14px;
   }
 
   .profile-stack strong {
-    font-size: 1rem;
-  }
-
-  .dialog-article {
-    padding: 4px 20px 20px;
-  }
-
-  .dialog-link {
-    width: 100%;
+    font-size: 0.98rem;
+    line-height: 1.42;
   }
 }
 
@@ -970,8 +1019,22 @@ main {
     width: min(calc(100% - 16px), var(--max-width));
   }
 
+  main {
+    gap: 42px;
+  }
+
+  .site-header {
+    padding: 8px 11px 8px;
+  }
+
   .hero h1 {
-    font-size: clamp(2.2rem, 10vw, 3rem);
+    max-width: 9.6ch;
+    font-size: clamp(2.05rem, 10.8vw, 2.75rem);
+  }
+
+  .section-intro h2,
+  .profile-copy h2 {
+    font-size: clamp(1.52rem, 7.2vw, 2rem);
   }
 
   .button,
@@ -985,11 +1048,6 @@ main {
   .project-tags span {
     font-size: 0.78rem;
     padding: 6px 10px;
-  }
-
-  .post-dialog {
-    width: min(100% - 12px, 720px);
-    border-radius: 22px;
   }
 }
 
