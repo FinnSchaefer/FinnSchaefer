@@ -7,18 +7,18 @@ const updates = [
     label: "IEEE HOST 2026",
   },
   {
+    date: "2026",
+    title: "New article: Your curve has an expiration date",
+    summary:
+      "A new article on why quantum breaks ECC and ECDSA, why that is serious, and why migration matters more than panic.",
+    label: "Post-quantum",
+  },
+  {
     date: "2025",
     title: "First place in the National Transportation Cybersecurity Competition",
     summary:
       "NTCC pulled across anomaly detection, exploitation, and web problems, but the vehicle-data work mattered most because it was about system behavior, not just bugs.",
     label: "NTCC result",
-  },
-  {
-    date: "2026",
-    title: "New article: your curve has an expiration date",
-    summary:
-      "A new article on why quantum breaks ECC and ECDSA, why that is serious, and why migration matters more than panic.",
-    label: "Post-quantum",
   },
 ];
 
