@@ -40,42 +40,26 @@ const posts = [
       "So while I am keeping the technical details at a high level for now, the importance of PULSER is straightforward. It is a research direction that connects autonomy, cyber-physical security, and the kinds of trust failures that matter in real operational systems.",
     ],
   },
-  {
-    slug: "ntcc-first-place",
-    meta: "Write-up • NTCC",
-    title: "First place at NTCC",
-    excerpt:
-      "A short write-up on the work behind my first-place NTCC finish, including anomaly detection, application security, and transportation-focused security problems.",
-    tags: ["NTCC", "Transportation", "Security Engineering"],
-    officialUrl: "https://www.gmu.edu/news/2025-03/cyber-sweep-george-mason-students-take-top-three-spots-national-transportation",
-    officialLabel: "Official coverage",
-    body: [
-      "This write-up covers the competition result that still stands out most for me so far: finishing first at NTCC. The event pulled together several types of security work at once, which made it a good test of how I think through technical problems under time pressure.",
-      "The challenges ranged from anomaly detection to application security and exploitation in transportation-oriented systems. That mix was useful because it reflected the kind of work I am drawn to, systems where security decisions have operational consequences rather than just theoretical ones.",
-      "The anomaly-detection side of the competition was especially important to me. It reinforced my interest in the point where machine learning, telemetry, and cyber-physical security start overlapping in a way that is immediately relevant to real infrastructure.",
-      "What I took away from NTCC was not just the result. It was a clearer sense of fit. The work I enjoy most is technical, system-oriented, and grounded in environments where signals, state, and decision-making all matter at the same time.",
-    ],
-  },
 ];
 
 const projects = [
   {
-    meta: "Publication",
-    title: "PULSER at IEEE HOST 2026",
-    description:
-      "Accepted work on trust, LiDAR manipulation, and ROS2-based SLAM systems, with broader relevance to autonomous and cyber-physical platforms.",
-    tags: ["PULSER", "Autonomy", "LiDAR"],
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/",
-    linkLabel: "Publication link",
-  },
-  {
     meta: "Write-up",
     title: "NTCC first-place finish",
     description:
-      "A write-up on the work behind my first-place NTCC finish, including anomaly detection, application security, and transportation-focused system challenges.",
+      "A longer write-up on the competition work behind my first-place NTCC result and why that experience mattered to how I approach security engineering.",
     tags: ["NTCC", "Transportation", "Machine Learning"],
-    href: "https://www.gmu.edu/news/2025-03/cyber-sweep-george-mason-students-take-top-three-spots-national-transportation",
-    linkLabel: "GMU coverage",
+    href: "work/ntcc-first-place.html",
+    linkLabel: "Open page",
+  },
+  {
+    meta: "Coverage",
+    title: "George Mason coverage",
+    description:
+      "A page on the George Mason article covering the NTCC result, why the recognition mattered, and how it fits into the rest of my work.",
+    tags: ["GMU", "Recognition", "NTCC"],
+    href: "work/gmu-coverage.html",
+    linkLabel: "Open page",
   },
   {
     meta: "Direction",
@@ -83,8 +67,8 @@ const projects = [
     description:
       "Applying ideas from PULSER and perception trust into IT/OT and ICS environments, especially telemetry and control paths in electrical-grid systems.",
     tags: ["ICS", "IT/OT", "Grid Security"],
-    href: "mailto:finn@hadronsecurity.com",
-    linkLabel: "Get in touch",
+    href: "work/ics-grid-direction.html",
+    linkLabel: "Open page",
   },
 ];
 
@@ -164,7 +148,7 @@ function renderProjects() {
             <div class="project-tags">
               ${project.tags.map((tag) => `<span>${tag}</span>`).join("")}
             </div>
-            <a class="project-link" href="${project.href}" target="_blank" rel="noreferrer">
+            <a class="project-link" href="${project.href}">
               ${project.linkLabel}
             </a>
           </div>
@@ -260,7 +244,7 @@ function setupProjectCards() {
       return;
     }
 
-    window.open(href, "_blank", "noopener,noreferrer");
+    window.location.href = href;
   }
 
   projectsList.addEventListener("click", (event) => {
