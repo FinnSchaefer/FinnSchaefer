@@ -3,21 +3,21 @@ const updates = [
     date: "2026",
     title: "PULSER accepted to IEEE HOST 2026",
     summary:
-      "PULSER was accepted to IEEE HOST 2026. The work looks at how trusted LiDAR input can be manipulated in ways that still appear believable to the system consuming it.",
+      "PULSER asks what happens when a system keeps trusting subtly manipulated LiDAR input and lets that bad data shape its view of the environment.",
     label: "IEEE HOST 2026",
   },
   {
     date: "2025",
     title: "First place in the National Transportation Cybersecurity Competition",
     summary:
-      "Placed first in NTCC through work that spanned anomaly detection, application security, and transportation-system exploitation challenges.",
+      "NTCC pulled across anomaly detection, exploitation, and web problems, but the vehicle-data work mattered most because it was about system behavior, not just bugs.",
     label: "NTCC result",
   },
   {
     date: "2026",
     title: "New article: your curve has an expiration date",
     summary:
-      "A new write-up on why quantum breaks ECC and ECDSA, why that does not kill public-key cryptography, and why the real challenge is migration.",
+      "A new article on why quantum breaks ECC and ECDSA, why that is serious, and why migration matters more than panic.",
     label: "Post-quantum",
   },
 ];
@@ -28,17 +28,9 @@ const posts = [
     meta: "Publication • IEEE HOST 2026",
     title: "PULSER at IEEE HOST 2026",
     excerpt:
-      "A high-level look at PULSER, my IEEE HOST 2026 paper on how trusted LiDAR input can quietly shape how robotic systems understand their environment.",
-    tags: ["PULSER", "IEEE HOST", "ROS2"],
-    officialUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/",
-    officialLabel: "Research announcement",
-    body: [
-      "PULSER is the clearest example of the kind of work I want to keep doing. At a high level, it is about what happens when a system keeps trusting sensor input that has been subtly manipulated, and how that changes the way the system understands the world around it.",
-      "What matters to me about this work is not just the robotics angle. It highlights a broader security problem: cyber-physical systems often fail through misplaced trust rather than obvious breakage. If the data still looks believable, a bad decision can travel much farther through the stack before anyone notices.",
-      "That is why I think PULSER matters beyond ROS2 and SLAM. It pushes on a question that shows up in many environments: when a platform depends on continuous sensor input, what happens when the trust model around that input is wrong.",
-      "This paper also shaped where I want to take my work next. I am interested in how the same ideas around believable manipulation, perception, and system trust apply to IT/OT and ICS environments, especially where telemetry feeds directly into monitoring, control, or operator decisions.",
-      "So while I am keeping the technical details at a high level for now, the importance of PULSER is straightforward. It is a research direction that connects autonomy, cyber-physical security, and the kinds of trust failures that matter in real operational systems.",
-    ],
+      "A high-level look at PULSER and the broader security problem behind it: systems that keep trusting believable sensor data they should not.",
+    href: "publications/pulser-at-ieee-host-2026.html",
+    linkLabel: "Open publication",
   },
 ];
 
@@ -47,7 +39,7 @@ const projects = [
     meta: "Write-up",
     title: "NTCC first-place finish",
     description:
-      "A longer write-up on the competition work behind my first-place NTCC result and why that experience mattered to how I approach security engineering.",
+      "A write-up on the NTCC work behind the result, especially the anomaly-detection problems where the system's view of the environment started to drift.",
     tags: ["NTCC", "Transportation", "Machine Learning"],
     href: "work/ntcc-first-place.html",
     linkLabel: "Open page",
@@ -56,7 +48,7 @@ const projects = [
     meta: "Article",
     title: "Your curve has an expiration date",
     description:
-      "A longer article on why quantum threats to ECC and ECDSA are real, why the sky is not falling, and what the actual migration path looks like.",
+      "An article on why quantum really does break ECC and ECDSA, why that is not the end of public-key crypto, and what has to replace it.",
     tags: ["Post-Quantum", "ECC", "ECDSA"],
     href: "work/your-curve-has-an-expiration-date.html",
     linkLabel: "Open page",
@@ -67,13 +59,6 @@ const updatesList = document.querySelector("#updates-list");
 const postsList = document.querySelector("#posts-list");
 const projectsList = document.querySelector("#projects-list");
 const year = document.querySelector("#year");
-const dialog = document.querySelector("#post-dialog");
-const dialogClose = document.querySelector("#dialog-close");
-const dialogMeta = document.querySelector("#dialog-meta");
-const dialogTitle = document.querySelector("#dialog-title");
-const dialogBody = document.querySelector("#dialog-body");
-const dialogActions = document.querySelector("#dialog-actions");
-
 function renderUpdates() {
   if (!updatesList) {
     return;
@@ -103,19 +88,16 @@ function renderPosts() {
   postsList.innerHTML = posts
     .map(
       (post) => `
-        <article class="post-card" data-post="${post.slug}" tabindex="0" role="button" aria-label="Read article: ${post.title}" data-reveal>
-          <div>
+        <a class="publication-item" href="${post.href}" data-reveal aria-label="${post.linkLabel}: ${post.title}">
+          <div class="publication-copy">
             <p class="post-meta">${post.meta}</p>
             <h3>${post.title}</h3>
             <p>${post.excerpt}</p>
           </div>
-          <div class="post-footer">
-            <div class="post-tags">
-              ${post.tags.map((tag) => `<span>${tag}</span>`).join("")}
-            </div>
-            <button class="post-link" data-post="${post.slug}" type="button">Read article</button>
+          <div class="publication-open">
+            <span>${post.linkLabel}</span>
           </div>
-        </article>
+        </a>
       `
     )
     .join("");
@@ -147,80 +129,6 @@ function renderProjects() {
       `
     )
     .join("");
-}
-
-function openPost(slug) {
-  const post = posts.find((entry) => entry.slug === slug);
-
-  if (!post || !dialog || !dialogMeta || !dialogTitle || !dialogBody || !dialogActions) {
-    return;
-  }
-
-  dialogMeta.textContent = post.meta;
-  dialogTitle.textContent = post.title;
-  dialogBody.innerHTML = post.body.map((paragraph) => `<p>${paragraph}</p>`).join("");
-  dialogActions.innerHTML = post.officialUrl
-    ? `<a class="button button-primary dialog-link" href="${post.officialUrl}" target="_blank" rel="noreferrer">${post.officialLabel || "Official publication link"}</a>`
-    : "";
-  dialog.showModal();
-}
-
-function setupDialog() {
-  if (!dialog || !postsList) {
-    return;
-  }
-
-  postsList.addEventListener("click", (event) => {
-    const target = event.target;
-
-    if (!(target instanceof HTMLElement)) {
-      return;
-    }
-
-    const button = target.closest("[data-post]");
-
-    if (!button) {
-      return;
-    }
-
-    openPost(button.getAttribute("data-post"));
-  });
-
-  postsList.addEventListener("keydown", (event) => {
-    const target = event.target;
-
-    if (!(target instanceof HTMLElement)) {
-      return;
-    }
-
-    const card = target.closest("[data-post]");
-
-    if (!card) {
-      return;
-    }
-
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openPost(card.getAttribute("data-post"));
-    }
-  });
-
-  dialog.addEventListener("click", (event) => {
-    const bounds = dialog.getBoundingClientRect();
-    const isOutside =
-      event.clientX < bounds.left ||
-      event.clientX > bounds.right ||
-      event.clientY < bounds.top ||
-      event.clientY > bounds.bottom;
-
-    if (isOutside) {
-      dialog.close();
-    }
-  });
-
-  dialogClose?.addEventListener("click", () => {
-    dialog.close();
-  });
 }
 
 function setupProjectCards() {
@@ -309,7 +217,6 @@ function setupReveal() {
 renderUpdates();
 renderPosts();
 renderProjects();
-setupDialog();
 setupProjectCards();
 setupReveal();
 
