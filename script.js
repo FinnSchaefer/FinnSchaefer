@@ -29,7 +29,7 @@ const posts = [
     title: "PULSER at IEEE HOST 2026",
     excerpt:
       "A high-level look at PULSER and the broader security problem behind it: systems that keep trusting believable sensor data they should not.",
-    href: "publications/pulser-at-ieee-host-2026.html",
+    href: "publications/pulser-at-ieee-host-2026/",
     linkLabel: "Open publication",
   },
 ];
@@ -41,7 +41,7 @@ const projects = [
     description:
       "A write-up on the NTCC work behind the result, especially the anomaly-detection problems where the system's view of the environment started to drift.",
     tags: ["NTCC", "Transportation", "Machine Learning"],
-    href: "work/ntcc-first-place.html",
+    href: "work/ntcc-first-place/",
     linkLabel: "Open page",
   },
   {
@@ -50,7 +50,7 @@ const projects = [
     description:
       "An article on why quantum really does break ECC and ECDSA, why that is not the end of public-key crypto, and what has to replace it.",
     tags: ["Post-Quantum", "ECC", "ECDSA"],
-    href: "work/your-curve-has-an-expiration-date.html",
+    href: "work/your-curve-has-an-expiration-date/",
     linkLabel: "Open page",
   },
 ];
