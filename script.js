@@ -8,6 +8,13 @@ const updates = [
   },
   {
     date: "2026",
+    title: "New article: The model is not the system",
+    summary:
+      "A piece on what machine learning actually is, why modern AI is usually a larger engineered system, and why that distinction matters for security engineering.",
+    label: "AI systems",
+  },
+  {
+    date: "2026",
     title: "New article: Your curve has an expiration date",
     summary:
       "A new article on why quantum breaks ECC and ECDSA, why that is serious, and why migration matters more than panic.",
@@ -25,7 +32,7 @@ const updates = [
 const posts = [
   {
     slug: "pulser-ieee-host-2026",
-    meta: "Publication • IEEE HOST 2026",
+    meta: "Publication &bull; IEEE HOST 2026",
     title: "PULSER at IEEE HOST 2026",
     excerpt:
       "A high-level look at PULSER and the broader security problem behind it: systems that keep trusting believable sensor data they should not.",
@@ -36,12 +43,12 @@ const posts = [
 
 const projects = [
   {
-    meta: "Write-up",
-    title: "NTCC first-place finish",
+    meta: "Article",
+    title: "The model is not the system",
     description:
-      "A write-up on the NTCC work behind the result, especially the anomaly-detection problems where the system's view of the environment started to drift.",
-    tags: ["NTCC", "Transportation", "Machine Learning"],
-    href: "work/ntcc-first-place/",
+      "An article on what machine learning is actually doing, why modern AI is bigger than the model, and what that changes for security engineering.",
+    tags: ["AI", "Machine Learning", "Security"],
+    href: "work/the-model-is-not-the-system/",
     linkLabel: "Open page",
   },
   {
@@ -51,6 +58,15 @@ const projects = [
       "An article on why quantum really does break ECC and ECDSA, why that is not the end of public-key crypto, and what has to replace it.",
     tags: ["Post-Quantum", "ECC", "ECDSA"],
     href: "work/your-curve-has-an-expiration-date/",
+    linkLabel: "Open page",
+  },
+  {
+    meta: "Write-up",
+    title: "NTCC first-place finish",
+    description:
+      "A write-up on the NTCC work behind the result, especially the anomaly-detection problems where the system's view of the environment started to drift.",
+    tags: ["NTCC", "Transportation", "Machine Learning"],
+    href: "work/ntcc-first-place/",
     linkLabel: "Open page",
   },
 ];

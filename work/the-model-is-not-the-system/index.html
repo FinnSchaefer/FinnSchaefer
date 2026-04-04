@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Finn Schaefer on what machine learning is really doing, why modern AI is larger than the model, and why that distinction matters for security engineering."
+  >
+  <meta name="theme-color" content="#050608">
+  <title>The Model Is Not the System | Finn Schaefer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="../../styles.css">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css"
+    crossorigin="anonymous"
+  >
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/contrib/auto-render.min.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body class="article-page">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="../../" aria-label="Finn Schaefer home">Finn Schaefer</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../../#updates">Updates</a>
+        <a href="../../#publications">Publications</a>
+        <a href="../../#work">Work</a>
+        <a href="../../#about">About</a>
+        <a href="../../#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="article-shell">
+      <article class="article-panel">
+        <p class="eyebrow">Work</p>
+        <p class="dialog-meta article-kicker">Article &bull; AI systems</p>
+        <h1 class="article-title">The model is not the system</h1>
+        <p class="article-lede">
+          Machine learning is, at its core, a way of fitting parameterized functions to data. Much of
+          modern deep learning still runs on repeated linear maps, high-dimensional geometry, and
+          gradient-based optimization. What people now call AI is usually larger than the model:
+          retrieval, tools, memory, policy layers, and automation wrapped around ML. That distinction
+          matters in security because the failure is often not that a component crashes, but that a bad
+          input is accepted as normal.
+        </p>
+        <div class="article-body">
+          <h2>Introduction</h2>
+          <p>
+            During my internship at the U.S. Government Accountability Office, I spent part of my time
+            looking at cybersecurity offerings marketed as AI and asking a question that should have
+            been simpler than it was: what, exactly, is the machine doing? Around the same time, I was
+            reading <em>Why Machines Learn</em>, which is useful for exactly the reason a hype cycle is
+            not. It keeps dragging the conversation back to geometry, approximation, optimization, and
+            the unglamorous but decisive role of linear algebra.
+          </p>
+          <p>
+            That lens fits the rest of my work. I care about systems in which assumptions about
+            authenticity, integrity, and provenance shape behavior, especially when those assumptions
+            fail quietly and the failure still looks normal to the system consuming it. Once that is
+            your baseline, the current AI conversation gets easier to parse. Most of the core machinery
+            is still machine learning. What changed is that we now deploy learned functions inside
+            larger decision systems that retrieve external context, call tools, hold state, cross trust
+            boundaries, and sometimes act.
+          </p>
+          <p>
+            So the argument here is simple. Machine learning is mostly about fitting a function.
+            Today's AI is usually a system built around that fitted function. The difference sounds
+            semantic until you try to secure it.
+          </p>
+
+          <h2>The short version</h2>
+          <p>
+            The cleanest technical description of machine learning is still empirical risk minimization:
+          </p>
+          <div class="article-equation">
+            \[
+              \hat{\theta} = \arg\min_{\theta} \frac{1}{n}\sum_{i=1}^{n} \ell\big(f_{\theta}(x_i), y_i\big)
+            \]
+          </div>
+          <p>
+            Given examples \((x_i, y_i)\), choose parameters \(\theta\) so that the learned function
+            \(f_{\theta}\) minimizes some loss \(\ell\). Different model families change the
+            parameterization, the inductive bias, and the optimization landscape, but the basic story
+            does not move very much from Rosenblatt's perceptron to modern deep networks.
+          </p>
+          <p>
+            What changed in the current wave is not that ML disappeared. It is that the fitted function
+            got scaled, instruction-tuned, and embedded in a larger system. NIST's AI RMF and its
+            generative-AI profile both frame the operational object as an AI system with actors,
+            interfaces, lifecycle risks, and effects on real or virtual environments, not merely as an
+            isolated model. In practice, that system may include retrieval, external memory, policy
+            layers, tool use, and automated action.
+          </p>
+
+          <h2>Why machine learning really works</h2>
+          <p>
+            The first thing worth saying out loud is that most of the numerical work is linear. The
+            perceptron already had the essential geometry:
+          </p>
+          <div class="article-equation">
+            \[
+              \hat{y} = \operatorname{sign}(w^{\top}x + b)
+            \]
+          </div>
+          <p>
+            a hyperplane slicing a feature space into decisions. Modern networks are more expressive,
+            but the computational body is still mostly repeated affine maps with simple nonlinearities:
+          </p>
+          <div class="article-equation">
+            \[
+              h_{\ell + 1} = \sigma(W_{\ell} h_{\ell} + b_{\ell})
+            \]
+          </div>
+          <p>
+            Universal approximation results explain why such compositions can represent very rich
+            function classes. Backpropagation explains how to fit them efficiently enough to matter in
+            practice. What we call depth is, in large part, the repeated application of linear maps,
+            punctuated by nonlinearities that keep the whole construction from collapsing into a single
+            matrix.
+          </p>
+          <p>
+            Even transformers, which feel qualitatively different when used as language systems, still
+            rely on learned linear projections into query, key, and value spaces:
+          </p>
+          <div class="article-equation">
+            \[
+              \operatorname{Attn}(Q, K, V) = \operatorname{softmax}\!\left(\frac{QK^{\top}}{\sqrt{d}}\right)V
+            \]
+          </div>
+          <p>
+            The architecture is novel and powerful, but the numerical work is still projection,
+            weighting, and aggregation at scale. The same point also shows up in fragility. The classic
+            adversarial-example result from Goodfellow, Shlens, and Szegedy argued that vulnerability
+            can emerge from effective linearity in high-dimensional spaces, not from some mystical
+            nonlinear failure mode.
+          </p>
+          <p>
+            The language-model era follows the same template. The training objective is not hidden
+            inside philosophy. It is next-token prediction, usually written as cross-entropy over long
+            sequences:
+          </p>
+          <div class="article-equation">
+            \[
+              \mathcal{L}(\theta) = -\sum_t \log p_{\theta}(x_t \mid x_{< t})
+            \]
+          </div>
+          <p>
+            Scale changed what that simple objective could buy. GPT-3 showed much stronger few-shot
+            performance than earlier systems, and empirical scaling-law work made clear that model
+            performance improved predictably with more parameters, data, and compute. Chinchilla then
+            tightened the picture by showing how model size and token count should be balanced more
+            carefully under a fixed compute budget.
+          </p>
+
+          <h2>Why AI is not the same thing as ML</h2>
+          <p>
+            If machine learning is the learned function, current AI is usually the learned function plus
+            the rest of the stack. Part of that stack is still inside the model. Instruction tuning and
+            reinforcement learning from human feedback reshape the interface between model and user so
+            that the system follows natural-language intent more reliably than a raw next-token
+            predictor would. Part of it is outside the model. Retrieval-augmented generation gives the
+            model access to external, updatable memory. Tool-use work such as Toolformer and ReAct
+            pushes the system beyond passive prediction and toward selective API calling, planning, and
+            action.
+          </p>
+          <p>
+            A compact way to write the distinction is
+          </p>
+          <div class="article-equation">
+            \[
+              y_{\mathrm{sys}} = \mathcal{O}\big(M_{\theta}(x, r(x), h), \mathcal{T}, \mathcal{P}\big)
+            \]
+          </div>
+          <p>
+            where \(M_{\theta}\) is the underlying learned model, \(r(x)\) is retrieved context,
+            \(h\) is interaction history, \(\mathcal{T}\) is the set of available tools, and
+            \(\mathcal{P}\) is the policy and permission layer that determines what the system is
+            allowed to do. Classical ML often stops at \(M_{\theta}(x)\). Modern AI products usually
+            do not.
+          </p>
+          <p>
+            There is also a subtler reason the distinction matters. Some of the most interesting
+            capabilities of large models may look less like static prediction and more like temporary
+            learning inside the forward pass. In stylized linear settings, researchers have shown that
+            transformers can implement procedures resembling gradient descent, ridge regression, and
+            related estimators in context. But the stronger claim that pretrained language models in the
+            wild literally reduce to gradient descent during in-context learning remains unsettled, and
+            recent work argues that the equivalence should not be overstated.
+          </p>
+          <p>
+            One concrete version of this distinction became clear during my internship at the GAO,
+            where I reviewed commercial cybersecurity offerings and kept returning to a question that
+            marketing material tends to blur: where is the learning actually happening, and where is
+            the rest just engineering wrapped around it? In a platform like Microsoft Purview, some
+            capabilities do rely on learned components, most clearly its trainable classifiers, but
+            much of the operational value still comes from automated pattern matching, labeling, and
+            policy enforcement inside a much broader data security and compliance stack. By contrast,
+            systems closer to CrowdStrike Charlotte AI are better understood as models embedded in a
+            larger operational pipeline: CrowdStrike describes Charlotte AI as combining model-driven
+            triage, contextual enrichment from platform data, and agentic workflows that can recommend
+            or execute response actions under human oversight or predefined logic. That distinction
+            mattered more to me than whether the product brochure called all of it AI, because the
+            security question was never just whether a model was present; it was where learning ended,
+            where workflow began, and where the system acquired the authority to act.
+          </p>
+
+          <h2>Why the distinction matters in cybersecurity</h2>
+          <p>
+            In cybersecurity, and especially in cyber-physical security, the most interesting failures
+            are often not visible as failures at all. They are accepted states. That pattern is old. In
+            power systems, false-data-injection attacks showed that an adversary could manipulate
+            measurements in ways that evade ordinary bad-data detection while still steering the state
+            estimator. In control systems more broadly, the secure-control literature emphasized that
+            cyber-physical attacks matter precisely because the plant can continue operating while the
+            controller is working from corrupted premises.
+          </p>
+          <p>
+            Modern AI systems recreate this problem in a different medium. Prompt injection works
+            because language-model-based applications blur the line between data and instructions. In
+            indirect prompt injection, the hostile string does not arrive through a privileged
+            administrator console. It can arrive through content the system retrieves and treats as
+            context, after which the model may reinterpret that context as control. The analogy to
+            trusted-data failures in cyber-physical systems is not perfect, but it is close enough to be
+            operationally useful. In both cases, the system behaves consistently with the trust
+            assumptions we handed it.
+          </p>
+          <p>
+            This is why the distinction between ML and AI is not semantic in security work. A
+            standalone model that produces a score is one threat surface. A model embedded in a
+            retrieval pipeline, allowed to call tools, connected to privileged data, and used to trigger
+            downstream actions is a different threat surface entirely. NIST's AI RMF, the generative-AI
+            profile, and NIST's adversarial-ML taxonomy all point toward the same conclusion: the real
+            unit of analysis is the full system lifecycle, including interfaces, dependencies, attacker
+            goals, deployment conditions, and post-deployment monitoring.
+          </p>
+          <p>
+            That framing also fits practical cryptography better than the looser public conversation
+            does. Cryptography gives us authenticity, integrity, authorization, and sometimes
+            provenance. Those are essential properties. They are not the same thing as truth. A signed
+            sensor reading can still be strategically misleading if the sensor is measuring the wrong
+            thing, positioned incorrectly, or compromised upstream. An authenticated document retrieved
+            by an agent can still contain hostile instructions. In other words, the cryptographic
+            question, "Can I trust the source and integrity of this input?", remains necessary, but the
+            AI question adds another layer: "What behavior does this system produce when that input is
+            formally valid and semantically dangerous?"
+          </p>
+
+          <h2>What matters operationally</h2>
+          <p>
+            The practical lesson I took from reviewing vendor claims is that the label matters less than
+            the trust map. If a product is doing supervised learning on labeled telemetry to rank alerts,
+            then I want to know the feature pipeline, the training distribution, the false-positive and
+            false-negative tradeoffs, the retraining cadence, and the adversarial assumptions. That is
+            an ML evaluation.
+          </p>
+          <p>
+            If a product is built on a foundation model with retrieval, a conversational interface, and
+            workflow automation, then I also want to know what it can read, what it can write, what
+            tools it can call, how retrieved content is separated from control instructions, what
+            authority boundaries constrain it, and how failures are logged and reversed. That is an
+            AI-system evaluation.
+          </p>
+          <p>
+            For my part of the security world, the highest-value questions are usually the least
+            theatrical ones. Which inputs are treated as trusted? Which assumptions are backed by
+            cryptographic verification, and which are merely organizational wishes? Where can external
+            data become internal control? What happens when the model is confidently wrong? In
+            cyber-physical environments, do not ask only whether the model is accurate on average. Ask
+            whether the actuation path is constrained when the input stream is valid-looking but
+            adversarial. In enterprise security, do not ask only whether the copilot is helpful. Ask
+            whether retrieved text can steer tool calls or exfiltrate data.
+          </p>
+          <p>
+            That is why I have become skeptical of the lazy dichotomy between "real AI" and "hype."
+            The more useful distinction is between systems whose behavior is legible in terms of
+            prediction and systems whose behavior is amplified by memory, retrieval, tools, and
+            permissions. The former can still be dangerous. The latter can fail in more ways because
+            they have more ways to touch the world.
+          </p>
+
+          <h2>Conclusion</h2>
+          <p>
+            Machine learning is not a mystical category. It is a family of methods for fitting
+            parameterized functions under data, compute, and optimization constraints. Much of modern
+            deep learning still runs on linear maps, vector geometry, and gradient descent, even when
+            the resulting behavior looks qualitatively new at the interface.
+          </p>
+          <p>
+            But the current AI wave is not just ML with better branding. It is ML embedded in systems
+            with memory, retrieval, tools, policy layers, and action surfaces. That is what I kept
+            seeing while sorting cybersecurity products, and it is what continues to matter in my own
+            work. If you care about cyber-physical security, trusted data, practical cryptography, and
+            applied security engineering, the lesson is straightforward: do not stop at the model. Find
+            the trust boundary. Find the action boundary. Find the place where a bad input can still
+            look normal.
+          </p>
+          <p>
+            The model is learned. The system is engineered. The risk lives at their boundary.
+          </p>
+
+          <section class="article-notes">
+            <h2>References</h2>
+            <ul>
+              <li><a href="https://anilananthaswamy.com/why-machines-learn" target="_blank" rel="noreferrer">Anil Ananthaswamy, <em>Why Machines Learn: The Elegant Math Behind Modern AI</em></a></li>
+              <li><a href="https://doi.org/10.1037/h0042519" target="_blank" rel="noreferrer">Rosenblatt, "The perceptron: A probabilistic model for information storage and organization in the brain"</a></li>
+              <li><a href="https://doi.org/10.1016/0893-6080(89)90020-8" target="_blank" rel="noreferrer">Hornik, Stinchcombe, and White, "Multilayer feedforward networks are universal approximators"</a></li>
+              <li><a href="https://doi.org/10.1038/323533a0" target="_blank" rel="noreferrer">Rumelhart, Hinton, and Williams, "Learning representations by back-propagating errors"</a></li>
+              <li><a href="https://arxiv.org/abs/1412.6572" target="_blank" rel="noreferrer">Goodfellow, Shlens, and Szegedy, "Explaining and Harnessing Adversarial Examples"</a></li>
+              <li><a href="https://proceedings.neurips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" target="_blank" rel="noreferrer">Vaswani et al., "Attention Is All You Need"</a></li>
+              <li><a href="https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html" target="_blank" rel="noreferrer">Brown et al., "Language Models are Few-Shot Learners"</a></li>
+              <li><a href="https://openai.com/index/scaling-laws-for-neural-language-models/" target="_blank" rel="noreferrer">Kaplan et al., "Scaling Laws for Neural Language Models"</a></li>
+              <li><a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/c1e2faff6f588870935f114ebe04a3e5-Abstract-Conference.html" target="_blank" rel="noreferrer">Hoffmann et al., "An empirical analysis of compute-optimal large language model training"</a></li>
+              <li><a href="https://openreview.net/forum?id=TG8KACxEON" target="_blank" rel="noreferrer">Ouyang et al., "Training language models to follow instructions with human feedback"</a></li>
+              <li><a href="https://papers.nips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html" target="_blank" rel="noreferrer">Lewis et al., "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"</a></li>
+              <li><a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noreferrer">Schick et al., "Toolformer: Language Models Can Teach Themselves to Use Tools"</a></li>
+              <li><a href="https://openreview.net/forum?id=tvI4u1ylcqs" target="_blank" rel="noreferrer">Yao et al., "ReAct: Synergizing Reasoning and Acting in Language Models"</a></li>
+              <li><a href="https://iclr.cc/virtual/2023/oral/12597" target="_blank" rel="noreferrer">Akyurek et al., "What learning algorithm is in-context learning? Investigations with linear models"</a></li>
+              <li><a href="https://icml.cc/virtual/2023/oral/25462" target="_blank" rel="noreferrer">von Oswald et al., "Transformers Learn In-Context by Gradient Descent"</a></li>
+              <li><a href="https://aclanthology.org/2023.findings-acl.247/" target="_blank" rel="noreferrer">Dai et al., "Why Can GPT Learn In-Context? Language Models Secretly Perform Gradient Descent as Meta-Optimizers"</a></li>
+              <li><a href="https://proceedings.mlr.press/v235/shen24d.html" target="_blank" rel="noreferrer">Shen, Mishra, and Khashabi, "Position: Do pretrained Transformers Learn In-Context by Gradient Descent?"</a></li>
+              <li><a href="https://arxiv.org/abs/2302.12173" target="_blank" rel="noreferrer">Greshake et al., "Not what you've signed up for: Compromising real-world LLM-integrated applications with indirect prompt injection"</a></li>
+              <li><a href="https://doi.org/10.1145/1952982.1952995" target="_blank" rel="noreferrer">Liu, Ning, and Reiter, "False data injection attacks against state estimation in electric power grids"</a></li>
+              <li><a href="https://doi.org/10.1109/ICDCS.Workshops.2008.40" target="_blank" rel="noreferrer">Cardenas, Amin, and Sastry, "Secure control: Towards survivable cyber-physical systems"</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.AI.100-1" target="_blank" rel="noreferrer">NIST AI RMF 1.0</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noreferrer">NIST AI RMF: Generative Artificial Intelligence Profile</a></li>
+              <li><a href="https://doi.org/10.6028/NIST.AI.100-2e2025" target="_blank" rel="noreferrer">NIST, <em>Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations</em></a></li>
+              <li><a href="https://www.cisa.gov/news-events/alerts/2024/04/15/joint-guidance-deploying-ai-systems-securely" target="_blank" rel="noreferrer">CISA, NSA, FBI, and partners, "Joint Guidance on Deploying AI Systems Securely"</a></li>
+              <li><a href="https://www.gao.gov/products/gao-21-519sp" target="_blank" rel="noreferrer">U.S. GAO, <em>Artificial Intelligence: An Accountability Framework for Federal Agencies and Other Entities</em></a></li>
+              <li><a href="https://www.gao.gov/products/gao-24-106946" target="_blank" rel="noreferrer">U.S. GAO, <em>Artificial Intelligence: Generative AI Technologies and Their Commercial Applications</em></a></li>
+              <li><a href="https://learn.microsoft.com/en-us/purview/data-classification-overview" target="_blank" rel="noreferrer">Microsoft, "Classifiers overview"</a></li>
+              <li><a href="https://learn.microsoft.com/en-us/purview/trainable-classifiers-get-started-with" target="_blank" rel="noreferrer">Microsoft, "Get started with trainable classifiers"</a></li>
+              <li><a href="https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-purview-service-description" target="_blank" rel="noreferrer">Microsoft, "Microsoft Purview service description"</a></li>
+              <li><a href="https://www.crowdstrike.com/en-us/platform/charlotte-ai/" target="_blank" rel="noreferrer">CrowdStrike, "Charlotte AI: Agentic Analyst for Cybersecurity"</a></li>
+              <li><a href="https://www.crowdstrike.com/en-us/blog/ai-vs-ai-cybersecurity-arms-race/" target="_blank" rel="noreferrer">Williams and Gil, "AI vs. AI: The Race Between Adversarial and Defensive Intelligence"</a></li>
+            </ul>
+          </section>
+        </div>
+        <div class="article-actions">
+          <a class="button button-primary" href="../../#work">Back to work</a>
+          <a class="button button-secondary" href="mailto:finn@hadronsecurity.com">Email</a>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(document.querySelector(".article-body"), {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>
