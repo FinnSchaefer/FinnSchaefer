@@ -699,6 +699,17 @@ main {
   white-space: pre-wrap;
 }
 
+.paper-rights {
+  max-width: 86ch;
+  padding: 14px 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted-strong);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
 .paper-embed {
   display: block;
   width: 100%;
@@ -1036,6 +1047,13 @@ main {
     border-radius: 18px;
     font-size: 0.76rem;
     line-height: 1.62;
+  }
+
+  .paper-rights {
+    max-width: 100%;
+    padding: 12px 14px;
+    font-size: 0.78rem;
+    line-height: 1.58;
   }
 
   .paper-embed {
