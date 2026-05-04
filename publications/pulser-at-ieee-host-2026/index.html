@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
     name="description"
-    content="Finn Schaefer on PULSER at IEEE HOST 2026 and why trusted sensor input matters in cyber-physical security."
+    content="LiDAR Spoofing for Compromising SLAM on ROS2 Using Statistical Beam Adjustment and Temporal Modeling, Finn Schaefer's IEEE HOST 2026 paper on PULSER."
   >
   <meta name="theme-color" content="#050608">
-  <title>PULSER at IEEE HOST 2026 | Finn Schaefer</title>
+  <title>LiDAR Spoofing for Compromising SLAM on ROS2 | Finn Schaefer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -16,6 +16,21 @@
     rel="stylesheet"
   >
   <link rel="stylesheet" href="../../styles.css">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css"
+    crossorigin="anonymous"
+  >
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/contrib/auto-render.min.js"
+    crossorigin="anonymous"
+  ></script>
 </head>
 <body class="article-page">
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -37,47 +52,119 @@
       <article class="article-panel">
         <p class="eyebrow">Publications</p>
         <p class="dialog-meta article-kicker">Publication &bull; IEEE HOST 2026</p>
-        <h1 class="article-title">PULSER at IEEE HOST 2026</h1>
+        <h1 class="article-title">LiDAR Spoofing for Compromising SLAM on ROS2</h1>
         <p class="article-lede">
-          PULSER was accepted to IEEE HOST 2026. The work focuses on a simple problem: what happens when a
-          system keeps trusting sensor data that has been manipulated, but still looks valid.
+          The HOST 2026 paper presents PULSER, a ROS2 LiDAR spoofing framework that manipulates
+          SLAM inputs while preserving the timing and statistical shape of believable laser scans.
         </p>
         <div class="article-body">
+          <section class="paper-summary" aria-label="Paper details">
+            <dl class="paper-meta">
+              <div>
+                <dt>Paper</dt>
+                <dd>LiDAR Spoofing for Compromising SLAM on ROS2 Using Statistical Beam Adjustment &amp; Temporal Modeling</dd>
+              </div>
+              <div>
+                <dt>Authors</dt>
+                <dd>Finn Schaefer, Ryan Lam, Sidarth Kumar, Jimmy Tram, Neil Sharma, and Md Tanvir Arafin</dd>
+              </div>
+              <div>
+                <dt>Venue</dt>
+                <dd>IEEE International Symposium on Hardware Oriented Security and Trust (HOST), 2026</dd>
+              </div>
+            </dl>
+          </section>
+
+          <h2>Abstract</h2>
           <p>
-            The target here is LiDAR. Not breaking it outright, but shifting it just enough that the system
-            continues to accept it. The result is a change in how the system perceives its environment without
-            triggering obvious faults.
+            Autonomous robots rely on LiDAR-driven simultaneous localization and mapping (SLAM) to
+            build and navigate through their environment. The paper studies how those pipelines behave
+            when the sensor stream is not broken outright, but altered in a way that still looks plausible
+            to ROS2 middleware and downstream SLAM components.
           </p>
           <p>
-            What matters is not the specific sensor. It is the trust model. These systems assume that if the
-            data looks consistent, it is safe to use. That assumption holds until it does not.
+            PULSER intercepts and overrides the ROS2 LiDAR topic, then injects structured distortions
+            into the laser scan stream. The goal is to bias scan matching, corrupt the internal pose
+            estimate, and create persistent map deformation without needing to modify the SLAM software
+            stack itself.
           </p>
+          <div class="article-equation">
+            \[
+              \tilde{r}_{i,t} = r_{i,t} + \delta_{i,t},
+              \qquad
+              \delta_{i,t}\ \text{remains plausible across beams and time}
+            \]
+          </div>
           <p>
-            PULSER stays in that gap. The manipulation is subtle. The data remains believable. But the
-            downstream effect is that the system builds the wrong understanding of the world and acts on it.
+            In experiments on simulated and physical platforms, low-magnitude range manipulation caused
+            measurable localization drift and structural errors in the generated occupancy map. The
+            result is a cyber-physical failure mode where the robot's map and pose can move away from
+            reality while the incoming data continues to look usable.
           </p>
-          <p>
-            This is not a failure mode that shows up as a crash or a clear error. It propagates. Decisions are
-            made on top of bad state, and the system has no reason to question it.
-          </p>
-          <p>
-            That is the point of the work. Not just that the input can be manipulated, but that it can be
-            manipulated in a way that survives validation and moves through the rest of the stack.
-          </p>
+
+          <h2>LaTeX citation</h2>
+          <pre class="paper-citation"><code>@inproceedings{schaefer2026lidar,
+  title = {LiDAR Spoofing for Compromising SLAM on ROS2 Using Statistical Beam Adjustment \&amp; Temporal Modeling},
+  author = {Schaefer, Finn and Lam, Ryan and Kumar, Sidarth and Tram, Jimmy and Sharma, Neil and Arafin, Md Tanvir},
+  booktitle = {IEEE International Symposium on Hardware Oriented Security and Trust (HOST)},
+  year = {2026}
+}</code></pre>
+
+          <h2>Paper PDF</h2>
+          <object
+            class="paper-embed"
+            data="lidar-spoofing-ros2-slam-host-2026.pdf"
+            type="application/pdf"
+            aria-label="PDF of LiDAR Spoofing for Compromising SLAM on ROS2"
+          >
+            <p>
+              Your browser cannot display the embedded PDF here.
+              <a href="lidar-spoofing-ros2-slam-host-2026.pdf">Open the paper PDF directly.</a>
+            </p>
+          </object>
+
+          <section class="article-notes">
+            <h2>Artifacts</h2>
+            <ul>
+              <li><a href="lidar-spoofing-ros2-slam-host-2026.pdf">Paper PDF</a></li>
+              <li><a href="https://github.com/SPIRE-GMU/PULSER" target="_blank" rel="noreferrer">PULSER code and artifacts</a></li>
+            </ul>
+          </section>
         </div>
         <div class="article-actions">
           <a
             class="button button-primary"
-            href="https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/"
+            href="lidar-spoofing-ros2-slam-host-2026.pdf"
+          >
+            Read the paper
+          </a>
+          <a
+            class="button button-secondary"
+            href="https://github.com/SPIRE-GMU/PULSER"
             target="_blank"
             rel="noreferrer"
           >
-            Official publication link
+            View artifacts
           </a>
           <a class="button button-secondary" href="../../#publications">Back to publications</a>
         </div>
       </article>
     </main>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(document.querySelector(".article-body"), {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
 </body>
 </html>

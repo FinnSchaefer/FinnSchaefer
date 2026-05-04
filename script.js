@@ -1,9 +1,9 @@
 const updates = [
   {
     date: "2026",
-    title: "PULSER accepted to IEEE HOST 2026",
+    title: "PULSER paper at IEEE HOST 2026",
     summary:
-      "PULSER asks what happens when a system keeps trusting subtly manipulated LiDAR input and lets that bad data shape its view of the environment.",
+      "The HOST paper studies LiDAR spoofing against ROS2-based SLAM, using statistical beam adjustment and temporal modeling to create believable sensor manipulation.",
     label: "IEEE HOST 2026",
   },
   {
@@ -33,11 +33,11 @@ const posts = [
   {
     slug: "pulser-ieee-host-2026",
     meta: "Publication &bull; IEEE HOST 2026",
-    title: "PULSER at IEEE HOST 2026",
+    title: "LiDAR Spoofing for Compromising SLAM on ROS2",
     excerpt:
-      "A high-level look at PULSER and the broader security problem behind it: systems that keep trusting believable sensor data they should not.",
+      "The HOST 2026 paper on PULSER, a ROS2 LiDAR spoofing framework that biases SLAM through statistically plausible and temporally consistent scan manipulation.",
     href: "publications/pulser-at-ieee-host-2026/",
-    linkLabel: "Open publication",
+    linkLabel: "Open paper",
   },
 ];
 

@@ -15,5 +15,4 @@ I work as a security engineer and care a lot about turning good research into us
 Links:
 
 - [LinkedIn](https://www.linkedin.com/in/finn-schaefer/)
-- [Research update](https://www.linkedin.com/feed/update/urn:li:activity:7442217488412635136/)
 - [Website](https://www.finnsec.dev)
