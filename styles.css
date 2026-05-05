@@ -789,13 +789,117 @@ main {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.paper-figure {
+  display: grid;
+  gap: 12px;
+}
+
+.paper-figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.paper-figure-grid {
+  display: grid;
+  gap: 14px;
+  align-items: end;
+}
+
+.paper-figure-grid-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.paper-figure-grid-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.paper-subfigure {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  text-align: center;
+  color: var(--muted-strong);
+  font-size: 0.86rem;
+}
+
+.paper-subfigure img {
+  object-fit: contain;
+}
+
 .paper-figure figcaption {
   color: var(--muted-strong);
   font-size: 0.92rem;
   line-height: 1.58;
 }
 
-.paper-table,
+.paper-table {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.paper-table figcaption {
+  padding: 14px 16px 0;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.paper-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.paper-table table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.paper-table th,
+.paper-table td {
+  padding: 10px 12px;
+  border-top: 1px solid var(--line-soft);
+  text-align: left;
+  vertical-align: top;
+}
+
+.paper-table th {
+  color: var(--text);
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.paper-table .table-center {
+  text-align: center;
+}
+
+.paper-table-compact table {
+  min-width: 0;
+  table-layout: fixed;
+}
+
+.paper-table-compact th:first-child,
+.paper-table-compact td:first-child {
+  overflow-wrap: anywhere;
+}
+
+.paper-table-compact th:last-child,
+.paper-table-compact td:last-child {
+  width: 9rem;
+}
+
 .paper-algorithm {
   color: var(--muted-strong);
   font-family: "IBM Plex Mono", monospace;
@@ -867,12 +971,62 @@ main {
   padding-left: 2.6rem;
 }
 
+.paper-references-section {
+  max-width: 86ch;
+}
+
+.paper-references-accordion {
+  display: grid;
+  max-width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+.paper-references-accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  color: var(--text);
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.paper-references-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.paper-references-accordion summary::after {
+  content: "+";
+  color: var(--muted-strong);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.paper-references-accordion[open] summary {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.paper-references-accordion[open] summary::after {
+  content: "-";
+}
+
 .paper-references {
   display: grid;
   gap: 10px;
   max-width: 86ch;
+  min-width: 0;
   margin: 0;
-  padding-left: 0;
+  padding: 16px 18px 18px;
   color: var(--muted);
   list-style: none;
 }
@@ -880,6 +1034,8 @@ main {
 .paper-references li {
   font-size: 0.94rem;
   line-height: 1.65;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .paper-cite {
@@ -1288,7 +1444,39 @@ main {
     border-radius: 16px;
   }
 
-  .paper-table,
+  .paper-figure-grid-two,
+  .paper-figure-grid-three {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-table {
+    padding: 0;
+  }
+
+  .paper-table figcaption {
+    padding: 12px 14px 0;
+    font-size: 0.78rem;
+  }
+
+  .paper-table table {
+    min-width: 520px;
+    font-size: 0.76rem;
+  }
+
+  .paper-table th,
+  .paper-table td {
+    padding: 8px 10px;
+  }
+
+  .paper-table-compact table {
+    min-width: 0;
+  }
+
+  .paper-table-compact th:last-child,
+  .paper-table-compact td:last-child {
+    width: 5.6rem;
+  }
+
   .paper-algorithm {
     font-size: 0.68rem;
     line-height: 1.5;
@@ -1316,8 +1504,22 @@ main {
     font-size: 0.92em;
   }
 
+  .paper-references-section {
+    max-width: 100%;
+  }
+
+  .paper-references-accordion {
+    border-radius: 16px;
+  }
+
+  .paper-references-accordion summary {
+    padding: 14px 16px;
+    font-size: 0.74rem;
+  }
+
   .paper-references {
     max-width: 100%;
+    padding: 14px 16px 16px;
   }
 
   .paper-references li {

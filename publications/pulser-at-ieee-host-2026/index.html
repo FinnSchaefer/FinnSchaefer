@@ -90,7 +90,10 @@
               <h2>II. Background</h2>
               <h3>A. Notations</h3>
               <p>In this work, for mathematical notations, (unless otherwise defined) upper case letters, such as \(X\), denote random variables and their lower-case representation, i.e., \(x\), denotes a value that the variable might assume. Subscripts, such as \(x_i\), represent the index for a value of a random variable, and \( : \) denotes a range. For example, \(X_{1:n}\) stands for the sequence of values \(\{x_1, x_2, \ldots, x_n\}\) for \(X\). Sets are denoted with calligraphic fonts, i.e., \(\mathcal{S}\).</p>
-              <figure class="paper-figure"><figcaption>Fig. 1: ROS2 pipeline for the SLAM process: Physical hardware inputs 1⃝, as well as the previously calculated transform data from the last iteration, are published to their respective topics in 2⃝, and then sent to the SLAM Toolbox for processing. The processed data is published at 4⃝via topic and visual map output.</figcaption></figure>
+              <figure class="paper-figure">
+                <img src="assets/fig1-ros2-slam-pipeline.png" alt="ROS2 pipeline for the SLAM process" loading="lazy" decoding="async">
+                <figcaption>Fig. 1: ROS2 pipeline for the SLAM process: Physical hardware inputs 1⃝, as well as the previously calculated transform data from the last iteration, are published to their respective topics in 2⃝, and then sent to the SLAM Toolbox for processing. The processed data is published at 4⃝via topic and visual map output.</figcaption>
+              </figure>
               <h3>B. Robot Operating System</h3>
               <p>Robot Operating System is a set of libraries and tools to help develop applications for robot systems [14]. The current generation of ROS, ROS2, has a SLAM Toolbox available through the Advanced Package Tool (apt) library. This SLAM Toolbox comes with an implementation of Graph-Based SLAM named KartoSLAM [15]. In addition, ROS2 allows the installation of drivers to interface with LiDAR sensors connected to the robot on which ROS2 is installed. The availability of both of these features results in ROS2 being a suitable middleware for those aiming to implement Graph-Based SLAM with a LiDAR sensor. The logical flow of SLAM is shown in Fig. 1.</p>
               <h3>C. Data Distribution Service</h3>
@@ -149,7 +152,10 @@
               <p>where \(\oplus\) denotes the composition of the current state with the incremental update. This process repeats until convergence, meaning the graph configuration becomes consistent with all observed constraints. Since each edge connects only a few nodes (e.g., consecutive poses or a pose–landmark pair), the resulting system is inherently sparse, enabling efficient computation even for long robot trajectories. GraphSLAM thus provides a framework for globally consistent mapping and localization by jointly optimizing all past measurements while maintaining computational scalability.</p>
               <h3>E. LiDAR-based SLAM Vulnerabilities</h3>
               <p>LiDAR-based SLAM has become a core component for autonomous systems [24]. It provides reliable 3D geometry and enables accurate localization even when visual or inertial sensors fail [25], [26], [27], [28], [29], [30], [31]. However, recent research has increasingly shown that these systems possess structural weaknesses that make them susceptible to point-level disruption [3], [32], [33], [34], [35], [36], [37]. On the other hand, scan-matching algorithms assume that LiDAR</p>
-              <figure class="paper-figure"><figcaption>Fig. 2: The attack pipeline for the proposed attack. It travels through the hardware at 1⃝then the DDS server at 2⃝, and intercepted at 3⃝. The attacker process at 4⃝intercepts the /scan topic, fuzzes the data, and then republishes it to 5⃝, where the Toolbox generates the map.</figcaption></figure>
+              <figure class="paper-figure">
+                <img src="assets/fig2-attack-pipeline.png" alt="Attack pipeline for the proposed attack" loading="lazy" decoding="async">
+                <figcaption>Fig. 2: The attack pipeline for the proposed attack. It travels through the hardware at 1⃝then the DDS server at 2⃝, and intercepted at 3⃝. The attacker process at 4⃝intercepts the /scan topic, fuzzes the data, and then republishes it to 5⃝, where the Toolbox generates the map.</figcaption>
+              </figure>
               <p>returns are both physically valid and spatially consistent across consecutive frames, but this assumption does not hold with adversarial manipulation [4], [6], [38], [39], [40], [41], [42], [43]. Previous work demonstrated that even simple physical spoofing can exploit these assumptions and cause significant SLAM degradation without requiring full sensor takeover or synchronization precision [44]. Additionally, these works establish that SLAM’s reliance on geometric consistency exposes it to small, well-placed distortions in scans. [3], [32], [44], [45]. Additional details on this are given in Section VII.</p>
             </section>
             <section class="paper-section">
@@ -267,20 +273,24 @@
             <section class="paper-section">
               <h2>V. Results</h2>
               <p>To validate PULSER, we evaluated the attack in both physical and virtual environments. Table I summarizes the respective configurations, including hardware specifications, LiDAR model, SLAM parameters, and software environment.</p>
-              <pre class="paper-table">TABLE I: Hardware and Software Specifications
-LiDAR Scanner LDS-02
-Controller OpenCR 1.0
-32-bit ARM Cortex-M7
-Motor 2x DYNAMIXEL Motor
-Model: XL430-W250-T
-Battery LiPo Battery 11.1 V , 1800 mAh
-Raspberry Pi Board Raspberry Pi model B+
-Broadcom BCM2837B0, 1GB LPDDR2 SDRAM
-Operating System Ubuntu 22.04
-ROS2 Distribution ROS2 Humble
-Visualization Software RViz
-Simulation Software Gazebo
-1) Parameter Selection:A controlled parameter sweep was</pre>
+              <figure class="paper-table">
+                <figcaption>TABLE I: Hardware and Software Specifications</figcaption>
+                <div class="paper-table-scroll">
+                  <table>
+                    <tbody>
+                      <tr><th scope="row">LiDAR Scanner</th><td>LDS-02</td></tr>
+                      <tr><th scope="row">Controller</th><td>OpenCR 1.0<br>32-bit ARM Cortex-M7</td></tr>
+                      <tr><th scope="row">Motor</th><td>2x DYNAMIXEL Motor<br>Model: XL430-W250-T</td></tr>
+                      <tr><th scope="row">Battery</th><td>LiPo Battery 11.1 V , 1800 mAh</td></tr>
+                      <tr><th scope="row">Raspberry Pi Board</th><td>Raspberry Pi model B+<br>Broadcom BCM2837B0, 1GB LPDDR2 SDRAM</td></tr>
+                      <tr><th scope="row">Operating System</th><td>Ubuntu 22.04</td></tr>
+                      <tr><th scope="row">ROS2 Distribution</th><td>ROS2 Humble</td></tr>
+                      <tr><th scope="row">Visualization Software</th><td>RViz</td></tr>
+                      <tr><th scope="row">Simulation Software</th><td>Gazebo</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </figure>
               <h4>1) Parameter Selection</h4>
               <p>A controlled parameter sweep was conducted to evaluate the influence of the attack parameters on distortion and stability. Each experiment replayed an identical ROSBag to ensure deterministic input conditions. A raw baseline stream was recorded to establish ground truth, while a timing-only control stream was generated using the same temporal gating logic without beam manipulation. This control allows the isolation of beam-value manipulation effects from timing artifacts. The parameters were varied across the following ranges:</p>
               <div class="article-equation">\[
@@ -296,9 +306,24 @@ Simulation Software Gazebo
                 \tag{20}
               \]</div>
               <p>Each configuration was executed three times, resulting in 225 attack runs. Processed scans were matched to the baseline using exact timestamp alignment.</p>
-              <p>From our ablation study, we find that bias scale \(\beta\) is the dominant driver of distortion. Lower \(\beta\) values compress ranges more aggressively and produce larger deviations from the baseline scan, with the largest distortion observed at \(\beta = 0.85\). The pull factor \(p\) exhibits a monotonic relationship with distortion magnitude, where higher values amplify displacement from nominal measurements. In contrast, the responsiveness parameter \(\alpha\) has a weaker and non-monotonic (a) (b) (c)</p>
-              <figure class="paper-figure"><figcaption>Fig. 3: Bias scan matching on: a) Acceptance fraction of manipulated LiDAR frames versus publish rate, b) LiDAR range distributions for control (blue) and attack (red), c) Polar coordinate of control and manipulated LiDAR beams for different SLAM solutions such as SLAM Toolbox, Cartographer, and GMapping.</figcaption></figure>
-              <p>influence, primarily affecting temporal responsiveness rather than distortion magnitude.</p>
+              <p>From our ablation study, we find that bias scale \(\beta\) is the dominant driver of distortion. Lower \(\beta\) values compress ranges more aggressively and produce larger deviations from the baseline scan, with the largest distortion observed at \(\beta = 0.85\). The pull factor \(p\) exhibits a monotonic relationship with distortion magnitude, where higher values amplify displacement from nominal measurements. In contrast, the responsiveness parameter \(\alpha\) has a weaker and non-monotonic influence, primarily affecting temporal responsiveness rather than distortion magnitude.</p>
+              <figure class="paper-figure">
+                <div class="paper-figure-grid paper-figure-grid-three">
+                  <div class="paper-subfigure">
+                    <img src="assets/fig3a-acceptance-vs-rate.png" alt="Acceptance fraction of manipulated LiDAR frames versus publish rate" loading="lazy" decoding="async">
+                    <span>(a)</span>
+                  </div>
+                  <div class="paper-subfigure">
+                    <img src="assets/fig3b-range-distribution.png" alt="LiDAR range distributions for control and attack" loading="lazy" decoding="async">
+                    <span>(b)</span>
+                  </div>
+                  <div class="paper-subfigure">
+                    <img src="assets/fig3c-polar-overlay.png" alt="Polar coordinate plot of control and manipulated LiDAR beams for SLAM Toolbox, Cartographer, and GMapping" loading="lazy" decoding="async">
+                    <span>(c)</span>
+                  </div>
+                </div>
+                <figcaption>Fig. 3: Bias scan matching on: a) Acceptance fraction of manipulated LiDAR frames versus publish rate, b) LiDAR range distributions for control (blue) and attack (red), c) Polar coordinate of control and manipulated LiDAR beams for different SLAM solutions such as SLAM Toolbox, Cartographer, and GMapping.</figcaption>
+              </figure>
               <p>Across all configurations, the signed bias remains consistently negative, indicating that manipulated ranges are systematically shortened relative to baseline measurements. Based on these results, the operating parameters were selected as \(\alpha = 0.2\), \(p = 0.8\), and \(\beta = 0.9\) in Eqn.16 and Eqn.17.</p>
               <p>This configuration lies within a stable interior region of the parameter space, balancing consistent beam displacement with stable temporal behavior.</p>
               <h4>2) Biasing Scan Matching</h4>
@@ -307,21 +332,60 @@ Simulation Software Gazebo
               <h4>3) Corrupting the Internal Pose Estimate</h4>
               <p>By consistently biasing scan-to-scan alignment, PULSER causes fabricated structures, such as a virtual wall, to be treated as legitimate features as shown in Fig. 4. Since pose graph optimization prioritizes internal consistency in Eqn. 3, these false constraints are reinforced rather than rejected. Crucially, the SLAM backend continues to converge normally, which makes pose corruption especially difficult to detect, as the system exhibits no optimization failures or contradictory measurements.</p>
               <h4>4) Inducing Persistent Map Deformation</h4>
-              <p>The combined effects of biased scan matching and corrupted pose estimation (a) (b)</p>
-              <figure class="paper-figure"><figcaption>Fig. 4: Injection of a synthetic structure through corrupted pose estimation on a simulated environment. a) Normal LiDAR scan line with navigation planner (blue) when no obstacle present, b) Synthetic wall created by PULSER causing navigation planner to generate an avoidance trajectory.)</figcaption></figure>
-              <p>ultimately manifest as persistent deformation of the reconstructed map. Fig. 5 highlights the consequences of PULSER: walls shift, geometry warps, and obstacle boundaries become internally consistent but globally incorrect. These deformations are not transient artifacts. Once incorporated, they persist even as new measurements arrive, because SLAM optimization assumes that prior observations were trustworthy and forces later data to conform to the attacker-induced geometry.</p>
-              <pre class="paper-table">TABLE II: Differences in Attacked and Normal Frames Per-
-Beam
-Frame Beam Absolute Normal Attacked
-ID ID Difference (m) Frame Value (m) Frame Value (m)
-75 39 2.640 3.236 0.596
-72 39 2.688 3.235 0.597
-50 38 2.582 3.296 0.714
-69 39 2.573 3.168 0.595</pre>
-              <figure class="paper-figure"><figcaption>Fig. 3c further reveals that these global distortions originate from subtle per-beam manipulations. In polar coordinates, the (a)</figcaption></figure>
-              <p>(b) (c)</p>
-              <figure class="paper-figure"><figcaption>Fig. 5: Comparison of SLAM-generated maps: a) Baseline map generated using unmodified LiDAR measurements, b) Partially modified map during injection, c) Map during injection of corrupted LiDAR data.</figcaption></figure>
-              <p>attacked ranges diverge only slightly from control measurements, yet these differences are sufficient to steer the SLAM solution over time. This is further broken down in Table II, which showcases the difference between the attacked value and the actual value. Since no abrupt anomalies or spectral artifacts are introduced, the robot continues to operate normally while its internal world model drifts steadily away from reality. This persistence and stealth make PULSER particularly insidious: the system remains navigable, stable, and apparently correct, even as its map becomes increasingly detached from the physical environment as shown in Fig. 5.</p>
+              <figure class="paper-figure">
+                <div class="paper-figure-grid paper-figure-grid-two">
+                  <div class="paper-subfigure">
+                    <img src="assets/fig4a-normal-navigation.png" alt="Normal LiDAR scan line with navigation planner when no obstacle is present" loading="lazy" decoding="async">
+                    <span>(a)</span>
+                  </div>
+                  <div class="paper-subfigure">
+                    <img src="assets/fig4b-pulser-wall-navigation.png" alt="Synthetic wall created by PULSER causing an avoidance trajectory" loading="lazy" decoding="async">
+                    <span>(b)</span>
+                  </div>
+                </div>
+                <figcaption>Fig. 4: Injection of a synthetic structure through corrupted pose estimation on a simulated environment. a) Normal LiDAR scan line with navigation planner (blue) when no obstacle present, b) Synthetic wall created by PULSER causing navigation planner to generate an avoidance trajectory.)</figcaption>
+              </figure>
+              <p>The combined effects of biased scan matching and corrupted pose estimation ultimately manifest as persistent deformation of the reconstructed map. Fig. 5 highlights the consequences of PULSER: walls shift, geometry warps, and obstacle boundaries become internally consistent but globally incorrect. These deformations are not transient artifacts. Once incorporated, they persist even as new measurements arrive, because SLAM optimization assumes that prior observations were trustworthy and forces later data to conform to the attacker-induced geometry.</p>
+              <figure class="paper-figure">
+                <div class="paper-figure-grid paper-figure-grid-three">
+                  <div class="paper-subfigure">
+                    <img src="assets/fig5a-baseline-map.png" alt="Baseline map generated using unmodified LiDAR measurements" loading="lazy" decoding="async">
+                    <span>(a)</span>
+                  </div>
+                  <div class="paper-subfigure">
+                    <img src="assets/fig5b-partial-map.png" alt="Partially modified map during injection" loading="lazy" decoding="async">
+                    <span>(b)</span>
+                  </div>
+                  <div class="paper-subfigure">
+                    <img src="assets/fig5c-corrupted-map.png" alt="Map during injection of corrupted LiDAR data" loading="lazy" decoding="async">
+                    <span>(c)</span>
+                  </div>
+                </div>
+                <figcaption>Fig. 5: Comparison of SLAM-generated maps: a) Baseline map generated using unmodified LiDAR measurements, b) Partially modified map during injection, c) Map during injection of corrupted LiDAR data.</figcaption>
+              </figure>
+              <figure class="paper-table">
+                <figcaption>TABLE II: Differences in Attacked and Normal Frames Per-Beam</figcaption>
+                <div class="paper-table-scroll">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th scope="col">Frame ID</th>
+                        <th scope="col">Beam ID</th>
+                        <th scope="col">Absolute Difference (m)</th>
+                        <th scope="col">Normal Frame Value (m)</th>
+                        <th scope="col">Attacked Frame Value (m)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>75</td><td>39</td><td>2.640</td><td>3.236</td><td>0.596</td></tr>
+                      <tr><td>72</td><td>39</td><td>2.688</td><td>3.235</td><td>0.597</td></tr>
+                      <tr><td>50</td><td>38</td><td>2.582</td><td>3.296</td><td>0.714</td></tr>
+                      <tr><td>69</td><td>39</td><td>2.573</td><td>3.168</td><td>0.595</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </figure>
+              <p>Fig. 3c further reveals that these global distortions originate from subtle per-beam manipulations. In polar coordinates, the attacked ranges diverge only slightly from control measurements, yet these differences are sufficient to steer the SLAM solution over time. This is further broken down in Table II, which showcases the difference between the attacked value and the actual value. Since no abrupt anomalies or spectral artifacts are introduced, the robot continues to operate normally while its internal world model drifts steadily away from reality. This persistence and stealth make PULSER particularly insidious: the system remains navigable, stable, and apparently correct, even as its map becomes increasingly detached from the physical environment as shown in Fig. 5.</p>
             </section>
             <section class="paper-section">
               <h2>VI. Discussions</h2>
@@ -329,38 +393,49 @@ ID ID Difference (m) Frame Value (m) Frame Value (m)
               <h4>1) Generalization</h4>
               <p>We evaluated PULSER on additional SLAM backends, including Cartographer [11] and GMapping [12]. Despite architectural differences between these systems, our results show that PULSER remains effective as shown in Fig 3c. In Cartographer, small modifications to PULSER that gradually drift the timestamps of incoming LiDAR scans produced persistent map distortions. Applying the same modified script to GMapping also influenced the mapping process and introduced inconsistencies in the generated map, although the effect was less pronounced than in Cartographer and SLAM Toolbox. These results suggest that the vulnerability exploited by PULSER is not specific to a single SLAM backend but instead arises from the broader reliance on accurate LiDAR timestamps for pose prediction and scan alignment across SLAM systems.</p>
               <h4>2) Adverse network conditions</h4>
-              <p>We evaluated PULSER under adverse network conditions to understand how the attack behaves under network strain. The attack was executed across progressively increasing delay and packet-loss levels and compared with a baseline run with no delay or loss. As shown in Fig. 6a, at 6000ms of delay less than 25% of the</p>
-              <figure class="paper-figure"><figcaption>Fig. 6: Impact of network delay and packet loss on attack efficacy. (a) Accepted TF frame throughput under increasing network delay with a marked failure threshold. (b) Attack efficacy represents the percentage effectiveness of PULSER relative to the baseline attack under varying packet loss conditions.</figcaption></figure>
-              <p>sent attack frames from PULSER are accepted by the SLAM algorithm. The attack continues to function reasonably well under packet loss up to about 50%, after which it fails (Fig. 6b).</p>
+              <p>We evaluated PULSER under adverse network conditions to understand how the attack behaves under network strain. The attack was executed across progressively increasing delay and packet-loss levels and compared with a baseline run with no delay or loss. As shown in Fig. 6a, at 6000ms of delay less than 25% of the sent attack frames from PULSER are accepted by the SLAM algorithm. The attack continues to function reasonably well under packet loss up to about 50%, after which it fails (Fig. 6b).</p>
+              <figure class="paper-figure">
+                <img src="assets/fig6-delay-loss.png" alt="Impact of network delay and packet loss on attack efficacy" loading="lazy" decoding="async">
+                <figcaption>Fig. 6: Impact of network delay and packet loss on attack efficacy. (a) Accepted TF frame throughput under increasing network delay with a marked failure threshold. (b) Attack efficacy represents the percentage effectiveness of PULSER relative to the baseline attack under varying packet loss conditions.</figcaption>
+              </figure>
               <h4>3) Sensor Modalities</h4>
               <p>Many SLAM systems fuse LiDAR with additional sensing modalities such as wheel odometry and employ cross-sensor consistency checks. In SLAM Toolbox, wheel odometry provides a motion prior, while LiDAR scan matching refines the robot pose and constructs the map.</p>
               <p>However, cross-sensor checks based on wheel odometry do not mitigate the PULSER attack for two main reasons. 1) PULSER modifies LiDAR scans incrementally based on previously observed scans rather than introducing large instantaneous perturbations. Each injected scan remains geometrically consistent with the robot’s predicted motion, preventing large pose discrepancies that would trigger cross-sensor validation mechanisms. 2) When injecting fake obstacles, PULSER accounts for the robot’s current pose and odometry estimate. The injected obstacles are dynamically updated relative to the robot’s estimated trajectory, causing them to behave like legitimate environmental structures from the robot’s perspective. Consequently, the navigation stack treats them as real obstacles.</p>
-              <figure class="paper-figure"><figcaption>Fig. 4 illustrates this behavior during navigation. Under normal conditions (Fig. 4a), the planner produces a direct trajectory toward the goal. When PULSER injects a fake wall into the LiDAR scan (Fig. 4b), the planner generates an avoidance trajectory that routes around the injected obstacle, indicating that the manipulated structure is treated as a valid environmental feature.</figcaption></figure>
+              <p>Fig. 4 illustrates this behavior during navigation. Under normal conditions (Fig. 4a), the planner produces a direct trajectory toward the goal. When PULSER injects a fake wall into the LiDAR scan (Fig. 4b), the planner generates an avoidance trajectory that routes around the injected obstacle, indicating that the manipulated structure is treated as a valid environmental feature.</p>
               <p>These results show that the injected LiDAR structures remain consistent with the robot’s motion prior, preventing cross-sensor checks based on wheel odometry from detecting the manipulation. Similar observations have been reported in prior work, where carefully crafted LiDAR perturbations can influence scan matching even in systems that incorporate motion priors [8].</p>
-              <h4>4) PULSERand SROS2</h4>
+              <h4>4) PULSER and SROS2</h4>
               <p>Secure ROS2 (SROS2) enables secure communication between the nodes in a ROS2 system. SROS2 provides all the features and tools within the ROS2 libraries that enable integration with DDS-Security, a specification that secures node communications by defining plugin implementations for: (1) authentication, (2) node access control, and (3) encryption. Theoretically, the encryption of all DDS messages in SROS2 should stop any attacker from intercepting and modifying LiDAR data the way PULSER is required to do.</p>
               <p>However, SROS2 is notorious for its timing overhead [48].</p>
-              <p>Hence to find the effectiveness of PULSER, we extracted the timing overhead and throughput across shared topics for our environment with and without SROS enabled as shown in</p>
-              <figure class="paper-figure"><figcaption>Fig. 7. The overhead imposed by SROS2 was large enough to introduce timestamp variance in the transform cache, and the input base_scan frames were not accepted by the navigation module. In our experimental setup of PULSER, implementing SROS2 made the SLAM Toolbox nonfunctional due to extreme lag in communication. Hence, we leave the effective use of SROS with SLAM Toolbox for future work.</figcaption></figure>
+              <p>Hence to find the effectiveness of PULSER, we extracted the timing overhead and throughput across shared topics for our environment with and without SROS enabled as shown in Fig. 7. The overhead imposed by SROS2 was large enough to introduce timestamp variance in the transform cache, and the input base_scan frames were not accepted by the navigation module. In our experimental setup of PULSER, implementing SROS2 made the SLAM Toolbox nonfunctional due to extreme lag in communication. Hence, we leave the effective use of SROS with SLAM Toolbox for future work.</p>
+              <figure class="paper-figure">
+                <img src="assets/fig7-sros-timing-delay.png" alt="ROS 2 vs. SROS 2 communication performance" loading="lazy" decoding="async">
+                <figcaption>Fig. 7: ROS 2 vs. SROS 2 communication performance. (a) Mean inter-message delay across shared topics, showing up to 91.7× higher latency with SROS 2. (b) Aggregate throughput decreases from 377.5 msg/s (ROS 2) to 23.5 msg/s (SROS 2).</figcaption>
+              </figure>
               <p>If the delays in SROS2 fall within the tolerances of PULSER, one would then consider the scenario where the attacker has initial access to a compromised, lower-privilege node on the same wireless network that does not have access to publish or subscribe to the /scan topic. Based on our experiments, we find that, to successfully escalate privileges and corrupt data, an attacker will need to modify PULSER by combining it with an already-existing privilege escalation attack documented with ROS2 [49]. Once the attacker gains control over the /scan topic through the privilege escalation attack, PULSER can proceed as normal and corrupt map data. Table III provides the configuration setups in SROS2 that would need to be enabled by an attacker to make PULSER viable.</p>
+              <figure class="paper-table paper-table-compact">
+                <figcaption>TABLE III: PULSER viability on SROS2.</figcaption>
+                <div class="paper-table-scroll">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th scope="col">SROS2 Parameter</th>
+                        <th scope="col" class="table-center">PULSER Viability</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>allow_unauthenticated_participants</td><td class="table-center">✓</td></tr>
+                      <tr><td>enable_join_access_control</td><td class="table-center">✓</td></tr>
+                      <tr><td>rtps_protection_kind</td><td class="table-center">✗</td></tr>
+                      <tr><td>discovery_protection_kind</td><td class="table-center">✓</td></tr>
+                      <tr><td>enable_write_access_control</td><td class="table-center">✓</td></tr>
+                      <tr><td>data_protection_kind</td><td class="table-center">✗</td></tr>
+                      <tr><td>liveliness_protection_kind</td><td class="table-center">✗</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </figure>
               <h4>5) Mitigation Strategies</h4>
-              <p>By preserving realistic per-beam statistics, PULSER evades common detection strategies based on outlier rejection, distributional drift, or threshold-based</p>
-              <figure class="paper-figure"><figcaption>Fig. 7: ROS 2 vs. SROS 2 communication performance. (a) Mean inter-message delay across shared topics, showing up to 91.7× higher latency with SROS 2. (b) Aggregate throughput decreases from 377.5 msg/s (ROS 2) to 23.5 msg/s (SROS 2).</figcaption></figure>
-              <pre class="paper-table">TABLE III: PULSER viability on SROS2.
-SROS2 Parameter PULSER Viability
-allow_unauthenticated_participants ✓
-enable_join_access_control ✓
-rtps_protection_kind ✗
-discovery_protection_kind ✓
-enable_write_access_control ✓
-data_protection_kind ✗
-liveliness_protection_kind ✗
-anomaly detection. Thus, scan matching is systematically
-biased toward attacker-injected data without triggering explicit
-rejection or warning signals, making this phase of the attack
-both efficient and stealthy. One mitigation strategy is enforcing
-strict middleware authentication and topic authorization within</pre>
-              <p>strict middleware authentication and topic authorization within ROS2. As summarized in Table III, configurations that permit unauthenticated participants or relaxed access control policies enable malicious nodes to interact with the DDS network and publish manipulated data to critical topics such as/scan. Enforcing strict authentication and limiting publish permissions can therefore significantly reduce the attack surface.</p>
+              <p>By preserving realistic per-beam statistics, PULSER evades common detection strategies based on outlier rejection, distributional drift, or threshold-based anomaly detection. Thus, scan matching is systematically biased toward attacker-injected data without triggering explicit rejection or warning signals, making this phase of the attack both efficient and stealthy. One mitigation strategy is enforcing strict middleware authentication and topic authorization within ROS2. As summarized in Table III, configurations that permit unauthenticated participants or relaxed access control policies enable malicious nodes to interact with the DDS network and publish manipulated data to critical topics such as/scan. Enforcing strict authentication and limiting publish permissions can therefore significantly reduce the attack surface.</p>
               <p>Another potential mitigation is sensor-origin authentication, which ensures that LiDAR measurements originate from trusted hardware or verified driver processes, preventing forged sensor data from entering the SLAM pipeline. By cryptographically verifying the origin of the sensor messages, the SLAM pipeline can reject forged data even if an attack gains network access to the ROS2 system. Together with SROS2 protections summarized in Table III, these mechanisms provide a stronger foundation for preventing LiDAR data manipulation attacks such as PULSER.</p>
             </section>
             <section class="paper-section">
@@ -393,8 +468,9 @@ strict middleware authentication and topic authorization within</pre>
               <h2>IX. Acknowledgment</h2>
               <p>This material is based upon work partially supported by the National Science Foundation under grant #2245156 and #2523805, and Commonwealth Cyber Initiative grant N-2Q26- 007. Any opinions, findings, conclusions, or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the National Science Foundation.</p>
             </section>
-            <section class="paper-section">
-              <h2>References</h2>
+            <section class="paper-section paper-references-section">
+              <details class="paper-references-accordion">
+                <summary>References</summary>
               <ol class="paper-references">
                 <li>[1] C. Cadena, L. Carlone, H. Carrillo, Y . Latif, D. Scaramuzza, J. Neira, I. Reid, and J. J. Leonard, “Past, Present, and Future of Simultaneous Localization and Mapping: Toward the Robust-Perception Age,”IEEE Transactions on Robotics, vol. 32, no. 6, pp. 1309–1332, 2016.</li>
                 <li>[2] M. Choi, J. Ryu, Y . Son, S. Cho, and J. Paek, “LiDAR-Based Localization for Autonomous Vehicles - Survey and Recent Trends,” in 2024 15th International Conference on Information and Communication Technology Convergence (ICTC 2024), 10 2024, pp. 456–460.</li>
@@ -448,6 +524,7 @@ strict middleware authentication and topic authorization within</pre>
                 <li>[50] Y . Li and J. Ibanez-Guzman, “Lidar for Autonomous Driving: The Principles, Challenges, and Trends for Automotive Lidar and Perception Systems,”IEEE Signal Processing Magazine, vol. 37, no. 4, p. 50–61, Jul. 2020. [Online]. Available: http://dx.doi.org/10.1109/MSP.2020. 2973615</li>
                 <li>[51] P. Dellenbach, J.-E. Deschaud, B. Jacquet, and F. Goulette, “CT-ICP: Real-time Elastic LiDAR Odometry with Loop Closure,” 2022. [Online]. Available: https://arxiv.org/abs/2109.12979</li>
               </ol>
+              </details>
             </section>
             </div>
           </section>
