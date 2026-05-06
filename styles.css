@@ -711,6 +711,17 @@ main {
   line-height: 1.65;
 }
 
+.paper-notice-stack {
+  display: grid;
+  gap: 10px;
+  max-width: 86ch;
+  margin: 16px 0 0;
+}
+
+.paper-notice-stack .paper-rights {
+  margin: 0;
+}
+
 .paper-rights-header {
   margin: 16px 0 0;
 }
