@@ -1,18 +1,20 @@
-# Finn Schaefer
+# Hi, I'm Finn
 
-I am interested in the kinds of systems that are easy to trust until they are not.
+Cybersecurity engineer interested in malware analysis, threat intelligence, AI, cryptography, and cyber-physical systems.
 
-That usually puts me somewhere around security research, cyber-physical systems, autonomous platforms, and the strange edge where software decisions start affecting real-world behavior.
+Currently building projects focused on malware research, trusted AI, autonomous systems, and security engineering.
 
-Lately I have been spending time on:
+## Interests
 
-- vulnerabilities in ROS2-based SLAM systems
-- LiDAR and perception manipulation in autonomous environments
-- security automation that stays understandable under pressure
+* Malware Analysis & Reverse Engineering
+* Threat Intelligence
+* Artificial Intelligence
+* Applied Cryptography
+* Autonomous Systems
+* Cyber-Physical Security
 
-I work as a security engineer and care a lot about turning good research into useful systems, not just interesting demos.
+## Research
 
-Links:
+Primary author of a paper accepted to IEEE HOST 2026.
 
-- [LinkedIn](https://www.linkedin.com/in/finn-schaefer/)
-- [Website](https://www.finnsec.dev)
+Always building, researching, or breaking something to understand how it works.
