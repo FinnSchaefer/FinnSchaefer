@@ -7,6 +7,13 @@ const updates = [
     label: "IEEE HOST 2026",
   },
   {
+    date: "June 28, 2026",
+    title: "New article: Malware analysis has been too disposable",
+    summary:
+      "A piece on why malware reverse engineering needs durable analysis infrastructure instead of disposable labels, scores, and one-off reports.",
+    label: "Malware analysis",
+  },
+  {
     date: "2026",
     title: "New article: The model is not the system",
     summary:
@@ -43,6 +50,15 @@ const posts = [
 
 const projects = [
   {
+    meta: "Article &bull; June 28, 2026",
+    title: "Malware analysis has been too disposable",
+    description:
+      "An article on why malware reverse engineering should preserve evidence, context, and analyst judgment instead of collapsing into labels.",
+    tags: ["Malware", "Reverse Engineering", "Elara"],
+    href: "work/malware-analysis-has-been-too-disposable/",
+    linkLabel: "Open page",
+  },
+  {
     meta: "Article",
     title: "The model is not the system",
     description:
@@ -58,15 +74,6 @@ const projects = [
       "An article on why quantum really does break ECC and ECDSA, why that is not the end of public-key crypto, and what has to replace it.",
     tags: ["Post-Quantum", "ECC", "ECDSA"],
     href: "work/your-curve-has-an-expiration-date/",
-    linkLabel: "Open page",
-  },
-  {
-    meta: "Write-up",
-    title: "NTCC first-place finish",
-    description:
-      "A write-up on the NTCC work behind the result, especially the anomaly-detection problems where the system's view of the environment started to drift.",
-    tags: ["NTCC", "Transportation", "Machine Learning"],
-    href: "work/ntcc-first-place/",
     linkLabel: "Open page",
   },
 ];
