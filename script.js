@@ -7,7 +7,7 @@ const updates = [
     label: "IEEE HOST 2026",
   },
   {
-    date: "June 28, 2026",
+    date: "2026",
     title: "New article: Malware analysis has been too disposable",
     summary:
       "A piece on why malware reverse engineering needs durable analysis infrastructure instead of disposable labels, scores, and one-off reports.",
@@ -50,7 +50,7 @@ const posts = [
 
 const projects = [
   {
-    meta: "Article &bull; June 28, 2026",
+    meta: "Article",
     title: "Malware analysis has been too disposable",
     description:
       "An article on why malware reverse engineering should preserve evidence, context, and analyst judgment instead of collapsing into labels.",
